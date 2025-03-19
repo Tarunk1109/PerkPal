@@ -45,36 +45,26 @@ body.dark {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 48px;
-    font-weight: 800;
-    color: rgba(0, 0, 0, 0.08);
+    font-size: 40px;
+    color: rgba(0, 0, 0, 0.1);
     text-align: center;
-    max-width: 90%;
+    max-width: 80%;
     pointer-events: none;
     z-index: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    opacity: 0;
-    animation: fadeInQuote 1.5s ease forwards 0.5s;
-}
-
-@keyframes fadeInQuote {
-    to { opacity: 1; }
 }
 
 .dark .background-quote {
-    color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.1);
 }
 
 /* Left and Right Decorative Elements */
 .side-decor {
     position: absolute;
     top: 0;
-    width: 250px;
+    width: 200px;
     height: 100%;
     background: linear-gradient(90deg, rgba(203, 230, 233, 0.8), transparent);
     z-index: 0;
-    overflow: hidden;
 }
 
 .side-decor.left {
@@ -97,47 +87,46 @@ body.dark {
 .side-decor::before {
     content: '✨';
     position: absolute;
-    font-size: 70px;
-    top: 30%;
+    font-size: 50px;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
-    opacity: 0.5;
-    animation: sparkle 3s ease-in-out infinite;
+    opacity: 0.3;
+    animation: float 4s ease-in-out infinite;
 }
 
 .side-decor.right::before {
     content: '🌟';
 }
 
-@keyframes sparkle {
-    0%, 100% { transform: translate(-50%, -15px) scale(1); opacity: 0.5; }
-    50% { transform: translate(-50%, 15px) scale(1.1); opacity: 0.7; }
+@keyframes float {
+    0%, 100% { transform: translate(-50%, -10px); }
+    50% { transform: translate(-50%, 10px); }
 }
 
 .logo-container {
     background-color: rgba(255, 255, 255, 0.95);
     width: 100%;
-    height: 120px;
+    height: 100px;
     margin: 0;
     padding: 0;
     font-family: "Inter", serif;
-    font-weight: 700;
+    font-weight: bold;
     position: sticky;
     top: 0;
     z-index: 20;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    transition: background-color 0.3s ease, transform 0.5s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
 }
 
 .logo-container.move {
     opacity: 1;
     transform: translateY(0);
-    transition: transform 1s ease, opacity 1s ease;
+    transition: transform 1.5s ease, opacity 1.5s ease;
 }
 
 .dark .logo-container {
     background-color: rgba(44, 62, 80, 0.95);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .logo-container ul.nav-list {
@@ -147,24 +136,23 @@ body.dark {
     padding: 0;
     margin: 0;
     position: absolute;
-    bottom: 20px;
-    right: 30px;
+    bottom: 15px;
+    right: 20px;
 }
 
 .logo-container li {
-    margin-right: 50px;
+    margin-right: 40px;
     position: relative;
-    padding: 12px 0;
+    padding: 10px 0;
 }
 
 .logo-container li a {
     text-decoration: none;
     color: #333;
-    font-size: 18px;
-    padding: 10px 20px;
-    transition: all 0.3s ease;
-    border-radius: 8px;
-    font-weight: 600;
+    font-size: 16px;
+    padding: 8px 15px;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 5px;
 }
 
 .dark .logo-container li a {
@@ -174,8 +162,7 @@ body.dark {
 .logo-container li a:hover {
     color: #007BFF;
     background-color: #f0f8ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    transform: scale(1.05);
 }
 
 .dropdown {
@@ -184,16 +171,16 @@ body.dark {
     top: 100%;
     left: 0;
     background-color: #ffffff;
-    min-width: 260px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     list-style-type: none;
-    padding: 25px;
+    padding: 20px;
     margin: 0;
     z-index: 10;
     opacity: 0;
-    transform: translateY(-15px) scale(0.95);
-    transition: all 0.3s ease;
+    transform: translateY(-10px) scale(0.95);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .dark .dropdown {
@@ -201,12 +188,11 @@ body.dark {
 }
 
 .dropdown h3 {
-    font-size: 18px;
+    font-size: 16px;
     color: #444;
-    padding: 0 15px 15px 15px;
-    margin: 0 0 15px 0;
+    padding: 0 15px 10px 15px;
+    margin: 0 0 10px 0;
     border-bottom: 2px solid #eee;
-    font-weight: 700;
 }
 
 .dark .dropdown h3 {
@@ -215,15 +201,15 @@ body.dark {
 }
 
 .dropdown li {
-    margin: 10px 0;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
+    margin: 8px 0;
+    padding: 8px 15px;
+    position: relative;
+    transition: background-color 0.2s ease;
 }
 
 .dropdown li:hover {
     background-color: #e0f0ff;
-    border-radius: 6px;
-    transform: translateX(5px);
+    border-radius: 5px;
 }
 
 .dark .dropdown li:hover {
@@ -231,9 +217,9 @@ body.dark {
 }
 
 .dropdown li a {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
-    font-weight: 500;
+    font-weight: normal;
     text-decoration: none;
     display: block;
     transition: color 0.3s ease;
@@ -250,19 +236,19 @@ body.dark {
 .dropdown .submenu {
     display: none;
     position: absolute;
-    top: -25px;
-    left: calc(100% + 15px);
+    top: -20px;
+    left: calc(100% + 10px);
     background-color: #ffffff;
-    min-width: 260px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 10px;
+    min-width: 240px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     list-style-type: none;
-    padding: 25px;
+    padding: 20px;
     margin: 0;
     z-index: 10;
     opacity: 0;
     transform: scale(0.95);
-    transition: all 0.3s ease;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .dark .dropdown .submenu {
@@ -283,14 +269,9 @@ body.dark {
 }
 
 img {
-    width: 280px;
-    height: 160px;
-    margin-top: -30px;
-    transition: transform 0.4s ease;
-}
-
-img:hover {
-    transform: scale(1.05);
+    width: 250px;
+    height: 150px;
+    margin-top: -28px;
 }
 
 main {
@@ -298,68 +279,44 @@ main {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 40px 20px;
+    padding: 20px;
     position: relative;
     z-index: 1;
-    max-width: 1400px;
-    margin: 0 auto;
 }
 
 .form-container {
     margin: 50px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.95));
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
     width: 100%;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
     position: relative;
     z-index: 2;
-    overflow: hidden;
 }
 
 .form-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
 }
 
 .dark .form-container {
     background: linear-gradient(135deg, rgba(52, 73, 94, 0.95), rgba(44, 62, 80, 0.95));
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
-}
-
-.form-container::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0, 123, 255, 0.05), transparent);
-    pointer-events: none;
-    z-index: -1;
-    animation: subtleGlow 6s ease infinite;
-}
-
-@keyframes subtleGlow {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.1); opacity: 1; }
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .name-preview {
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     color: #007BFF;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     opacity: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    font-weight: 600;
+    transition: opacity 0.3s ease;
 }
 
 .name-preview.show {
     opacity: 1;
-    transform: translateY(0);
 }
 
 .dark .name-preview {
@@ -368,18 +325,15 @@ main {
 
 .welcome-text {
     text-align: center;
-    font-size: 34px;
+    font-size: 28px;
     color: #007BFF;
-    margin-bottom: 30px;
-    font-weight: 800;
-    animation: bounceIn 1.2s ease-in-out;
-    letter-spacing: 1px;
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-in-out;
 }
 
-@keyframes bounceIn {
-    0% { opacity: 0; transform: scale(0.9); }
-    60% { opacity: 1; transform: scale(1.05); }
-    100% { opacity: 1; transform: scale(1); }
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .dark .welcome-text {
@@ -388,13 +342,12 @@ main {
 
 .form-progress {
     width: 100%;
-    height: 16px;
+    height: 12px;
     background: #e0e0e0;
     border-radius: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     overflow: hidden;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-progress-bar {
@@ -402,57 +355,27 @@ main {
     width: 0;
     border-radius: 25px;
     background: linear-gradient(45deg, #007BFF, #00c4cc);
-    transition: width 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
-}
-
-.form-progress-bar::after {
-    content: attr(data-progress) '%';
-    position: absolute;
-    top: -40px;
-    left: calc(100% - 20px);
-    transform: translateX(-50%);
-    background: #007BFF;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.form-progress-bar:hover::after {
-    opacity: 1;
+    transition: width 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.7);
 }
 
 .dark .form-progress {
     background: #4a6076;
 }
 
-.dark .form-progress-bar::after {
-    background: #00c4cc;
-}
-
 label {
-    font-weight: 700;
+    font-weight: bold;
     color: #333;
     position: relative;
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 16px;
+    gap: 8px;
+    margin-bottom: 5px;
 }
 
 label::before {
-    font-size: 22px;
+    font-size: 18px;
     color: #007BFF;
-    transition: transform 0.3s ease;
-}
-
-label:hover::before {
-    transform: scale(1.15);
 }
 
 label[for="name"]::before { content: "👤"; }
@@ -474,40 +397,36 @@ label[for="ethnicityOther"]::before { content: "✍️"; }
 
 .hint {
     position: absolute;
-    top: -35px;
+    top: -30px;
     left: 0;
     background: #007BFF;
     color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 13px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: translateY(5px);
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-}
-
-label:hover .hint, input:focus + .hint, select:focus + .hint {
-    opacity: 1;
-    transform: translateY(0);
+    transition: opacity 0.3s ease;
+    z-index: 3;
 }
 
 .dark .hint {
     background: #00c4cc;
-    box-shadow: 0 4px 10px rgba(0, 196, 204, 0.3);
+}
+
+label:hover .hint, input:focus + .hint, select:focus + .hint {
+    opacity: 1;
 }
 
 input, select {
     width: 100%;
-    padding: 14px;
-    margin: 10px 0 20px;
+    padding: 12px;
+    margin: 8px 0 15px;
     border: 1px solid #ccc;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    font-size: 16px;
-    background: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 14px;
+    position: relative;
 }
 
 .dark input, .dark select {
@@ -518,13 +437,8 @@ input, select {
 
 input:focus, select:focus {
     border-color: #007BFF;
-    box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
     outline: none;
-    background: #fff;
-}
-
-.dark input:focus, .dark select:focus {
-    background: #34495e;
 }
 
 .password-container {
@@ -533,17 +447,12 @@ input:focus, select:focus {
 
 .toggle-password {
     position: absolute;
-    right: 15px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #007BFF;
-    font-size: 20px;
-    transition: transform 0.3s ease;
-}
-
-.toggle-password:hover {
-    transform: translateY(-50%) scale(1.1);
+    font-size: 16px;
 }
 
 .dark .toggle-password {
@@ -551,14 +460,13 @@ input:focus, select:focus {
 }
 
 .password-strength {
-    height: 8px;
+    height: 5px;
     width: 0%;
-    margin-top: -15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    transition: all 0.4s ease;
+    margin-top: -10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    transition: width 0.3s ease, background-color 0.3s ease;
     background-color: #ff4d4d;
-    box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
 }
 
 .password-strength.weak { width: 33%; background-color: #ff4d4d; }
@@ -566,11 +474,10 @@ input:focus, select:focus {
 .password-strength.strong { width: 100%; background-color: #28a745; }
 
 .age-display {
-    font-size: 15px;
+    font-size: 14px;
     color: #555;
-    margin-top: -15px;
-    margin-bottom: 20px;
-    font-weight: 500;
+    margin-top: -10px;
+    margin-bottom: 15px;
 }
 
 .dark .age-display {
@@ -583,80 +490,54 @@ input:focus, select:focus {
     top: 50%;
     transform: translateY(-50%);
     color: #ff4d4d;
-    font-size: 13px;
-    background: rgba(255, 77, 77, 0.15);
-    padding: 4px 10px;
-    border-radius: 5px;
+    font-size: 12px;
+    background: rgba(255, 77, 77, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
     opacity: 0;
-    transition: all 0.3s ease;
-    font-weight: 600;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .error.active {
     opacity: 1;
-    transform: translateY(-50%) translateX(15px);
+    transform: translateY(-50%) translateX(10px);
 }
 
 .dark .error {
     color: #ff6666;
-    background: rgba(255, 102, 102, 0.25);
+    background: rgba(255, 102, 102, 0.2);
 }
 
 .button-group {
     display: flex;
-    gap: 15px;
-    margin-top: 25px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 button {
     flex: 1;
-    padding: 14px;
+    padding: 12px;
     background: linear-gradient(45deg, #007BFF, #00c4cc);
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.4s ease;
-    font-weight: 700;
-    font-size: 16px;
-    position: relative;
-    overflow: hidden;
-}
-
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #00c4cc, #007BFF);
-    transition: left 0.4s ease;
-}
-
-button:hover::before {
-    left: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+    font-size: 14px;
 }
 
 button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
-}
-
-button:active {
-    transform: scale(0.98);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
 }
 
 button.reset-btn {
     background: linear-gradient(45deg, #ff4d4d, #ff6666);
 }
 
-button.reset-btn::before {
-    background: linear-gradient(45deg, #ff6666, #ff4d4d);
-}
-
 button.reset-btn:hover {
-    box-shadow: 0 8px 20px rgba(255, 77, 77, 0.3);
+    box-shadow: 0 6px 15px rgba(255, 77, 77, 0.4);
 }
 
 .success-animation {
@@ -664,32 +545,31 @@ button.reset-btn:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.5);
-    font-size: 32px;
+    font-size: 28px;
     color: #28a745;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 25px 40px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     opacity: 0;
-    animation: successPop 2.5s ease forwards;
+    animation: successFade 2s ease forwards;
     z-index: 100;
-    font-weight: 700;
 }
 
-@keyframes successPop {
+@keyframes successFade {
     0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
     100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 
 .dark .success-animation {
     color: #85e085;
-    background: rgba(52, 73, 94, 0.95);
+    background: rgba(52, 73, 94, 0.9);
 }
 
-/* Footer Styles (Unchanged) */
+/* Updated Footer Styles */
 .site-footer {
-    background: linear-gradient(135deg, #ffffff, #f5faff);
+    background: linear-gradient(135deg, #ffffff, #f5faff); /* Solid gradient, no transparency */
     color: #2c3e50;
     padding: 40px 0;
     text-align: center;
@@ -701,7 +581,7 @@ button.reset-btn:hover {
 }
 
 .dark .site-footer {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
+    background: linear-gradient(135deg, #2c3e50, #34495e); /* Solid dark gradient */
     color: #ecf0f1;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -836,34 +716,29 @@ button.reset-btn:hover {
     position: fixed;
     bottom: 15px;
     right: 15px;
-    width: 70px;
-    height: 34px;
+    width: 60px;
+    height: 28px;
     background: linear-gradient(45deg, #e0e0e0, #ffffff);
-    border-radius: 34px;
+    border-radius: 28px;
     border: 1px solid #ccc;
     cursor: pointer;
     z-index: 30;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-}
-
-.theme-toggle:hover {
-    transform: scale(1.05);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .theme-toggle::before {
     content: '☀️';
     position: absolute;
-    width: 28px;
-    height: 28px;
-    left: 3px;
-    top: 3px;
+    width: 24px;
+    height: 24px;
+    left: 2px;
+    top: 2px;
     background-color: #fff;
     border-radius: 50%;
     text-align: center;
-    line-height: 28px;
-    font-size: 18px;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    line-height: 24px;
+    font-size: 16px;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .dark .theme-toggle {
@@ -872,15 +747,15 @@ button.reset-btn:hover {
 
 .dark .theme-toggle::before {
     content: '🌙';
-    transform: translateX(36px);
+    transform: translateX(32px);
 }
 
 .back-to-top {
     position: fixed;
-    bottom: 65px;
+    bottom: 60px;
     right: 15px;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: linear-gradient(45deg, #007BFF, #00c4cc);
     color: white;
     border: none;
@@ -888,9 +763,8 @@ button.reset-btn:hover {
     cursor: pointer;
     display: none;
     z-index: 30;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-    font-size: 24px;
-    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
 }
 
 .back-to-top.show {
@@ -899,30 +773,19 @@ button.reset-btn:hover {
 
 .back-to-top:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
 }
 
 .radio-group {
-    margin: 14px 0;
+    margin: 12px 0;
     display: flex;
-    gap: 25px;
+    gap: 20px;
 }
 
 .radio-group label {
-    font-weight: 500;
+    font-weight: normal;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    transition: color 0.3s ease;
-}
-
-.radio-group label:hover {
-    color: #007BFF;
-}
-
-.dark .radio-group label:hover {
-    color: #00c4cc;
+    gap: 5px;
 }
 
 .student-number-container.hidden, .ethnicity-other-container.hidden {
@@ -933,7 +796,7 @@ button.reset-btn:hover {
 .student-number-container.visible, .ethnicity-other-container.visible {
     display: block;
     opacity: 1;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
 }
     </style>
 </head>
@@ -1054,7 +917,7 @@ button.reset-btn:hover {
             </div>
             <div class="footer-right">
                 <h2>Contact Us</h2>
-                <p>Email: <a href="/cdn-cgi/l/email-protection#f0879792928d9096b08297809782939ede939f9d"><span class="__cf_email__" data-cfemail="5e2d2b2e2e312c2a1e2e3b2c352e3f32703d3133">[email&#160;protected]</span></a></p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#cdbeb8bdbda2bfb98dbda8bfa6bdaca1e3aea2a0"><span class="__cf_email__" data-cfemail="b7c4c2c7c7d8c5c3f7c7d2c5dcc7d6db99d4d8da">[email&#160;protected]</span></a></p>
                 <p>Phone: +123 456 789</p>
                 <p>Address: 123 Street, City, Country</p>
             </div>
