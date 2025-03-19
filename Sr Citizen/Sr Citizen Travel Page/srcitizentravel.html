@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkpal - Senior Citizen Travel Offers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            background: radial-gradient(circle at center, #cbe6e9, #e0f7fa);
+            background-size: 150% 150%;
+            animation: radialPulse 20s ease infinite;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: "Inter", serif;
+            overflow-x: hidden;
+            transition: color 0.3s ease;
+            position: relative;
+            color: #333;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.1"%3E%3Cpath fill="%235DA8B5" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
+            z-index: -1;
+        }
+
+        body.dark {
+            background: radial-gradient(circle at center, #2A6073, #5DA8B5);
+            color: #ecf0f1;
+        }
+
+        .dark body::before {
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.1"%3E%3Cpath fill="%2373C8D5" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
+        }
+
+        @keyframes radialPulse {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .logo-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            height: 100px;
+            font-family: "Inter", serif;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .dark .logo-container {
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .logo-container ul.nav-list {
+            display: flex;
+            list-style-type: none;
+            justify-content: flex-end;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+        }
+
+        .nav-list li {
+            margin-top: -55px;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .logo-container li {
+            margin-right: 40px;
+        }
+
+        .logo-container li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 8px 15px;
+            transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 5px;
+        }
+
+        .dark .logo-container li a {
+            color: #ecf0f1;
+        }
+
+        .logo-container li a:hover {
+            color: #f39c12;
+            background-color: rgba(240, 248, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dark .dropdown {
+            background-color: #34495e;
+        }
+
+        .dropdown h3 {
+            font-size: 16px;
+            color: #444;
+            padding: 0 15px 10px 15px;
+            margin: 0 0 10px 0;
+            border-bottom: 2px solid #eee;
+        }
+
+        .dark .dropdown h3 {
+            color: #bdc3c7;
+            border-bottom: 2px solid #4a6076;
+        }
+
+        .dropdown li {
+            margin: 8px 0;
+            padding: 8px 15px;
+            position: relative;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown li:hover {
+            background-color: #e0f0ff;
+            border-radius: 5px;
+        }
+
+        .dark .dropdown li:hover {
+            background-color: #4a6076;
+        }
+
+        .dropdown li a {
+            font-size: 14px;
+            color: #333;
+            font-weight: normal;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .dark .dropdown li a {
+            color: #ecf0f1;
+        }
+
+        .dropdown li a:hover {
+            color: #f39c12;
+        }
+
+        .dropdown .submenu {
+            display: none;
+            position: absolute;
+            top: -20px;
+            left: calc(100% + 10px);
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dark .dropdown .submenu {
+            background-color: #34495e;
+        }
+
+        .dropdown li:hover .submenu {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .logo-container li:hover .dropdown {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition-delay: 0.1s;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(45deg, #f39c12, #f7c948, #d4a017);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background-size: 200% 200%;
+            animation: gradientShift 10s ease infinite;
+            z-index: 1;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1920x600?text=Senior+Travel+Hero') no-repeat center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .hero-section h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section p {
+            font-size: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .filter-container {
+            position: sticky;
+            top: 100px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .dark .filter-container {
+            background: rgba(44, 62, 80, 0.9);
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            margin: 5px;
+            background: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .filter-btn {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(45deg, #f39c12, #f7c948);
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.5);
+        }
+
+        .offers-section {
+            width: 100%;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .dark .offers-section {
+            background: rgba(52, 73, 94, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-header {
+            text-align: center;
+            padding: 25px;
+            color: white;
+            background: linear-gradient(45deg, #f39c12, #f7c948);
+            border-radius: 12px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header h2 {
+            font-size: 40px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header::after {
+            content: '✈️';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .offers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .offer-item {
+            background: #f9f9f9;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .dark .offer-item {
+            background: #2c3e50;
+        }
+
+        .offer-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .offer-item::after {
+            content: '🧓';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .offer-item:hover::after {
+            opacity: 1;
+            animation: sparkle 1.5s infinite;
+        }
+
+        .offer-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .offer-item:hover .offer-image {
+            transform: scale(1.05);
+        }
+
+        .offer-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .offer-details h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .dark .offer-details h3 {
+            color: #ecf0f1;
+        }
+
+        .offer-details p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .dark .offer-details p {
+            color: #bdc3c7;
+        }
+
+        .offer-details .expiry {
+            font-size: 14px;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+        }
+
+        .dark .offer-details .expiry {
+            color: #ff6666;
+        }
+
+        .site-footer {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dark .site-footer {
+            background-color: rgba(44, 62, 80, 0.95);
+            color: #ecf0f1;
+            border-top: 1px solid #4a6076;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-left h3, .footer-right h2 {
+            color: #222;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .dark .footer-left h3, .dark .footer-right h2 {
+            color: #ecf0f1;
+        }
+
+        .footer-left ul {
+            list-style: none;
+        }
+
+        .footer-left ul li {
+            margin-top: 10px;
+        }
+
+        .footer-left ul li a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .dark .footer-left ul li a {
+            color: #bdc3c7;
+        }
+
+        .footer-left ul li a:hover {
+            color: #f39c12;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            font-size: 14px;
+            color: #777;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .dark .footer-bottom {
+            color: #bdc3c7;
+            border-top: 1px solid #4a6076;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 30px;
+            background: linear-gradient(45deg, #e0e0e0, #ffffff);
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            z-index: 30;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-toggle::before {
+            content: '☀️';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            left: 2px;
+            top: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: 16px;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .dark .theme-toggle {
+            background: linear-gradient(45deg, #f39c12, #f7c948);
+        }
+
+        .dark .theme-toggle::before {
+            content: '🌙';
+            transform: translateX(30px);
+        }
+
+        .theme-toggle:hover {
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.4);
+        }
+
+        .wishlist-btn-fixed {
+            position: fixed;
+            bottom: 130px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #f39c12, #f7c948);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: block;
+            z-index: 30;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+        }
+
+        .wishlist-btn-fixed:hover {
+            transform: scale(1.1);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #f39c12, #f7c948);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 30;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+        }
+
+        .back-to-top.show {
+            display: block;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            animation: modalPop 0.3s ease;
+        }
+
+        .dark .modal-content {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .modal-content .claim-btn, .modal-content .wishlist-btn, .modal-content .share-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .modal-content .claim-btn {
+            background: linear-gradient(45deg, #f39c12, #f7c948);
+            color: white;
+        }
+
+        .modal-content .wishlist-btn {
+            background: #fff;
+            color: #333;
+            border: 2px solid #f39c12;
+        }
+
+        .dark .modal-content .wishlist-btn {
+            background: #34495e;
+            color: #ecf0f1;
+            border-color: #f7c948;
+        }
+
+        .modal-content .share-btn {
+            background: #d4a017;
+            color: white;
+        }
+
+        .modal-content .claim-btn:hover, .modal-content .wishlist-btn:hover, .modal-content .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(243, 156, 18, 0.4);
+        }
+
+        .modal-content .wishlist-btn.active {
+            background: linear-gradient(45deg, #f39c12, #f7c948);
+            color: white;
+            border: none;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .dark .close-modal {
+            color: #ecf0f1;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 40px; }
+            .hero-section p { font-size: 18px; }
+            .offers-list { grid-template-columns: 1fr; }
+            .offer-image { height: 150px; }
+            .filter-container { padding: 10px; }
+            .filter-btn { padding: 10px 20px; font-size: 14px; }
+        }
+
+        :root {
+            --accent-color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
+        <ul class="nav-list">
+            <li>
+                <a href="#">Services</a>
+                <ul class="dropdown">
+                    <h3>Grab deals for</h3>
+                    <li><a href="#">Student</a>
+                        <ul class="submenu">
+                            <li><a href="../Student Clothing Page/stdclothing.html">Clothing</a></li>
+                            <li><a href="../Student entertainment page/stdentertainment.html">Entertainment</a></li>
+                            <li><a href="../Student Education page/stdeducation.html">Education</a></li>
+                            <li><a href="../Students transport page/stdtransport.html">Transport</a></li>
+                            <li><a href="../Student food page/stdfood.html">Food</a></li>
+                            <li><a href="../Student Electronics page/stdelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Black Community</a>
+                        <ul class="submenu">
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Transport</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">LGBTQ</a>
+                        <ul class="submenu">
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Transport</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Sr. Citizen</a>
+                        <ul class="submenu">
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Transport</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign up</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="hero-section">
+            <h1>Travel in Style</h1>
+            <p>Explore exclusive travel deals for seniors!</p>
+        </section>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Travel</button>
+            <button class="filter-btn" data-filter="flights">Flights</button>
+            <button class="filter-btn" data-filter="tours">Tours & Packages</button>
+            <button class="filter-btn" data-filter="transit">Local Transit</button>
+        </div>
+
+        <section class="offers-section">
+            <div class="section-header">
+                <h2>Senior Citizen Travel Offers</h2>
+            </div>
+            <div class="offers-list">
+                <div class="offer-item" data-category="flights" data-link="https://www.delta.com/senior-discounts">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Senior+Flights" alt="Senior Flights">
+                    <div class="offer-details">
+                        <h3>20% Off Delta Flights</h3>
+                        <p>Fly comfortably with senior discounts!</p>
+                        <p class="expiry" data-expiry="2025-04-15">Expires: April 15, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="tours" data-link="https://www.roadscholar.org/senior-travel">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Guided+Tours" alt="Guided Tours">
+                    <div class="offer-details">
+                        <h3>15% Off Guided Tours</h3>
+                        <p>Explore the world with expert-led adventures!</p>
+                        <p class="expiry" data-expiry="2025-03-31">Expires: March 31, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="flights" data-link="https://www.aa.com/senior-fares">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=American+Airlines" alt="American Airlines">
+                    <div class="offer-details">
+                        <h3>25% Off American Airlines</h3>
+                        <p>Travel the skies with exclusive savings!</p>
+                        <p class="expiry" data-expiry="2025-04-20">Expires: April 20, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="transit" data-link="https://www.transitapp.com/senior-discounts">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Local+Transit" alt="Local Transit">
+                    <div class="offer-details">
+                        <h3>10% Off Local Transit Passes</h3>
+                        <p>Move around town affordably!</p>
+                        <p class="expiry" data-expiry="2025-03-25">Expires: March 25, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="tours flights" data-link="https://www.trafalgar.com/senior-deals">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Cruise+Packages" alt="Cruise Packages">
+                    <div class="offer-details">
+                        <h3>15% Off Cruise Packages</h3>
+                        <p>Sail away with all-inclusive senior deals!</p>
+                        <p class="expiry" data-expiry="2025-03-15">Expires: March 15, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./mainpagetest1.html">Home</a></li>
+                    <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a></p><br>
+                <p>Phone: +123 456 789</p><br>
+                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Perkpal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <button class="wishlist-btn-fixed" onclick="goToWishlist()">♥</button>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <div class="modal" id="offer-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <p id="modal-expiry"></p>
+            <div class="modal-actions">
+                <button class="claim-btn" id="modal-claim-btn">Claim Now</button>
+                <button class="wishlist-btn" id="modal-wishlist-btn">Add to Wishlist</button>
+                <button class="share-btn" id="modal-share-btn">Share</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+        });
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const offerItems = document.querySelectorAll('.offer-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                offerItems.forEach(item => {
+                    const categories = item.getAttribute('data-category').split(' ');
+                    if (filter === 'all' || categories.includes(filter)) {
+                        item.style.display = 'flex';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(50px)';
+                        setTimeout(() => item.style.display = 'none', 500);
+                    }
+                });
+            });
+        });
+
+        // Scroll Animation
+        window.addEventListener('scroll', () => {
+            offerItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 150) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initial Setup
+        window.addEventListener('load', () => {
+            offerItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(50px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            });
+        });
+
+        // Modal Functionality
+        const modal = document.getElementById('offer-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalExpiry = document.getElementById('modal-expiry');
+        const modalClaimBtn = document.getElementById('modal-claim-btn');
+        const modalWishlistBtn = document.getElementById('modal-wishlist-btn');
+        const modalShareBtn = document.getElementById('modal-share-btn');
+
+        offerItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('h3').textContent;
+                const description = item.querySelector('p:not(.expiry)').textContent;
+                const expiry = item.querySelector('.expiry').textContent;
+                const link = item.getAttribute('data-link') || 'https://example.com';
+                const image = item.querySelector('.offer-image').src;
+
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modalExpiry.textContent = expiry;
+
+                modalClaimBtn.onclick = () => window.open(link, '_blank');
+
+                // Wishlist Logic
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const isWishlisted = wishlist.some(w => w.title === title);
+                modalWishlistBtn.textContent = isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist';
+                modalWishlistBtn.classList.toggle('active', isWishlisted);
+
+                modalWishlistBtn.onclick = () => {
+                    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    const offer = { title, description, expiry, image, link };
+
+                    if (isWishlisted) {
+                        wishlist = wishlist.filter(w => w.title !== title);
+                        modalWishlistBtn.textContent = 'Add to Wishlist';
+                        modalWishlistBtn.classList.remove('active');
+                    } else {
+                        wishlist.push(offer);
+                        modalWishlistBtn.textContent = 'Remove from Wishlist';
+                        modalWishlistBtn.classList.add('active');
+                    }
+
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                };
+
+                // Share Logic
+                modalShareBtn.onclick = () => {
+                    const shareData = {
+                        title: title,
+                        text: description,
+                        url: link
+                    };
+                    if (navigator.share) {
+                        navigator.share(shareData).catch(err => console.log('Error sharing:', err));
+                    } else {
+                        alert('Copy this link to share: ' + link);
+                    }
+                };
+
+                modal.style.display = 'flex';
+            });
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Wishlist Navigation
+        function goToWishlist() {
+            window.location.href = '../Wishlist page/wishlist.html'; // Replace with actual wishlist page URL
+        }
+    </script>
+</body>
+</html>

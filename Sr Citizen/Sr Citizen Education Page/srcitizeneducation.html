@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkpal - Senior Citizen Education Offers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            background: radial-gradient(circle at center, #d4e6f1, #eaf8ff);
+            background-size: 150% 150%;
+            animation: radialPulse 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: "Inter", serif;
+            overflow-x: hidden;
+            transition: color 0.3s ease;
+            position: relative;
+            color: #2c3e50;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.15"%3E%3Cpath fill="%237f8c8d" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
+            z-index: -1;
+        }
+
+        body.dark {
+            background: radial-gradient(circle at center, #34495e, #5d6d7e);
+            color: #ecf0f1;
+        }
+
+        .dark body::before {
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.15"%3E%3Cpath fill="%23bdc3c7" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
+        }
+
+        @keyframes radialPulse {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .logo-container {
+            background-color: rgba(255, 255, 255, 0.97);
+            width: 100%;
+            height: 100px;
+            font-family: "Inter", serif;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .dark .logo-container {
+            background-color: rgba(44, 62, 80, 0.97);
+        }
+
+        .logo-container ul.nav-list {
+            display: flex;
+            list-style-type: none;
+            justify-content: flex-end;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+        }
+
+        .nav-list li {
+            margin-top: -55px;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .logo-container li {
+            margin-right: 40px;
+        }
+
+        .logo-container li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 16px;
+            padding: 8px 15px;
+            transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 5px;
+        }
+
+        .dark .logo-container li a {
+            color: #ecf0f1;
+        }
+
+        .logo-container li a:hover {
+            color: #e67e22;
+            background-color: rgba(240, 248, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dark .dropdown {
+            background-color: #34495e;
+        }
+
+        .dropdown h3 {
+            font-size: 16px;
+            color: #444;
+            padding: 0 15px 10px 15px;
+            margin: 0 0 10px 0;
+            border-bottom: 2px solid #eee;
+        }
+
+        .dark .dropdown h3 {
+            color: #bdc3c7;
+            border-bottom: 2px solid #4a6076;
+        }
+
+        .dropdown li {
+            margin: 8px 0;
+            padding: 8px 15px;
+            position: relative;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown li:hover {
+            background-color: #e0f0ff;
+            border-radius: 5px;
+        }
+
+        .dark .dropdown li:hover {
+            background-color: #4a6076;
+        }
+
+        .dropdown li a {
+            font-size: 14px;
+            color: #333;
+            font-weight: normal;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .dark .dropdown li a {
+            color: #ecf0f1;
+        }
+
+        .dropdown li a:hover {
+            color: #e67e22;
+        }
+
+        .dropdown .submenu {
+            display: none;
+            position: absolute;
+            top: -20px;
+            left: calc(100% + 10px);
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dark .dropdown .submenu {
+            background-color: #34495e;
+        }
+
+        .dropdown li:hover .submenu {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .logo-container li:hover .dropdown {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition-delay: 0.1s;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 140px 20px;
+            background: linear-gradient(45deg, #e67e22, #f1c40f, #d35400);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+            z-index: 1;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1920x600?text=Senior+Education+Hero') no-repeat center/cover;
+            opacity: 0.25;
+            z-index: 0;
+        }
+
+        .hero-section h1 {
+            font-size: 64px;
+            margin-bottom: 25px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section p {
+            font-size: 26px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .filter-container {
+            position: sticky;
+            top: 100px;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 25px;
+            text-align: center;
+            z-index: 10;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 0 0 15px 15px;
+        }
+
+        .dark .filter-container {
+            background: rgba(44, 62, 80, 0.92);
+        }
+
+        .filter-btn {
+            padding: 14px 35px;
+            margin: 8px;
+            background: #fff;
+            border: none;
+            border-radius: 35px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .filter-btn {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+            color: white;
+            transform: scale(1.12);
+            box-shadow: 0 5px 18px rgba(230, 126, 34, 0.5);
+        }
+
+        .offers-section {
+            width: 100%;
+            padding: 70px 20px;
+            background: rgba(255, 255, 255, 0.97);
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+            position: relative;
+            z-index: 1;
+        }
+
+        .dark .offers-section {
+            background: rgba(52, 73, 94, 0.97);
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        .section-header {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+            border-radius: 15px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header h2 {
+            font-size: 44px;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header::after {
+            content: '📚';
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 35px;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.25); }
+        }
+
+        .offers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .offer-item {
+            background: #f7f9fc;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .dark .offer-item {
+            background: #2c3e50;
+        }
+
+        .offer-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        .offer-item::after {
+            content: '🎓';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .offer-item:hover::after {
+            opacity: 1;
+            animation: sparkle 1.5s infinite;
+        }
+
+        .offer-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .offer-item:hover .offer-image {
+            transform: scale(1.08);
+        }
+
+        .offer-details {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .offer-details h3 {
+            font-size: 26px;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .dark .offer-details h3 {
+            color: #ecf0f1;
+        }
+
+        .offer-details p {
+            font-size: 17px;
+            color: #7f8c8d;
+            margin-bottom: 18px;
+        }
+
+        .dark .offer-details p {
+            color: #bdc3c7;
+        }
+
+        .offer-details .expiry {
+            font-size: 15px;
+            color: #e74c3c;
+            margin-bottom: 18px;
+        }
+
+        .dark .offer-details .expiry {
+            color: #ff7675;
+        }
+
+        .site-footer {
+            background-color: rgba(255, 255, 255, 0.97);
+            color: #2c3e50;
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid #eee;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dark .site-footer {
+            background-color: rgba(44, 62, 80, 0.97);
+            color: #ecf0f1;
+            border-top: 1px solid #4a6076;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        .footer-left h3, .footer-right h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        .dark .footer-left h3, .dark .footer-right h2 {
+            color: #ecf0f1;
+        }
+
+        .footer-left ul {
+            list-style: none;
+        }
+
+        .footer-left ul li {
+            margin-top: 12px;
+        }
+
+        .footer-left ul li a {
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .dark .footer-left ul li a {
+            color: #bdc3c7;
+        }
+
+        .footer-left ul li a:hover {
+            color: #e67e22;
+            transform: translateX(8px);
+        }
+
+        .footer-bottom {
+            font-size: 15px;
+            color: #95a5a6;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+        }
+
+        .dark .footer-bottom {
+            color: #bdc3c7;
+            border-top: 1px solid #4a6076;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 65px;
+            height: 35px;
+            background: linear-gradient(45deg, #e0e0e0, #ffffff);
+            border-radius: 35px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            z-index: 30;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-toggle::before {
+            content: '☀️';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            left: 3px;
+            top: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-size: 18px;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .dark .theme-toggle {
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+        }
+
+        .dark .theme-toggle::before {
+            content: '🌙';
+            transform: translateX(30px);
+        }
+
+        .theme-toggle:hover {
+            box-shadow: 0 6px 18px rgba(230, 126, 34, 0.4);
+        }
+
+        .wishlist-btn-fixed {
+            position: fixed;
+            bottom: 140px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 30;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 26px;
+        }
+
+        .wishlist-btn-fixed:hover {
+            transform: scale(1.15);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 80px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 30;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 26px;
+        }
+
+        .back-to-top.show {
+            display: block;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.15);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 550px;
+            width: 90%;
+            animation: modalPop 0.3s ease;
+        }
+
+        .dark .modal-content {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .modal-content p {
+            font-size: 17px;
+            margin-bottom: 25px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .modal-content .claim-btn, .modal-content .wishlist-btn, .modal-content .share-btn {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .modal-content .claim-btn {
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+            color: white;
+        }
+
+        .modal-content .wishlist-btn {
+            background: #fff;
+            color: #2c3e50;
+            border: 2px solid #e67e22;
+        }
+
+        .dark .modal-content .wishlist-btn {
+            background: #34495e;
+            color: #ecf0f1;
+            border-color: #f1c40f;
+        }
+
+        .modal-content .share-btn {
+            background: #d35400;
+            color: white;
+        }
+
+        .modal-content .claim-btn:hover, .modal-content .wishlist-btn:hover, .modal-content .share-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        .modal-content .wishlist-btn.active {
+            background: linear-gradient(45deg, #e67e22, #f1c40f);
+            color: white;
+            border: none;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #2c3e50;
+        }
+
+        .dark .close-modal {
+            color: #ecf0f1;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 48px; }
+            .hero-section p { font-size: 20px; }
+            .offers-list { grid-template-columns: 1fr; }
+            .offer-image { height: 180px; }
+            .filter-container { padding: 15px; }
+            .filter-btn { padding: 12px 25px; font-size: 14px; }
+        }
+
+        :root {
+            --accent-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
+        <ul class="nav-list">
+            <li>
+                <a href="#">Services</a>
+                <ul class="dropdown">
+                    <h3>Grab deals for</h3>
+                    <li><a href="#">Student</a>
+                        <ul class="submenu">
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Transport</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Black Community</a>
+                        <ul class="submenu">
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Transport</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">LGBTQ</a>
+                        <ul class="submenu">
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Transport</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Sr. Citizen</a>
+                        <ul class="submenu">
+                            <li><a href="#">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="#">Education</a></li>
+                            <li><a href="#">Transport</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign up</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="hero-section">
+            <h1>Learn & Grow at Any Age</h1>
+            <p>Unlock exclusive education offers designed for senior citizens!</p>
+        </section>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Education</button>
+            <button class="filter-btn" data-filter="online">Online Courses</button>
+            <button class="filter-btn" data-filter="workshop">Workshops</button>
+        </div>
+
+        <section class="offers-section">
+            <div class="section-header">
+                <h2>Senior Citizen Education Offers</h2>
+            </div>
+            <div class="offers-list">
+                <div class="offer-item" data-category="online" data-link="https://www.coursera.org">
+                    <img class="offer-image" src="https://via.placeholder.com/320x220?text=Online+Learning" alt="Online Learning">
+                    <div class="offer-details">
+                        <h3>30% Off Coursera Courses</h3>
+                        <p>Explore a variety of online courses tailored for seniors!</p>
+                        <p class="expiry" data-expiry="2025-05-01">Expires: May 1, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="workshop" data-link="https://www.osherlifelonglearning.org">
+                    <img class="offer-image" src="https://via.placeholder.com/320x220?text=Art+Workshop" alt="Art Workshop">
+                    <div class="offer-details">
+                        <h3>20% Off Art Workshops</h3>
+                        <p>Unleash your creativity with hands-on art sessions!</p>
+                        <p class="expiry" data-expiry="2025-04-10">Expires: April 10, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="online" data-link="https://www.udemy.com">
+                    <img class="offer-image" src="https://via.placeholder.com/320x220?text=Tech+Skills" alt="Tech Skills">
+                    <div class="offer-details">
+                        <h3>25% Off Udemy Tech Courses</h3>
+                        <p>Master new tech skills at your own pace!</p>
+                        <p class="expiry" data-expiry="2025-04-25">Expires: April 25, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="workshop" data-link="https://www.seniorlearning.com">
+                    <img class="offer-image" src="https://via.placeholder.com/320x220?text=History+Seminar" alt="History Seminar">
+                    <div class="offer-details">
+                        <h3>15% Off History Seminars</h3>
+                        <p>Dive into the past with engaging workshops!</p>
+                        <p class="expiry" data-expiry="2025-03-30">Expires: March 30, 2025</p>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="online workshop" data-link="https://www.edx.org">
+                    <img class="offer-image" src="https://via.placeholder.com/320x220?text=Language+Learning" alt="Language Learning">
+                    <div class="offer-details">
+                        <h3>20% Off edX Language Courses</h3>
+                        <p>Learn a new language online or in workshops!</p>
+                        <p class="expiry" data-expiry="2025-04-15">Expires: April 15, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a></p><br>
+                <p>Phone: +123 456 789</p><br>
+                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Perkpal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <button class="wishlist-btn-fixed" onclick="goToWishlist()">♥</button>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <div class="modal" id="offer-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <p id="modal-expiry"></p>
+            <div class="modal-actions">
+                <button class="claim-btn" id="modal-claim-btn">Claim Now</button>
+                <button class="wishlist-btn" id="modal-wishlist-btn">Add to Wishlist</button>
+                <button class="share-btn" id="modal-share-btn">Share</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+        });
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Filter Functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const offerItems = document.querySelectorAll('.offer-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                offerItems.forEach(item => {
+                    const categories = item.getAttribute('data-category').split(' ');
+                    if (filter === 'all' || categories.includes(filter)) {
+                        item.style.display = 'flex';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(60px)';
+                        setTimeout(() => item.style.display = 'none', 600);
+                    }
+                });
+            });
+        });
+
+        // Scroll Animation
+        window.addEventListener('scroll', () => {
+            offerItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 150) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initial Setup
+        window.addEventListener('load', () => {
+            offerItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(60px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+        });
+
+        // Modal Functionality
+        const modal = document.getElementById('offer-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const modalExpiry = document.getElementById('modal-expiry');
+        const modalClaimBtn = document.getElementById('modal-claim-btn');
+        const modalWishlistBtn = document.getElementById('modal-wishlist-btn');
+        const modalShareBtn = document.getElementById('modal-share-btn');
+
+        offerItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('h3').textContent;
+                const description = item.querySelector('p:not(.expiry)').textContent;
+                const expiry = item.querySelector('.expiry').textContent;
+                const link = item.getAttribute('data-link') || 'https://example.com';
+                const image = item.querySelector('.offer-image').src;
+
+                modalTitle.textContent = title;
+                modalDescription.textContent = description;
+                modalExpiry.textContent = expiry;
+
+                modalClaimBtn.onclick = () => window.open(link, '_blank');
+
+                // Wishlist Logic
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const isWishlisted = wishlist.some(w => w.title === title);
+                modalWishlistBtn.textContent = isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist';
+                modalWishlistBtn.classList.toggle('active', isWishlisted);
+
+                modalWishlistBtn.onclick = () => {
+                    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    const offer = { title, description, expiry, image, link };
+
+                    if (isWishlisted) {
+                        wishlist = wishlist.filter(w => w.title !== title);
+                        modalWishlistBtn.textContent = 'Add to Wishlist';
+                        modalWishlistBtn.classList.remove('active');
+                    } else {
+                        wishlist.push(offer);
+                        modalWishlistBtn.textContent = 'Remove from Wishlist';
+                        modalWishlistBtn.classList.add('active');
+                    }
+
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                };
+
+                // Share Logic
+                modalShareBtn.onclick = () => {
+                    const shareData = {
+                        title: title,
+                        text: description,
+                        url: link
+                    };
+                    if (navigator.share) {
+                        navigator.share(shareData).catch(err => console.log('Error sharing:', err));
+                    } else {
+                        alert('Copy this link to share: ' + link);
+                    }
+                };
+
+                modal.style.display = 'flex';
+            });
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Wishlist Navigation
+        function goToWishlist() {
+            window.location.href = './wishlist.html'; // Replace with actual wishlist page URL
+        }
+    </script>
+</body>
+</html>

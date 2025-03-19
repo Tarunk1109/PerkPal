@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkpal - Your Wishlist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./wishliststyle.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
+        <ul class="nav-list">
+            <li><a href="../Main Page/index.html">Home</a></li>
+            <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign up</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="wishlist-section">
+            <div class="section-header">
+                <h2>Your Wishlist</h2>
+            </div>
+            <div class="wishlist-list" id="wishlistList"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./mainpagetest1.html">Home</a></li>
+                    <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a></p><br>
+                <p>Phone: +123 456 789</p><br>
+                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Perkpal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load Theme
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+            }
+            updateWishlist();
+        });
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Update Wishlist
+        function updateWishlist() {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistList = document.getElementById('wishlistList');
+            wishlistList.innerHTML = '';
+
+            if (wishlist.length === 0) {
+                wishlistList.innerHTML = '<p style="text-align: center; font-size: 18px;">Your wishlist is empty.</p>';
+                return;
+            }
+
+            wishlist.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('wishlist-item');
+                div.innerHTML = `
+                    <img class="wishlist-image" src="${item.image}" alt="${item.title}">
+                    <div class="wishlist-details">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <p class="expiry">Expires: ${item.expiry}</p>
+                        <div class="wishlist-actions">
+                            <button class="claim-btn" data-link="${item.link}">Claim Now</button>
+                            <button class="remove-btn" onclick="removeFromWishlist('${item.title}')">Remove</button>
+                        </div>
+                    </div>
+                `;
+                wishlistList.appendChild(div);
+            });
+
+            // Add event listeners to claim buttons
+            document.querySelectorAll('.claim-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const url = button.getAttribute('data-link');
+                    if (url) {
+                        window.open(url, '_blank');
+                    }
+                    button.textContent = 'Claimed!';
+                    button.disabled = true;
+                });
+            });
+        }
+
+        // Remove from Wishlist
+        function removeFromWishlist(title) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist = wishlist.filter(item => item.title !== title);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            updateWishlist();
+        }
+
+        // Lazy Load Images
+        const images = document.querySelectorAll('.wishlist-image');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('src');
+                    img.style.opacity = '1';
+                    observer.unobserve(img);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        images.forEach(img => {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s ease';
+            observer.observe(img);
+        });
+    </script>
+</body>
+</html>

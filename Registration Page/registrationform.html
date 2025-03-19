@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perk-Pal - Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: radial-gradient(circle at center, #cbe6e9, #e0f7fa);
+    background-size: 150% 150%;
+    animation: radialPulse 20s ease infinite;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Inter", serif;
+    transition: background 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes radialPulse {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
+body.dark {
+    background: radial-gradient(circle at center, #2A6073, #5DA8B5);
+    color: #ecf0f1;
+}
+
+/* Background Quote */
+.background-quote {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 90%;
+    pointer-events: none;
+    z-index: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: fadeInQuote 1.5s ease forwards 0.5s;
+}
+
+@keyframes fadeInQuote {
+    to { opacity: 1; }
+}
+
+.dark .background-quote {
+    color: rgba(255, 255, 255, 0.08);
+}
+
+/* Left and Right Decorative Elements */
+.side-decor {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(203, 230, 233, 0.8), transparent);
+    z-index: 0;
+    overflow: hidden;
+}
+
+.side-decor.left {
+    left: 0;
+}
+
+.side-decor.right {
+    right: 0;
+    background: linear-gradient(270deg, rgba(203, 230, 233, 0.8), transparent);
+}
+
+.dark .side-decor.left {
+    background: linear-gradient(90deg, rgba(42, 96, 115, 0.8), transparent);
+}
+
+.dark .side-decor.right {
+    background: linear-gradient(270deg, rgba(42, 96, 115, 0.8), transparent);
+}
+
+.side-decor::before {
+    content: '✨';
+    position: absolute;
+    font-size: 70px;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.5;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+.side-decor.right::before {
+    content: '🌟';
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: translate(-50%, -15px) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, 15px) scale(1.1); opacity: 0.7; }
+}
+
+.logo-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", serif;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, transform 0.5s ease;
+}
+
+.logo-container.move {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.dark .logo-container {
+    background-color: rgba(44, 62, 80, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logo-container ul.nav-list {
+    display: flex;
+    list-style-type: none;
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+}
+
+.logo-container li {
+    margin-right: 50px;
+    position: relative;
+    padding: 12px 0;
+}
+
+.logo-container li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.dark .logo-container li a {
+    color: #ecf0f1;
+}
+
+.logo-container li a:hover {
+    color: #007BFF;
+    background-color: #f0f8ff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    min-width: 260px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    list-style-type: none;
+    padding: 25px;
+    margin: 0;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+    transition: all 0.3s ease;
+}
+
+.dark .dropdown {
+    background-color: #34495e;
+}
+
+.dropdown h3 {
+    font-size: 18px;
+    color: #444;
+    padding: 0 15px 15px 15px;
+    margin: 0 0 15px 0;
+    border-bottom: 2px solid #eee;
+    font-weight: 700;
+}
+
+.dark .dropdown h3 {
+    color: #bdc3c7;
+    border-bottom: 2px solid #4a6076;
+}
+
+.dropdown li {
+    margin: 10px 0;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.dropdown li:hover {
+    background-color: #e0f0ff;
+    border-radius: 6px;
+    transform: translateX(5px);
+}
+
+.dark .dropdown li:hover {
+    background-color: #4a6076;
+}
+
+.dropdown li a {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.dark .dropdown li a {
+    color: #ecf0f1;
+}
+
+.dropdown li a:hover {
+    color: #007BFF;
+}
+
+.dropdown .submenu {
+    display: none;
+    position: absolute;
+    top: -25px;
+    left: calc(100% + 15px);
+    background-color: #ffffff;
+    min-width: 260px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    list-style-type: none;
+    padding: 25px;
+    margin: 0;
+    z-index: 10;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+}
+
+.dark .dropdown .submenu {
+    background-color: #34495e;
+}
+
+.dropdown li:hover .submenu {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.logo-container li:hover .dropdown {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition-delay: 0.1s;
+}
+
+img {
+    width: 280px;
+    height: 160px;
+    margin-top: -30px;
+    transition: transform 0.4s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.form-container {
+    margin: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.95));
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.form-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.dark .form-container {
+    background: linear-gradient(135deg, rgba(52, 73, 94, 0.95), rgba(44, 62, 80, 0.95));
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 123, 255, 0.05), transparent);
+    pointer-events: none;
+    z-index: -1;
+    animation: subtleGlow 6s ease infinite;
+}
+
+@keyframes subtleGlow {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+.name-preview {
+    text-align: center;
+    font-size: 24px;
+    color: #007BFF;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    font-weight: 600;
+}
+
+.name-preview.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dark .name-preview {
+    color: #00c4cc;
+}
+
+.welcome-text {
+    text-align: center;
+    font-size: 34px;
+    color: #007BFF;
+    margin-bottom: 30px;
+    font-weight: 800;
+    animation: bounceIn 1.2s ease-in-out;
+    letter-spacing: 1px;
+}
+
+@keyframes bounceIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    60% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.dark .welcome-text {
+    color: #00c4cc;
+}
+
+.form-progress {
+    width: 100%;
+    height: 16px;
+    background: #e0e0e0;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.form-progress-bar {
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #007BFF, #00c4cc);
+    transition: width 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.6);
+}
+
+.form-progress-bar::after {
+    content: attr(data-progress) '%';
+    position: absolute;
+    top: -40px;
+    left: calc(100% - 20px);
+    transform: translateX(-50%);
+    background: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.form-progress-bar:hover::after {
+    opacity: 1;
+}
+
+.dark .form-progress {
+    background: #4a6076;
+}
+
+.dark .form-progress-bar::after {
+    background: #00c4cc;
+}
+
+label {
+    font-weight: 700;
+    color: #333;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+label::before {
+    font-size: 22px;
+    color: #007BFF;
+    transition: transform 0.3s ease;
+}
+
+label:hover::before {
+    transform: scale(1.15);
+}
+
+label[for="name"]::before { content: "👤"; }
+label[for="dob"]::before { content: "📅"; }
+label[for="gender"]::before { content: "⚥"; }
+label[for="ethnicity"]::before { content: "🌍"; }
+label[for="email"]::before { content: "✉️"; }
+label[for="password"]::before { content: "🔒"; }
+label[for="studentNumber"]::before { content: "🎓"; }
+label[for="ethnicityOther"]::before { content: "✍️"; }
+
+.dark label {
+    color: #ecf0f1;
+}
+
+.dark label::before {
+    color: #00c4cc;
+}
+
+.hint {
+    position: absolute;
+    top: -35px;
+    left: 0;
+    background: #007BFF;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(5px);
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+label:hover .hint, input:focus + .hint, select:focus + .hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dark .hint {
+    background: #00c4cc;
+    box-shadow: 0 4px 10px rgba(0, 196, 204, 0.3);
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.dark input, .dark select {
+    background: #2c3e50;
+    border-color: #4a6076;
+    color: #ecf0f1;
+}
+
+input:focus, select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
+    outline: none;
+    background: #fff;
+}
+
+.dark input:focus, .dark select:focus {
+    background: #34495e;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #007BFF;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-password:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.dark .toggle-password {
+    color: #00c4cc;
+}
+
+.password-strength {
+    height: 8px;
+    width: 0%;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    transition: all 0.4s ease;
+    background-color: #ff4d4d;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
+}
+
+.password-strength.weak { width: 33%; background-color: #ff4d4d; }
+.password-strength.medium { width: 66%; background-color: #ffa500; }
+.password-strength.strong { width: 100%; background-color: #28a745; }
+
+.age-display {
+    font-size: 15px;
+    color: #555;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.dark .age-display {
+    color: #bdc3c7;
+}
+
+.error {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff4d4d;
+    font-size: 13px;
+    background: rgba(255, 77, 77, 0.15);
+    padding: 4px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.error.active {
+    opacity: 1;
+    transform: translateY(-50%) translateX(15px);
+}
+
+.dark .error {
+    color: #ff6666;
+    background: rgba(255, 102, 102, 0.25);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+button {
+    flex: 1;
+    padding: 14px;
+    background: linear-gradient(45deg, #007BFF, #00c4cc);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-weight: 700;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #00c4cc, #007BFF);
+    transition: left 0.4s ease;
+}
+
+button:hover::before {
+    left: 0;
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button.reset-btn {
+    background: linear-gradient(45deg, #ff4d4d, #ff6666);
+}
+
+button.reset-btn::before {
+    background: linear-gradient(45deg, #ff6666, #ff4d4d);
+}
+
+button.reset-btn:hover {
+    box-shadow: 0 8px 20px rgba(255, 77, 77, 0.3);
+}
+
+.success-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    font-size: 32px;
+    color: #28a745;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    animation: successPop 2.5s ease forwards;
+    z-index: 100;
+    font-weight: 700;
+}
+
+@keyframes successPop {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+.dark .success-animation {
+    color: #85e085;
+    background: rgba(52, 73, 94, 0.95);
+}
+
+/* Footer Styles (Unchanged) */
+.site-footer {
+    background: linear-gradient(135deg, #ffffff, #f5faff);
+    color: #2c3e50;
+    padding: 40px 0;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 5;
+    transition: background 0.3s ease;
+}
+
+.dark .site-footer {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: #ecf0f1;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 25px;
+    padding: 0 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-left h3, .footer-right h2 {
+    color: #007BFF;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-left h3::after, .footer-right h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, #007BFF, transparent);
+    border-radius: 3px;
+}
+
+.dark .footer-left h3, .dark .footer-right h2 {
+    color: #00c4cc;
+}
+
+.dark .footer-left h3::after, .dark .footer-right h2::after {
+    background: linear-gradient(90deg, #00c4cc, transparent);
+}
+
+.footer-left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-left ul li {
+    margin: 12px 0;
+}
+
+.footer-left ul li a {
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.dark .footer-left ul li a {
+    color: #bdc3c7;
+}
+
+.footer-left ul li a:hover {
+    color: #007BFF;
+    transform: translateX(5px);
+}
+
+.dark .footer-left ul li a:hover {
+    color: #00c4cc;
+}
+
+.footer-right p {
+    color: #777;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.dark .footer-right p {
+    color: #bdc3c7;
+}
+
+.footer-right p a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.dark .footer-right p a {
+    color: #00c4cc;
+}
+
+.footer-right p a:hover {
+    color: #0056b3;
+}
+
+.dark .footer-right p a:hover {
+    color: #009faf;
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 123, 255, 0.1);
+}
+
+.dark .footer-bottom {
+    border-top: 1px solid rgba(0, 196, 204, 0.1);
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+    margin: 0;
+}
+
+.dark .footer-bottom p {
+    color: #a1b1c2;
+}
+
+.theme-toggle {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 70px;
+    height: 34px;
+    background: linear-gradient(45deg, #e0e0e0, #ffffff);
+    border-radius: 34px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    z-index: 30;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}
+
+.theme-toggle::before {
+    content: '☀️';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 3px;
+    top: 3px;
+    background-color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 18px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.dark .theme-toggle {
+    background: linear-gradient(45deg, #007BFF, #00c4cc);
+}
+
+.dark .theme-toggle::before {
+    content: '🌙';
+    transform: translateX(36px);
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 65px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #007BFF, #00c4cc);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    z-index: 30;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.back-to-top.show {
+    display: block;
+}
+
+.back-to-top:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.radio-group {
+    margin: 14px 0;
+    display: flex;
+    gap: 25px;
+}
+
+.radio-group label {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.radio-group label:hover {
+    color: #007BFF;
+}
+
+.dark .radio-group label:hover {
+    color: #00c4cc;
+}
+
+.student-number-container.hidden, .ethnicity-other-container.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.student-number-container.visible, .ethnicity-other-container.visible {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+    </style>
+</head>
+<body>
+    <div class="side-decor left"></div>
+    <div class="side-decor right"></div>
+    <div class="background-quote" id="backgroundQuote"></div>
+
+    <div class="logo-container">
+        <img src="./trail logo.png" alt="Perk-Pal Logo" class="logo-image">
+        <ul class="nav-list">
+            <li>
+                <a href="#">Services</a>
+                <ul class="dropdown">
+                    <h3>I Belong to</h3>
+                    <li><a href="#">Student</a>
+                        <ul class="submenu">
+                            <li><a href="../Student Clothing Page/stdclothing.html">Clothing</a></li>
+                            <li><a href="../Student Entertainment page/stdentertainment.html">Entertainment</a></li>
+                            <li><a href="../Student Education page/stdeducation.html">Education</a></li>
+                            <li><a href="../Students Transport page/stdtransport.html">Transport</a></li>
+                            <li><a href="../Student Food page/stdfood.html">Food</a></li>
+                            <li><a href="../Student Electronics page/stdelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Black Community</a></li>
+                    <li><a href="#">LGBTQ</a></li>
+                    <li><a href="#">Sr. Citizen</a></li>
+                </ul>
+            </li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Sign up</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <div class="form-container">
+            <div class="name-preview" id="namePreview">Hello, Guest!</div>
+            <h2 class="welcome-text">Join Perk-Pal!</h2>
+            <div class="form-progress">
+                <div class="form-progress-bar" data-progress="0"></div>
+            </div>
+            <form class="userForm">
+                <label for="name">Name:<span class="hint">Your full name</span><span class="error" id="nameError"></span></label>
+                <input type="text" id="name" required>
+
+                <label for="dob">Date of Birth:<span class="hint">Must be past date</span><span class="error" id="dobError"></span></label>
+                <input type="date" id="dob" max="2025-03-06" required>
+                <div class="age-display" id="ageDisplay">Age: Not calculated</div>
+
+                <label for="email">Email:<span class="hint">Valid email address</span><span class="error" id="emailError"></span></label>
+                <input type="email" id="email" required>
+
+                <label for="password">Password:<span class="hint">At least 6 characters</span><span class="error" id="passwordError"></span></label>
+                <div class="password-container">
+                    <input type="password" id="password" required>
+                    <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                </div>
+                <div class="password-strength" id="passwordStrength"></div>
+
+                <label for="gender">Gender:<span class="hint">Select your gender</span><span class="error" id="genderError"></span></label>
+                <select id="gender" required>
+                    <option value="">Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="ethnicity">Ethnicity:<span class="hint">Your background</span><span class="error" id="ethnicityError"></span></label>
+                <select id="ethnicity" required>
+                    <option value="">Select</option>
+                    <option value="African">African</option>
+                    <option value="Asian">Asian</option>
+                    <option value="Caucasian">Caucasian</option>
+                    <option value="Hispanic/Latino">Hispanic/Latino</option>
+                    <option value="Indigenous">Indigenous</option>
+                    <option value="Middle Eastern">Middle Eastern</option>
+                    <option value="South Asian">South Asian</option>
+                    <option value="Mixed">Mixed</option>
+                    <option value="Other">Other</option>
+                </select>
+                <div class="ethnicity-other-container hidden">
+                    <label for="ethnicityOther">Specify Ethnicity:<span class="hint">Describe here</span><span class="error" id="ethnicityOtherError"></span></label>
+                    <input type="text" id="ethnicityOther">
+                </div>
+
+                <label>Student?<span class="hint">Are you a student?</span><span class="error" id="studentError"></span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="student" value="yes" id="studentYes"> Yes</label>
+                    <label><input type="radio" name="student" value="no" id="studentNo"> No</label>
+                </div>
+
+                <div class="student-number-container hidden">
+                    <label for="studentNumber">Student Number:<span class="hint">Your student ID</span><span class="error" id="studentNumberError"></span></label>
+                    <input type="text" id="studentNumber" placeholder="e.g., S123456">
+                </div>
+
+                <div class="button-group">
+                    <button type="submit">Submit</button>
+                    <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#f0879792928d9096b08297809782939ede939f9d"><span class="__cf_email__" data-cfemail="5e2d2b2e2e312c2a1e2e3b2c352e3f32703d3133">[email&#160;protected]</span></a></p>
+                <p>Phone: +123 456 789</p>
+                <p>Address: 123 Street, City, Country</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Perk-Pal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const form = document.querySelector('.userForm');
+        const nameInput = document.getElementById('name');
+        const dobInput = document.getElementById('dob');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const genderSelect = document.getElementById('gender');
+        const ethnicitySelect = document.getElementById('ethnicity');
+        const ethnicityOtherInput = document.getElementById('ethnicityOther');
+        const studentYes = document.getElementById('studentYes');
+        const studentNo = document.getElementById('studentNo');
+        const studentNumberInput = document.getElementById('studentNumber');
+        const studentNumberContainer = document.querySelector('.student-number-container');
+        const ethnicityOtherContainer = document.querySelector('.ethnicity-other-container');
+        const progressBar = document.querySelector('.form-progress-bar');
+        const ageDisplay = document.getElementById('ageDisplay');
+        const passwordStrength = document.getElementById('passwordStrength');
+        const namePreview = document.getElementById('namePreview');
+        const backgroundQuote = document.getElementById('backgroundQuote');
+        const requiredInputs = [nameInput, dobInput, emailInput, passwordInput, genderSelect, ethnicitySelect];
+
+        const quotes = [
+            "Unlock Your Perks Today!",
+            "Join the Savings Revolution!",
+            "Your Journey Starts Here!",
+            "Empower Your Discounts!"
+        ];
+
+        window.addEventListener('load', () => {
+            document.querySelector('.logo-container').classList.add('move');
+            resetProgress();
+            loadFormData();
+            updateProgress();
+            backgroundQuote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+        });
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (validateForm()) {
+                if (confirm(`Are you sure you want to register, ${nameInput.value.trim()}?`)) {
+                    showSuccessAnimation();
+                    saveFormData();
+                    setTimeout(() => {
+                        resetForm();
+                        localStorage.removeItem('formData');
+                    }, 2000);
+                }
+            }
+        });
+
+        requiredInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                validateField(input, input.id + 'Error');
+                if (input.id === 'dob') updateAge();
+                if (input.id === 'password') updatePasswordStrength();
+                if (input.id === 'name') updateNamePreview();
+                saveFormData();
+                updateProgress();
+            });
+            input.addEventListener('change', updateProgress);
+        });
+
+        studentNumberInput.addEventListener('input', () => {
+            if (studentYes.checked) {
+                validateField(studentNumberInput, 'studentNumberError');
+            }
+            saveFormData();
+            updateProgress();
+        });
+
+        ethnicityOtherInput.addEventListener('input', () => {
+            if (ethnicitySelect.value === 'Other') {
+                validateField(ethnicityOtherInput, 'ethnicityOtherError');
+            }
+            saveFormData();
+            updateProgress();
+        });
+
+        studentYes.addEventListener('change', () => {
+            studentNumberContainer.classList.remove('hidden');
+            studentNumberContainer.classList.add('visible');
+            studentNumberInput.setAttribute('required', 'true');
+            saveFormData();
+            updateProgress();
+        });
+
+        studentNo.addEventListener('change', () => {
+            studentNumberContainer.classList.remove('visible');
+            studentNumberContainer.classList.add('hidden');
+            studentNumberInput.removeAttribute('required');
+            studentNumberInput.value = '';
+            document.getElementById('studentNumberError').textContent = '';
+            saveFormData();
+            updateProgress();
+        });
+
+        ethnicitySelect.addEventListener('change', () => {
+            if (ethnicitySelect.value === 'Other') {
+                ethnicityOtherContainer.classList.remove('hidden');
+                ethnicityOtherContainer.classList.add('visible');
+                ethnicityOtherInput.setAttribute('required', 'true');
+            } else {
+                ethnicityOtherContainer.classList.remove('visible');
+                ethnicityOtherContainer.classList.add('hidden');
+                ethnicityOtherInput.removeAttribute('required');
+                ethnicityOtherInput.value = '';
+                document.getElementById('ethnicityOtherError').textContent = '';
+            }
+            saveFormData();
+            updateProgress();
+        });
+
+        [studentYes, studentNo].forEach(radio => {
+            radio.addEventListener('change', updateProgress);
+        });
+
+        function validateField(input, errorId) {
+            const value = input.value.trim();
+            const errorElement = document.getElementById(errorId);
+            let message = `${input.previousElementSibling.textContent.slice(0, -1)} is required`;
+
+            if (value === '' && input.hasAttribute('required')) {
+                errorElement.textContent = message;
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                errorElement.textContent = 'Please enter a valid email';
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'password' && value.length < 6) {
+                errorElement.textContent = 'Password must be at least 6 characters';
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'dob' && new Date(value) > new Date('2025-03-06')) {
+                errorElement.textContent = 'Date of Birth cannot be in the future';
+                errorElement.classList.add('active');
+                return false;
+            } else {
+                errorElement.textContent = '';
+                errorElement.classList.remove('active');
+                return true;
+            }
+        }
+
+        function validateForm() {
+            const nameValid = validateField(nameInput, 'nameError');
+            const dobValid = validateField(dobInput, 'dobError');
+            const emailValid = validateField(emailInput, 'emailError');
+            const passwordValid = validateField(passwordInput, 'passwordError');
+            const genderValid = validateField(genderSelect, 'genderError');
+            const ethnicityValid = validateField(ethnicitySelect, 'ethnicityError');
+            const ethnicityOtherValid = ethnicitySelect.value !== 'Other' || validateField(ethnicityOtherInput, 'ethnicityOtherError');
+            const studentSelected = studentYes.checked || studentNo.checked;
+            const studentNumberValid = !studentYes.checked || validateField(studentNumberInput, 'studentNumberError');
+
+            if (!studentSelected) {
+                document.getElementById('studentError').textContent = 'Please select Yes or No';
+                document.getElementById('studentError').classList.add('active');
+            } else {
+                document.getElementById('studentError').textContent = '';
+                document.getElementById('studentError').classList.remove('active');
+            }
+
+            return nameValid && dobValid && emailValid && passwordValid && genderValid && ethnicityValid && ethnicityOtherValid && studentSelected && studentNumberValid;
+        }
+
+        function updateProgress() {
+            let totalFields = 6; // Base fields: Name, DOB, Email, Password, Gender, Ethnicity
+            if (studentYes.checked || studentNo.checked) totalFields++;
+            if (studentYes.checked) totalFields++;
+            if (ethnicitySelect.value === 'Other') totalFields++;
+
+            let filledFields = 0;
+            requiredInputs.forEach(input => {
+                if (input.value.trim() !== '') filledFields++;
+            });
+            if (studentYes.checked || studentNo.checked) filledFields++;
+            if (studentYes.checked && studentNumberInput.value.trim() !== '') filledFields++;
+            if (ethnicitySelect.value === 'Other' && ethnicityOtherInput.value.trim() !== '') filledFields++;
+
+            const progress = Math.min((filledFields / totalFields) * 100, 100);
+            progressBar.style.width = `${progress}%`;
+            progressBar.setAttribute('data-progress', Math.round(progress));
+        }
+
+        function resetProgress() {
+            progressBar.style.width = '0%';
+            progressBar.setAttribute('data-progress', '0');
+        }
+
+        function resetForm() {
+            form.reset();
+            resetProgress();
+            studentNumberContainer.classList.remove('visible');
+            studentNumberContainer.classList.add('hidden');
+            ethnicityOtherContainer.classList.remove('visible');
+            ethnicityOtherContainer.classList.add('hidden');
+            passwordStrength.className = 'password-strength';
+            ageDisplay.textContent = 'Age: Not calculated';
+            namePreview.textContent = 'Hello, Guest!';
+            namePreview.classList.remove('show');
+            document.querySelectorAll('.error').forEach(error => {
+                error.textContent = '';
+                error.classList.remove('active');
+            });
+        }
+
+        function saveFormData() {
+            const formData = {
+                name: nameInput.value,
+                dob: dobInput.value,
+                email: emailInput.value,
+                password: passwordInput.value,
+                gender: genderSelect.value,
+                ethnicity: ethnicitySelect.value,
+                ethnicityOther: ethnicityOtherInput.value,
+                student: studentYes.checked ? 'yes' : studentNo.checked ? 'no' : '',
+                studentNumber: studentNumberInput.value
+            };
+            localStorage.setItem('formData', JSON.stringify(formData));
+        }
+
+        function loadFormData() {
+            const savedData = JSON.parse(localStorage.getItem('formData')) || {};
+            nameInput.value = savedData.name || '';
+            dobInput.value = savedData.dob || '';
+            emailInput.value = savedData.email || '';
+            passwordInput.value = savedData.password || '';
+            genderSelect.value = savedData.gender || '';
+            ethnicitySelect.value = savedData.ethnicity || '';
+            ethnicityOtherInput.value = savedData.ethnicityOther || '';
+            if (savedData.student === 'yes') {
+                studentYes.checked = true;
+                studentNumberContainer.classList.add('visible');
+                studentNumberContainer.classList.remove('hidden');
+                studentNumberInput.setAttribute('required', 'true');
+            } else if (savedData.student === 'no') {
+                studentNo.checked = true;
+            }
+            studentNumberInput.value = savedData.studentNumber || '';
+            if (savedData.ethnicity === 'Other') {
+                ethnicityOtherContainer.classList.add('visible');
+                ethnicityOtherContainer.classList.remove('hidden');
+                ethnicityOtherInput.setAttribute('required', 'true');
+            }
+            updateAge();
+            updatePasswordStrength();
+            updateNamePreview();
+            updateProgress();
+        }
+
+        function updateAge() {
+            const dob = new Date(dobInput.value);
+            const today = new Date('2025-03-06');
+            if (dob && dob <= today) {
+                let age = today.getFullYear() - dob.getFullYear();
+                const monthDiff = today.getMonth() - dob.getMonth();
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                    age--;
+                }
+                ageDisplay.textContent = `Age: ${age}`;
+            } else {
+                ageDisplay.textContent = 'Age: Not calculated';
+            }
+        }
+
+        function updatePasswordStrength() {
+            const value = passwordInput.value;
+            if (value.length === 0) {
+                passwordStrength.className = 'password-strength';
+            } else if (value.length < 8) {
+                passwordStrength.className = 'password-strength weak';
+            } else if (value.length < 12 || !/[A-Z]/.test(value) || !/[0-9]/.test(value)) {
+                passwordStrength.className = 'password-strength medium';
+            } else {
+                passwordStrength.className = 'password-strength strong';
+            }
+        }
+
+        function updateNamePreview() {
+            const name = nameInput.value.trim();
+            namePreview.textContent = name ? `Hello, ${name}!` : 'Hello, Guest!';
+            namePreview.classList.toggle('show', name.length > 0);
+        }
+
+        function showSuccessAnimation() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-animation';
+            successDiv.textContent = 'Registration Successful! 🎉';
+            document.body.appendChild(successDiv);
+            setTimeout(() => successDiv.remove(), 2000);
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.textContent = '👁️‍🗨️';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'921874479858bfe7',t:'MTc0MjE3MjE4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

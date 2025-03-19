@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkpal - Student Electronics Offers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./stdelectronicsstyle.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
+        <ul class="nav-list">
+            <li>
+                <a href="#">Services</a>
+                <ul class="dropdown">
+                    <h3>Grab deals for</h3>
+                    <li><a href="#">Student</a>
+                        <ul class="submenu">
+                            <li><a href="../Student Clothing Page/stdclothing.html">Clothing</a></li>
+                            <li><a href="../Student entertainment page/stdentertainment.html">Entertainment</a></li>
+                            <li><a href="../Student Electronics page/stdelectronics.html">Education</a></li>
+                            <li><a href="../Students transport page/stdtransport.html">Transport</a></li>
+                            <li><a href="../Student food page/stdfood.html">Food</a></li>
+                            <li><a href="../Student Electronics page/stdelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Black Community</a>
+                        <ul class="submenu">
+                            <li><a href="../../Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
+                            <li><a href="../../Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
+                            <li><a href="../../Black/Black Education Page/blackeducation.html">Education</a></li>
+                            <li><a href="../../Black/Black Transport Page/blacktransport.html">Transport</a></li>
+                            <li><a href="../../Black/Black Food Page/blackfood.html">Food</a></li>
+                            <li><a href="../../Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">LGBTQ</a>
+                        <ul class="submenu">
+                            <li><a href="../../LGBTQ/LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li><a href="#">Sr. Citizen</a>
+                        <ul class="submenu">
+                            <li><a href="../../Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="../../Registration Page/registrationform.html">Sign up</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="hero-section">
+            <h1>Tech Deals for Students</h1>
+            <p>Power up your studies with exclusive electronics offers!</p>
+        </section>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Electronics</button>
+            <button class="filter-btn" data-filter="laptops">Laptops</button>
+            <button class="filter-btn" data-filter="phones">Phones</button>
+            <button class="filter-btn" data-filter="accessories">Accessories</button>
+            <button class="sort-btn" data-sort="price">Sort by Price</button>
+            <button class="sort-btn" data-sort="rating">Sort by Rating</button>
+        </div>
+
+        <section class="offers-section">
+            <div class="section-header">
+                <h2>Student Electronics Offers</h2>
+            </div>
+            <div class="offers-list">
+                <!-- Laptops -->
+                <div class="offer-item" data-category="laptops" data-price="799" data-rating="4.8">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Dell+XPS" alt="Dell XPS">
+                    <div class="offer-details">
+                        <h3>20% Off Dell XPS 13</h3>
+                        <p>Boost your productivity with this student discount!</p>
+                        <p class="price">Original: $999 | Now: $799</p>
+                        <p class="expiry">Expires: April 20, 2025</p>
+                        <p class="rating">★★★★★ (4.8/5)</p>
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.dell.com">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                            <button class="compare-btn">Compare</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="laptops" data-price="1099" data-rating="4.5">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=MacBook" alt="MacBook">
+                    <div class="offer-details">
+                        <h3>$200 Off MacBook Air</h3>
+                        <p>Get Apple’s best for less with this student deal!</p>
+                        <p class="price">Original: $1299 | Now: $1099</p>
+                        <p class="expiry">Expires: March 31, 2025</p>
+                        <p class="rating">★★★★☆ (4.5/5)</p>
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.apple.com">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                            <button class="compare-btn">Compare</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phones -->
+                <div class="offer-item" data-category="phones" data-price="649" data-rating="4.7">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=iPhone" alt="iPhone">
+                    <div class="offer-details">
+                        <h3>15% Off iPhone 14</h3>
+                        <p>Stay connected with this exclusive student offer!</p>
+                        <p class="price">Original: $799 | Now: $649</p>
+                        <p class="expiry">Expires: April 10, 2025</p>
+                        <p class="rating">★★★★★ (4.7/5)</p>
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.apple.com">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                            <button class="compare-btn">Compare</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="phones" data-price="499" data-rating="4.6">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Samsung" alt="Samsung">
+                    <div class="offer-details">
+                        <h3>25% Off Galaxy S23</h3>
+                        <p>Top-tier tech at a student-friendly price!</p>
+                        <p class="price">Original: $699 | Now: $499</p>
+                        <p class="expiry">Expires: March 25, 2025</p>
+                        <p class="rating">★★★★★ (4.6/5)</p>
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.samsung.com">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                            <button class="compare-btn">Compare</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accessories -->
+                <div class="offer-item" data-category="accessories" data-price="39" data-rating="4.4">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=AirPods" alt="AirPods">
+                    <div class="offer-details">
+                        <h3>20% Off AirPods</h3>
+                        <p>Perfect audio companion for students!</p>
+                        <p class="price">Original: $49 | Now: $39</p>
+                        <p class="expiry">Expires: April 5, 2025</p>
+                        <p class="rating">★★★★☆ (4.4/5)</p>
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.apple.com">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                            <button class="compare-btn">Compare</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="accessories" data-price="79" data-rating="4.9">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Logitech" alt="Logitech">
+                    <div class="offer-details">
+                        <h3>30% Off Logitech MX Mouse</h3>
+                        <p>Precision gear for your studies!</p>
+                        <p class="price">Original: $99 | Now: $79</p>
+                        <p class="expiry">Expires: March 20, 2025</p>
+                        <p class="rating">★★★★★ (4.9/5)</p>
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.logitech.com">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                            <button class="compare-btn">Compare</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="price-comparison">
+            <h3>Price Comparison</h3>
+            <div class="comparison-list" id="comparisonList"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../Main Page/index.html">Home</a></li>
+                    <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#9aa9afaaaab5a8ae9aaabfa8b1aabbb6f4b9b5b7"><span class="__cf_email__" data-cfemail="285b5d5858475a5c68584d5a43584944064b4745">[email&#160;protected]</span></a></p><br>
+                <p>Phone: +123 456 789</p><br>
+                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Perkpal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <button class="wishlist-top-btn" onclick="goToWishlist()">♥</button>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <div class="preview-modal" id="previewModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">×</span>
+            <img class="modal-image" src="" alt="Product">
+            <h3></h3>
+            <p></p>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load Theme
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+            }
+        });
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Go to Wishlist Page
+        function goToWishlist() {
+            window.location.href = "../../Wishlist Page/wishlist.html"; // Update this path
+        }
+
+        // Filter and Sort Sections
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const sortButtons = document.querySelectorAll('.sort-btn');
+        const offerItems = document.querySelectorAll('.offer-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                offerItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || filter === category) {
+                        item.style.display = 'flex';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(50px)';
+                        setTimeout(() => item.style.display = 'none', 500);
+                    }
+                });
+            });
+        });
+
+        sortButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const sortType = button.getAttribute('data-sort');
+                sortButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const itemsArray = Array.from(offerItems);
+                itemsArray.sort((a, b) => {
+                    if (sortType === 'price') {
+                        const priceA = parseInt(a.getAttribute('data-price'));
+                        const priceB = parseInt(b.getAttribute('data-price'));
+                        return priceA - priceB;
+                    } else if (sortType === 'rating') {
+                        const ratingA = parseFloat(a.getAttribute('data-rating'));
+                        const ratingB = parseFloat(a.getAttribute('data-rating'));
+                        return ratingB - ratingA;
+                    }
+                });
+
+                const offersList = document.querySelector('.offers-list');
+                offersList.innerHTML = '';
+                itemsArray.forEach(item => offersList.appendChild(item));
+                itemsArray.forEach(item => {
+                    item.style.display = 'flex';
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+            });
+        });
+
+        // Claim and Wishlist Buttons
+        const claimButtons = document.querySelectorAll('.claim-btn');
+        const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+        const compareButtons = document.querySelectorAll('.compare-btn');
+
+        claimButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const url = button.getAttribute('data-link');
+                if (url) {
+                    window.open(url, '_blank');
+                }
+                button.textContent = 'Claimed!';
+                button.disabled = true;
+            });
+        });
+
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const offerItem = button.closest('.offer-item');
+                const title = offerItem.querySelector('h3').textContent;
+                const description = offerItem.querySelector('p:not(.price):not(.expiry):not(.rating)').textContent;
+                const expiry = offerItem.querySelector('.expiry').textContent.replace('Expires: ', '');
+                const image = offerItem.querySelector('.offer-image').src;
+                const link = offerItem.querySelector('.claim-btn').getAttribute('data-link');
+
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const isAlreadyWishlisted = wishlist.some(item => item.title === title);
+
+                if (!isAlreadyWishlisted) {
+                    wishlist.push({ title, description, expiry, image, link });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    button.classList.add('active');
+                    button.textContent = 'Wishlisted!';
+                } else {
+                    wishlist = wishlist.filter(item => item.title !== title);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    button.classList.remove('active');
+                    button.textContent = 'Wishlist';
+                }
+            });
+
+            const offerItem = button.closest('.offer-item');
+            const title = offerItem.querySelector('h3').textContent;
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            if (wishlist.some(item => item.title === title)) {
+                button.classList.add('active');
+                button.textContent = 'Wishlisted!';
+            }
+        });
+
+        // Price Comparison
+        let comparisonItems = [];
+        compareButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const offerItem = button.closest('.offer-item');
+                const title = offerItem.querySelector('h3').textContent;
+                const price = offerItem.querySelector('.price').textContent.split('Now: ')[1];
+                const rating = offerItem.querySelector('.rating').textContent;
+
+                if (!comparisonItems.some(item => item.title === title)) {
+                    comparisonItems.push({ title, price, rating });
+                    if (comparisonItems.length > 3) comparisonItems.shift();
+                    updateComparisonList();
+                }
+            });
+        });
+
+        function updateComparisonList() {
+            const comparisonList = document.getElementById('comparisonList');
+            comparisonList.innerHTML = '';
+            comparisonItems.forEach(item => {
+                const comparisonItem = document.createElement('div');
+                comparisonItem.classList.add('comparison-item');
+                comparisonItem.innerHTML = `
+                    <p><strong>${item.title}</strong></p>
+                    <p>Price: ${item.price}</p>
+                    <p>Rating: ${item.rating}</p>
+                `;
+                comparisonList.appendChild(comparisonItem);
+            });
+        }
+
+        // Product Preview Modal
+        const modal = document.getElementById('previewModal');
+        const modalImage = modal.querySelector('.modal-image');
+        const modalTitle = modal.querySelector('h3');
+        const modalDescription = modal.querySelector('p');
+
+        offerItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('claim-btn') && !e.target.classList.contains('wishlist-btn') && !e.target.classList.contains('compare-btn')) {
+                    const image = item.querySelector('.offer-image').src;
+                    const title = item.querySelector('h3').textContent;
+                    const description = item.querySelector('p:not(.price):not(.expiry):not(.rating)').textContent;
+                    modalImage.src = image;
+                    modalTitle.textContent = title;
+                    modalDescription.textContent = description;
+                    modal.style.display = 'flex';
+                }
+            });
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Lazy Load Images
+        const images = document.querySelectorAll('.offer-image');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('src');
+                    img.style.opacity = '1';
+                    observer.unobserve(img);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        images.forEach(img => {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s ease';
+            observer.observe(img);
+        });
+    </script>
+</body>
+</html>

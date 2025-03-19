@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkpal - Student Entertainment Offers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./stdentertainmentstyle.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
+        <ul class="nav-list">
+            <li>
+                <a href="#">Services</a>
+                <ul class="dropdown">
+                    <h3>Grab deals for</h3>
+                    <li><a href="#">Student</a>
+                        <ul class="submenu">
+                            <li><a href="../Student Clothing Page/stdclothing.html">Clothing</a></li>
+                            <li><a href="#">Entertainment</a></li>
+                            <li><a href="../Student Education page/stdeducation.html">Education</a></li>
+                            <li><a href="../Students transport page/stdtransport.html">Transport</a></li>
+                            <li><a href="../Student food page/stdfood.html">Food</a></li>
+                            <li><a href="../Student Electronics page/stdelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Black Community</a>
+                        <ul class="submenu">
+                            <li><a href="../../Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
+                            <li><a href="../../Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
+                            <li><a href="../../Black/Black Education Page/blackeducation.html">Education</a></li>
+                            <li><a href="../../Black/Black Transport Page/blacktransport.html">Transport</a></li>
+                            <li><a href="../../Black/Black Food Page/blackfood.html">Food</a></li>
+                            <li><a href="../../Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">LGBTQ</a>
+                        <ul class="submenu">
+                            <li><a href="../../LGBTQ/LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
+                            <li><a href="../../LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Sr. Citizen</a>
+                        <ul class="submenu">
+                            <li><a href="../../Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
+                            <li><a href="../../Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
+                            <li><a href="#">Electronics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="../../Registration Page/registrationform.html">Sign up</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section class="hero-section">
+            <h1>Entertainment Deals for Students</h1>
+            <p>Unwind with exclusive offers on movies, music, games, and more!</p>
+        </section>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All Entertainment</button>
+            <button class="filter-btn" data-filter="streaming">Streaming</button>
+            <button class="filter-btn" data-filter="gaming">Gaming</button>
+            <button class="filter-btn" data-filter="events">Events</button>
+        </div>
+
+        <section class="offers-section">
+            <div class="section-header">
+                <h2>Student Entertainment Offers</h2>
+            </div>
+            <div class="offers-list">
+                <!-- Streaming Offers -->
+                <div class="offer-item" data-category="streaming" data-discount="50" data-expiry="2025-04-15">
+                    <img class="offer-image" src="./amazonprimelogo.png" alt="Netflix">
+                    <div class="offer-details">
+                        <h3>Prime Perks, Just for Students.</h3>
+                        <p>Enjoy fast delivery, streaming, and more at a student-friendly price.</p>
+                        <p class="expiry">Expires: TBD</p>
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.amazon.ca/amazonprime?primeCampaignId=studentWlpPrimeRedir">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="streaming" data-discount="25" data-expiry="2025-03-20">
+                    <img class="offer-image" src="./Hululogo.jpg" alt="Spotify">
+                    <div class="offer-details">
+                        <h3>Stream Big for Just $1.99/Month!</h3>
+                        <p>Catch your favorite shows and movies on Hulu without breaking the bank.</p>
+                        <p class="expiry">Expires: TBD</p>
+                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.hulu.com/student">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="streaming" data-discount="25" data-expiry="2025-03-20">
+                    <img class="offer-image" src="./huluspotify.jpg" alt="Hulu">
+                    <div class="offer-details">
+                        <h3>Stream More, Spend Less!</h3>
+                        <p>Unlock endless music on Spotify and hit shows on Hulu — all at a special student price!</p>
+                        <p class="expiry">Expires: TBD</p>
+                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.spotify.com/us/student/">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="streaming" data-discount="25" data-expiry="2025-03-20">
+                    <img class="offer-image" src="./peacock-logo.jpg" alt="peacocktv">
+                    <div class="offer-details">
+                        <h3>Grades up, Costs down, Streams on!</h3>
+                        <p>Kick back with Peacock — student deal on point!</p>
+                        <p class="expiry">Expires: TBD</p>
+                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.peacocktv.com/student">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="streaming" data-discount="25" data-expiry="2025-03-20">
+                    <img class="offer-image" src="./applemusictvlogo.png" alt="Spotify">
+                    <div class="offer-details">
+                        <h3>Study Breaks Just Got Better!</h3>
+                        <p>Music and original shows for only $5.99/month — made for students.</p>
+                        <p class="expiry">Expires: TBD</p>                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.apple.com/apple-music/">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="streaming" data-discount="25" data-expiry="2025-03-20">
+                    <img class="offer-image" src="./disneylogo.jpg" alt="Spotify">
+                    <div class="offer-details">
+                        <h3>Magic Awaits, Save Big!</h3>
+                        <p>Get 15% off a year of Disney+ — endless entertainment, all year long!</p>
+                        <p class="expiry">Expires: TBD</p>                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.studentbeans.com/student-discount/ca/disney?source=category_page&offer=0-student-discount-9c042ad7-558c-4854-a13e-c54276c7af23">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gaming Offers -->
+                <div class="offer-item" data-category="gaming" data-discount="20" data-expiry="2025-03-31">
+                    <img class="offer-image" src="./Logitechlogo.png" alt="PlayStation">
+                    <div class="offer-details">
+                        <h3>Game Hard, Save Big!</h3>
+                        <p>Unlock 25% off Logitech gaming gear — exclusive student deal!</p>
+                        <p class="expiry">Expires: TBD</p>                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.logitechg.com/en-us/promotions/student-discount.html">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="gaming" data-discount="15" data-expiry="2025-04-10">
+                    <img class="offer-image" src="./razerlogo.jpg" alt="Steam">
+                    <div class="offer-details">
+                        <h3>Power Your Play, Student Style!</h3>
+                        <p>Get exclusive student pricing on Razer Blade laptops, gear, and gaming chairs — only for you!</p>
+                        <p class="expiry">Expires: TBD</p>
+                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.razer.com/ca-en/education?srsltid=AfmBOoo9jgt13WTXsZklmXCovpH793Je7NK48qdPa6lfpXy_-ZrhBf7j">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="gaming" data-discount="15" data-expiry="2025-04-10">
+                    <img class="offer-image" src="./lenovologo.jpg" alt="Steam">
+                    <div class="offer-details">
+                        <h3>Level Up Your Gear, Save More!</h3>
+                        <p>Enjoy an extra 5% off Lenovo gaming laptops and accessories — exclusively for Canadian students!</p>
+                        <p class="expiry">Expires: TBD</p>
+                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.lenovo.com/us/en/d/deals/student/">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="gaming" data-discount="15" data-expiry="2025-04-10">
+                    <img class="offer-image" src="./newegglogo.png" alt="Steam">
+                    <div class="offer-details">
+                        <h3>Tech Deals, Student Steals!</h3>
+                        <p>Get exclusive discounts on all your tech needs — only for students at Newegg!</p>
+                        <p class="expiry">Expires: TBD</p>
+                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.newegg.com/studentstore?srsltid=AfmBOorig1ovfz5vghSq6TIJ1HK3DF_5XKkLjg1449yEUNqAdmV5apzc">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="gaming" data-discount="15" data-expiry="2025-04-10">
+                    <img class="offer-image" src="./chesslogo.png" alt="Steam">
+                    <div class="offer-details">
+                        <h3>Checkmate Your Savings!</h3>
+                        <p>Get 50% off Chess.com membership — a winning deal for students!</p>
+                        <p class="expiry">Expires: TBD</p>
+                        
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.chess.com/students">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Offers -->
+                <div class="offer-item" data-category="events" data-discount="30" data-expiry="2025-03-15">
+                    <img class="offer-image" src="./cirquelogo.png" alt="LiveNation">
+                    <div class="offer-details">
+                        <h3>Step Into the Magic, Save Big!</h3>
+                        <p>Enjoy 30% off tickets to Cirque du Soleil — exclusively for students!</p>
+                        <p class="expiry">Expires: TBD</p>
+
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.studentbeans.com/student-discount/ca/cirque-du-soleil?offer=0-student-discount-d8656749-ceaa-434b-846f-74e339b0658a">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-item" data-category="events" data-discount="40" data-expiry="2025-03-25">
+                    <img class="offer-image" src="./CNtower.jpg" alt="Cineplex">
+                    <div class="offer-details">
+                        <h3>Reach New Heights, Save More!</h3>
+                        <p>Get 10% off your CN Tower tour — just for students!</p>
+                        <p class="expiry">Expires: TBD</p>
+                       
+                        <div class="offer-actions">
+                            <button class="claim-btn" data-link="https://www.cntower.ca/plan-your-visit/tickets-and-hours/discounts-and-offers?utm_source=chatgpt.com">Claim Now</button>
+                            <button class="wishlist-btn">Wishlist</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recently-viewed">
+            <h3>Recently Viewed</h3>
+            <div class="recently-viewed-list" id="recentlyViewedList"></div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../../Main Page/index.html">Home</a></li>
+                    <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#2754525757485553675742554c57464b0944484a"><span class="__cf_email__" data-cfemail="33000500001f0204330015021b00111c5e131f1d">[email&#160;protected]</span></a></p><br>
+                <p>Phone: +123 456 789</p><br>
+                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Perkpal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <button class="wishlist-page-btn" onclick="goToWishlist()">♥</button>
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Load Theme
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+            }
+        });
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Go to Wishlist Page
+        function goToWishlist() {
+            window.location.href = '../../Wishlist Page/wishlist.html'; // <--- UPDATE THIS PATH HERE
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Filter and Sort Sections
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const sortButtons = document.querySelectorAll('.sort-btn');
+        const offerItems = document.querySelectorAll('.offer-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                offerItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || filter === category) {
+                        item.style.display = 'flex';
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(50px)';
+                        setTimeout(() => item.style.display = 'none', 500);
+                    }
+                });
+            });
+        });
+
+        sortButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const sortType = button.getAttribute('data-sort');
+                sortButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const itemsArray = Array.from(offerItems);
+                itemsArray.sort((a, b) => {
+                    if (sortType === 'expiry') {
+                        const expiryA = new Date(a.getAttribute('data-expiry'));
+                        const expiryB = new Date(b.getAttribute('data-expiry'));
+                        return expiryA - expiryB;
+                    } else if (sortType === 'discount') {
+                        const discountA = parseInt(a.getAttribute('data-discount'));
+                        const discountB = parseInt(b.getAttribute('data-discount'));
+                        return discountB - discountA;
+                    }
+                });
+
+                const offersList = document.querySelector('.offers-list');
+                offersList.innerHTML = '';
+                itemsArray.forEach(item => offersList.appendChild(item));
+                itemsArray.forEach(item => {
+                    item.style.display = 'flex';
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+            });
+        });
+
+
+        
+
+        // Claim and Wishlist Buttons
+        const claimButtons = document.querySelectorAll('.claim-btn');
+        const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+
+        claimButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const url = button.getAttribute('data-link');
+                if (url) {
+                    window.open(url, '_blank');
+                }
+                button.textContent = 'Claimed!';
+                button.disabled = true;
+                addToRecentlyViewed(button.closest('.offer-item'));
+            });
+        });
+
+        wishlistButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const offerItem = button.closest('.offer-item');
+                const title = offerItem.querySelector('h3').textContent;
+                const description = offerItem.querySelector('p:not(.expiry):not(.countdown)').textContent;
+                const expiry = offerItem.querySelector('.expiry').textContent.replace('Expires: ', '');
+                const image = offerItem.querySelector('.offer-image').src;
+                const link = offerItem.querySelector('.claim-btn').getAttribute('data-link');
+
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const isAlreadyWishlisted = wishlist.some(item => item.title === title);
+
+                if (!isAlreadyWishlisted) {
+                    wishlist.push({ title, description, expiry, image, link });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    button.classList.add('active');
+                    button.textContent = 'Wishlisted!';
+                } else {
+                    wishlist = wishlist.filter(item => item.title !== title);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    button.classList.remove('active');
+                    button.textContent = 'Wishlist';
+                }
+            });
+
+            const offerItem = button.closest('.offer-item');
+            const title = offerItem.querySelector('h3').textContent;
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            if (wishlist.some(item => item.title === title)) {
+                button.classList.add('active');
+                button.textContent = 'Wishlisted!';
+            }
+        });
+
+        // Recently Viewed Functionality
+        function addToRecentlyViewed(offerItem) {
+            const title = offerItem.querySelector('h3').textContent;
+            const image = offerItem.querySelector('.offer-image').src;
+            let recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+            recentlyViewed = recentlyViewed.filter(item => item.title !== title);
+            recentlyViewed.unshift({ title, image });
+            if (recentlyViewed.length > 4) recentlyViewed.pop();
+            localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+            loadRecentlyViewed();
+        }
+
+        function loadRecentlyViewed() {
+            const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+            const recentlyViewedList = document.getElementById('recentlyViewedList');
+            recentlyViewedList.innerHTML = '';
+            recentlyViewed.forEach(item => {
+                const recentItem = document.createElement('div');
+                recentItem.classList.add('recent-item');
+                recentItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}">
+                    <p>${item.title}</p>
+                `;
+                recentlyViewedList.appendChild(recentItem);
+            });
+        }
+
+        window.addEventListener('load', loadRecentlyViewed);
+
+        // Lazy Load Images
+        const images = document.querySelectorAll('.offer-image');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.getAttribute('src');
+                    img.style.opacity = '1';
+                    observer.unobserve(img);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        images.forEach(img => {
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 0.5s ease';
+            observer.observe(img);
+        });
+    </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91c5c55d987e7bd0',t:'MTc0MTMwNTE5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
