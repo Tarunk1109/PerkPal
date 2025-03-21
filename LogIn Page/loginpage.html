@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perk-Pal - Login</title>
+    <!-- Google Fonts for 'Inter' typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Decorative elements on the sides -->
+    <div class="side-decor left"></div>
+    <div class="side-decor right"></div>
+    <!-- Background quote that changes randomly -->
+    <div class="background-quote" id="backgroundQuote"></div>
+
+    <!-- Header with logo and navigation -->
+    <div class="logo-container">
+        <img src="./trail logo.png" alt="Perk-Pal Logo" class="logo-image">
+        <ul class="nav-list">
+            <li>
+                <a href="#">Services</a>
+                <!-- Dropdown menu for services -->
+                <ul class="dropdown">
+                    <h3>I Belong to</h3>
+                    <li><a href="#">Student</a>
+                        <!-- Submenu for student-related links -->
+                        <ul class="submenu">
+                            <li><a href="../Student/Student Clothing Page/stdclothing.html">Clothing</a></li>
+                            <li><a href="../Student/Student Entertainment page/stdentertainment.html">Entertainment</a></li>
+                            <li><a href="../Student/Student Education page/stdeducation.html">Education</a></li>
+                            <li><a href="../Student/Students Transport page/stdtransport.html">Transport</a></li>
+                            <li><a href="../Student/Student Food page/stdfood.html">Food</a></li>
+                            <li><a href="../Student/Student Electronics page/stdelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Black Community</a>
+                        <ul class="submenu">
+                            <li><a href="../Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
+                            <li><a href="../Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
+                            <li><a href="../Black/Black Education Page/blackeducation.html">Education</a></li>
+                            <li><a href="../Black/Black Transport Page/blacktransport.html">Transport</a></li>
+                            <li><a href="../Black/Black Food Page/blackfood.html">Food</a></li>
+                            <li><a href="../Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">LGBTQ</a>
+                        <ul class="submenu">
+                            <li><a href="../LGBTQ/LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
+                            <li><a href="../LGBTQ/LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
+                            <li><a href="../LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
+                            <li><a href="../LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
+                            <li><a href="../LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li><a href="#">Sr. Citizen</a>
+                        <ul class="submenu">
+                            <li><a href="../Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
+                            <li><a href="../Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
+                            <li><a href="../Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
+                            <li><a href="../Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
+                            <li><a href="../Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
+                            <li><a href="../Sr Citizen/Sr Citizen Electronics Page/srcitizenelectronics.html">Electronics</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="../About us page/aboutuspage.html">About</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="../Registration Page/registrationform.html">Sign up</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content area with login form -->
+    <main>
+        <div class="form-container">
+            <h2 class="welcome-text">Welcome Back!</h2>
+            <form class="loginForm">
+                <!-- Email input group -->
+                <div class="input-group">
+                    <label for="email">Email<span class="hint">Your registered email</span></label>
+                    <input type="email" id="email" required>
+                    <span class="error" id="emailError"></span>
+                </div>
+
+                <!-- Password input group with toggle visibility -->
+                <div class="input-group">
+                    <label for="password">Password<span class="hint">Enter your password</span></label>
+                    <div class="password-container">
+                        <input type="password" id="password" required>
+                        <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                    </div>
+                    <span class="error" id="passwordError"></span>
+                </div>
+
+                <!-- Forgot password link -->
+                <div class="forgot-password">
+                    <a href="#" onclick="alert('Password reset link sent to your email!')">Forgot Password?</a>
+                </div>
+
+                <!-- Buttons for login and reset -->
+                <div class="button-group">
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">Login</span>
+                        <!-- Spinner shown during form submission -->
+                        <span class="spinner hidden"></span>
+                    </button>
+                    <button type="button" class="reset-btn" onclick="resetForm()">Reset</button>
+                </div>
+            </form>
+            <!-- Prompt to sign up if not a member -->
+            <div class="signup-prompt">
+                <p>Not a member? <a href="#">Sign up now</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer with links and contact info -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../About us page/aboutuspage.html">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <h2>Contact Us</h2>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a></p>
+                <p>Phone: +123 456 789</p>
+                <p>Address: 123 Street, City, Country</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Perk-Pal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()"></button>
+    <!-- Back-to-top button -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <style>
+        /* Reset default box-sizing for all elements */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Base styles for body and html */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background: radial-gradient(circle at center, #cbe6e9, #e0f7fa); /* Animated gradient background */
+            background-size: 150% 150%;
+            animation: radialPulse 20s ease infinite;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: "Inter", serif;
+            transition: background 0.3s ease, color 0.3s ease;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animation for background gradient */
+        @keyframes radialPulse {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Dark mode styles */
+        body.dark {
+            background: radial-gradient(circle at center, #2A6073, #5DA8B5);
+            color: #ecf0f1;
+        }
+
+        /* Background quote styling */
+        .background-quote {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 40px;
+            color: rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 80%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dark .background-quote {
+            color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Side decoration styles */
+        .side-decor {
+            position: absolute;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(203, 230, 233, 0.8), transparent);
+            z-index: 0;
+        }
+
+        .side-decor.left {
+            left: 0;
+        }
+
+        .side-decor.right {
+            right: 0;
+            background: linear-gradient(270deg, rgba(203, 230, 233, 0.8), transparent);
+        }
+
+        .dark .side-decor.left {
+            background: linear-gradient(90deg, rgba(42, 96, 115, 0.8), transparent);
+        }
+
+        .dark .side-decor.right {
+            background: linear-gradient(270deg, rgba(42, 96, 115, 0.8), transparent);
+        }
+
+        .side-decor::before {
+            content: '✨';
+            position: absolute;
+            font-size: 50px;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.3;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .side-decor.right::before {
+            content: '🌟';
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -10px); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        /* Logo container (header) styles */
+        .logo-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            height: 100px;
+            margin: 0;
+            padding: 0;
+            font-family: "Inter", serif;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .logo-container.move {
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform 1.5s ease, opacity 1.5s ease;
+        }
+
+        .dark .logo-container {
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        /* Navigation list styles */
+        .logo-container ul.nav-list {
+            display: flex;
+            list-style-type: none;
+            justify-content: flex-end;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+        }
+
+        .logo-container li {
+            margin-right: 40px;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .logo-container li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            padding: 8px 15px;
+            transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 5px;
+        }
+
+        .dark .logo-container li a {
+            color: #ecf0f1;
+        }
+
+        .logo-container li a:hover {
+            color: #007BFF;
+            background-color: #f0f8ff;
+            transform: scale(1.05);
+        }
+
+        /* Dropdown menu styles */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dark .dropdown {
+            background-color: #34495e;
+        }
+
+        .dropdown h3 {
+            font-size: 16px;
+            color: #444;
+            padding: 0 15px 10px 15px;
+            margin: 0 0 10px 0;
+            border-bottom: 2px solid #eee;
+        }
+
+        .dark .dropdown h3 {
+            color: #bdc3c7;
+            border-bottom: 2px solid #4a6076;
+        }
+
+        .dropdown li {
+            margin: 8px 0;
+            padding: 8px 15px;
+            position: relative;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown li:hover {
+            background-color: #e0f0ff;
+            border-radius: 5px;
+        }
+
+        .dark .dropdown li:hover {
+            background-color: #4a6076;
+        }
+
+        .dropdown li a {
+            font-size: 14px;
+            color: #333;
+            font-weight: normal;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .dark .dropdown li a {
+            color: #ecf0f1;
+        }
+
+        .dropdown li a:hover {
+            color: #007BFF;
+        }
+
+        /* Submenu styles */
+        .dropdown .submenu {
+            display: none;
+            position: absolute;
+            top: -20px;
+            left: calc(100% + 10px);
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dark .dropdown .submenu {
+            background-color: #34495e;
+        }
+
+        .dropdown li:hover .submenu {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .logo-container li:hover .dropdown {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition-delay: 0.1s;
+        }
+
+        /* Logo image styling */
+        img {
+            width: 250px;
+            height: 150px;
+            margin-top: -28px;
+        }
+
+        /* Main content styling */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Form container styles */
+        .form-container {
+            margin: 50px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.95));
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .dark .form-container {
+            background: linear-gradient(135deg, rgba(52, 73, 94, 0.95), rgba(44, 62, 80, 0.95));
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Welcome text styling */
+        .welcome-text {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            color: #007BFF;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .dark .welcome-text {
+            color: #00c4cc;
+        }
+
+        /* Input group styling */
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .dark label {
+            color: #ecf0f1;
+        }
+
+        .hint {
+            position: absolute;
+            top: -25px;
+            left: 10px;
+            background: #007BFF;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .dark .hint {
+            background: #00c4cc;
+        }
+
+        label:hover .hint, input:focus + .hint {
+            opacity: 1;
+        }
+
+        /* Input field styles */
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 10px;
+            background: #f5f7fa;
+            font-size: 14px;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark input {
+            background: #2c3e50;
+            color: #ecf0f1;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        input:focus {
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+            outline: none;
+        }
+
+        .dark input:focus {
+            background: #34495e;
+        }
+
+        /* Password container for toggle icon */
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #007BFF;
+            font-size: 16px;
+        }
+
+        .dark .toggle-password {
+            color: #00c4cc;
+        }
+
+        /* Error message styling */
+        .error {
+            display: block;
+            color: #ff4d4d;
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error.active {
+            opacity: 1;
+        }
+
+        .dark .error {
+            color: #ff6666;
+        }
+
+        /* Forgot password link styling */
+        .forgot-password {
+            text-align: right;
+            margin: 10px 0;
+        }
+
+        .forgot-password a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .dark .forgot-password a {
+            color: #00c4cc;
+        }
+
+        .forgot-password a:hover {
+            color: #0056b3;
+        }
+
+        .dark .forgot-password a:hover {
+            color: #009faf;
+        }
+
+        /* Button group styling */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        /* General button styles */
+        button {
+            flex: 1;
+            padding: 14px;
+            background: linear-gradient(45deg, #007BFF, #00c4cc);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+        }
+
+        /* Reset button specific styles */
+        button.reset-btn {
+            background: linear-gradient(45deg, #ff4d4d, #ff6666);
+        }
+
+        button.reset-btn:hover {
+            box-shadow: 0 8px 20px rgba(255, 77, 77, 0.4);
+        }
+
+        /* Login button loading state */
+        .login-btn.loading .btn-text {
+            opacity: 0;
+        }
+
+        .login-btn.loading .spinner {
+            display: inline-block;
+            opacity: 1;
+        }
+
+        /* Spinner styles for loading animation */
+        .spinner {
+            display: none;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            animation: spin 1s ease-in-out infinite;
+            position: absolute;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Utility class to hide elements */
+        .hidden {
+            display: none;
+        }
+
+        /* Signup prompt styling */
+        .signup-prompt {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .dark .signup-prompt {
+            color: #bdc3c7;
+        }
+
+        .signup-prompt a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .dark .signup-prompt a {
+            color: #00c4cc;
+        }
+
+        .signup-prompt a:hover {
+            color: #0056b3;
+        }
+
+        .dark .signup-prompt a:hover {
+            color: #009faf;
+        }
+
+        /* Success animation styling */
+        .success-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            font-size: 28px;
+            color: #28a745;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: successFade 2s ease forwards;
+            z-index: 100;
+        }
+
+        @keyframes successFade {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .dark .success-animation {
+            color: #85e085;
+            background: rgba(52, 73, 94, 0.95);
+        }
+
+        /* Footer styles */
+        .site-footer {
+            background: linear-gradient(135deg, #ffffff, #f5faff);
+            color: #2c3e50;
+            padding: 40px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 5;
+            transition: background 0.3s ease;
+        }
+
+        .dark .site-footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ecf0f1;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 25px;
+            padding: 0 50px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-left, .footer-right {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-left h3, .footer-right h2 {
+            color: #007BFF;
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-left h3::after, .footer-right h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #007BFF, transparent);
+            border-radius: 3px;
+        }
+
+        .dark .footer-left h3, .dark .footer-right h2 {
+            color: #00c4cc;
+        }
+
+        .dark .footer-left h3::after, .dark .footer-right h2::after {
+            background: linear-gradient(90deg, #00c4cc, transparent);
+        }
+
+        .footer-left ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-left ul li {
+            margin: 12px 0;
+        }
+
+        .footer-left ul li a {
+            color: #555;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .dark .footer-left ul li a {
+            color: #bdc3c7;
+        }
+
+        .footer-left ul li a:hover {
+            color: #007BFF;
+            transform: translateX(5px);
+        }
+
+        .dark .footer-left ul li a:hover {
+            color: #00c4cc;
+        }
+
+        .footer-right p {
+            color: #777;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        .dark .footer-right p {
+            color: #bdc3c7;
+        }
+
+        .footer-right p a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .dark .footer-right p a {
+            color: #00c4cc;
+        }
+
+        .footer-right p a:hover {
+            color: #0056b3;
+        }
+
+        .dark .footer-right p a:hover {
+            color: #009faf;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 123, 255, 0.1);
+        }
+
+        .dark .footer-bottom {
+            border-top: 1px solid rgba(0, 196, 204, 0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .dark .footer-bottom p {
+            color: #a1b1c2;
+        }
+
+        /* Theme toggle button styles */
+        .theme-toggle {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            width: 60px;
+            height: 28px;
+            background: linear-gradient(45deg, #e0e0e0, #ffffff);
+            border-radius: 28px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            z-index: 30;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .theme-toggle::before {
+            content: '☀️';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: 2px;
+            top: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 16px;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .dark .theme-toggle {
+            background: linear-gradient(45deg, #007BFF, #00c4cc);
+        }
+
+        .dark .theme-toggle::before {
+            content: '🌙';
+            transform: translateX(32px);
+        }
+
+        /* Back-to-top button styles */
+        .back-to-top {
+            position: fixed;
+            bottom: 60px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #007BFF, #00c4cc);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 30;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+        }
+
+        .back-to-top.show {
+            display: block;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1);
+        }
+    </style>
+
+    <script>
+        // Select key DOM elements
+        const form = document.querySelector('.loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.querySelector('.login-btn');
+        const spinner = loginButton.querySelector('.spinner');
+        const backgroundQuote = document.getElementById('backgroundQuote');
+        const requiredInputs = [emailInput, passwordInput];
+
+        // Array of quotes for random background text
+        const quotes = [
+            "Welcome Back to Perk-Pal!",
+            "Unlock Your Benefits Now!",
+            "Your Perks Await You!",
+            "Login to Save More!"
+        ];
+
+        // Initialize page on load
+        window.addEventListener('load', () => {
+            document.querySelector('.logo-container').classList.add('move'); // Animate logo container
+            loadFormData(); // Load saved form data from local storage
+            backgroundQuote.textContent = quotes[Math.floor(Math.random() * quotes.length)]; // Set random quote
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+            if (validateForm()) { // Check if form is valid
+                showLoadingSpinner(); // Show spinner during "processing"
+                setTimeout(() => { // Simulate server delay (replace with real API call in production)
+                    hideLoadingSpinner(); // Hide spinner after "processing"
+                    showSuccessAnimation(); // Show success message
+                    saveFormData(); // Save form data to local storage
+                    setTimeout(() => {
+                        resetForm(); // Reset form after success
+                        localStorage.removeItem('loginData'); // Clear saved data
+                    }, 2000); // Delay to allow success animation to complete
+                }, 1500); // 1.5s delay for demo
+            }
+        });
+
+        // Validate inputs on change
+        requiredInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                validateField(input, input.id + 'Error'); // Validate field and show error if needed
+                saveFormData(); // Save current input values
+            });
+        });
+
+        // Validate individual field
+        function validateField(input, errorId) {
+            const value = input.value.trim();
+            const errorElement = document.getElementById(errorId);
+
+            if (value === '' && input.hasAttribute('required')) {
+                errorElement.textContent = 'Required';
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                errorElement.textContent = 'Invalid email';
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'password' && value.length < 6) {
+                errorElement.textContent = 'Too short';
+                errorElement.classList.add('active');
+                return false;
+            } else {
+                errorElement.textContent = '';
+                errorElement.classList.remove('active');
+                return true;
+            }
+        }
+
+        // Validate entire form
+        function validateForm() {
+            const emailValid = validateField(emailInput, 'emailError');
+            const passwordValid = validateField(passwordInput, 'passwordError');
+            return emailValid && passwordValid;
+        }
+
+        // Show loading spinner on login button
+        function showLoadingSpinner() {
+            loginButton.classList.add('loading');
+            loginButton.disabled = true; // Disable button to prevent multiple clicks
+            spinner.classList.remove('hidden');
+        }
+
+        // Hide loading spinner
+        function hideLoadingSpinner() {
+            loginButton.classList.remove('loading');
+            loginButton.disabled = false;
+            spinner.classList.add('hidden');
+        }
+
+        // Reset form to initial state
+        function resetForm() {
+            form.reset();
+            document.querySelectorAll('.error').forEach(error => {
+                error.textContent = '';
+                error.classList.remove('active');
+            });
+            hideLoadingSpinner(); // Ensure spinner is hidden on reset
+        }
+
+        // Save form data to local storage
+        function saveFormData() {
+            const formData = {
+                email: emailInput.value,
+                password: passwordInput.value
+            };
+            localStorage.setItem('loginData', JSON.stringify(formData));
+        }
+
+        // Load saved form data from local storage
+        function loadFormData() {
+            const savedData = JSON.parse(localStorage.getItem('loginData')) || {};
+            emailInput.value = savedData.email || '';
+            passwordInput.value = savedData.password || '';
+        }
+
+        // Show success animation after login
+        function showSuccessAnimation() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-animation';
+            successDiv.textContent = 'Login Successful! 🎉';
+            document.body.appendChild(successDiv);
+            setTimeout(() => successDiv.remove(), 2000); // Remove after 2s
+        }
+
+        // Toggle between light and dark themes
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.textContent = '👁️‍🗨️';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        }
+
+        // Scroll to top of page
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide back-to-top button based on scroll position
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Apply saved theme on page load
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark');
+        }
+    </script>
+</body>
+</html>
