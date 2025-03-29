@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkpal - About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9fafb;
+            color: #2d3748;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark {
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+
+        /* Scroll Progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: #3182ce;
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: padding 0.3s ease;
+        }
+
+        .navbar.shrink {
+            padding: 0.5rem 2rem;
+        }
+
+        body.dark .navbar {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .logo img {
+            height: 40px;
+            transition: height 0.3s ease;
+        }
+
+        .navbar.shrink .logo img {
+            height: 30px;
+        }
+
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item a, .nav-menu a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        body.dark .nav-item a, body.dark .nav-menu a {
+            color: #e2e8f0;
+        }
+
+        .btn-signup {
+            background: #3182ce;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #f9fafb;
+        }
+
+        .hero-wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(49, 130, 206, 0.1), rgba(99, 179, 237, 0.05));
+            animation: waveFlow 15s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes waveFlow {
+            0% { transform: translateX(-100%) skew(10deg); }
+            100% { transform: translateX(100%) skew(10deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
+        }
+
+        body.dark .hero-content h1 {
+            color: #e2e8f0;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin: 1rem 0;
+        }
+
+        body.dark .hero-content p {
+            color: #a0aec0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* About Content */
+        .about-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .about-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: #3182ce;
+        }
+
+        body.dark .about-section h2 {
+            color: #63b3ed;
+        }
+
+        .about-section p {
+            color: #718096;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        body.dark .about-section p {
+            color: #a0aec0;
+        }
+
+        /* Team Section */
+        .team-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        body.dark .team-card {
+            background: #2d3748;
+        }
+
+        .team-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.2);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark .team-info h3 {
+            color: #e2e8f0;
+        }
+
+        .team-info p {
+            color: #718096;
+            font-size: 0.95rem;
+        }
+
+        body.dark .team-info p {
+            color: #a0aec0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 2rem;
+        }
+
+        .faq-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #3182ce;
+            text-align: center;
+        }
+
+        body.dark .faq-section h2 {
+            color: #63b3ed;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .faq-item {
+            background: #2d3748;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3748;
+            cursor: pointer;
+            position: relative;
+        }
+
+        body.dark .faq-question {
+            color: #e2e8f0;
+        }
+
+        .faq-question::after {
+            content: '▼';
+            position: absolute;
+            right: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            padding: 0 1rem;
+            overflow: hidden;
+            color: #718096;
+            font-size: 0.95rem;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        body.dark .faq-answer {
+            color: #a0aec0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            margin-top: 2rem;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .testimonials-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #3182ce;
+        }
+
+        body.dark .testimonials-header h2 {
+            color: #63b3ed;
+        }
+
+        .testimonial-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: #2d3748;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        body.dark .filter-btn {
+            color: #e2e8f0;
+        }
+
+        .filter-btn.active {
+            background: #3182ce;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        .filter-btn:hover {
+            color: #3182ce;
+            transform: scale(1.05);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        body.dark .testimonial-card {
+            background: #2d3748;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.2);
+        }
+
+        .testimonial-card p {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .testimonial-card p {
+            color: #a0aec0;
+        }
+
+        .testimonial-card h4 {
+            font-size: 1rem;
+            color: #3182ce;
+        }
+
+        body.dark .testimonial-card h4 {
+            color: #63b3ed;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .contact-form {
+            background: #2d3748;
+        }
+
+        .contact-form h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #3182ce;
+            text-align: center;
+        }
+
+        body.dark .contact-form h2 {
+            color: #63b3ed;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark .contact-form input, body.dark .contact-form textarea {
+            border-color: #4a5568;
+            background: #2d3748;
+            color: #e2e8f0;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 0.9rem;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-weight: 400;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background: #2b6cb0;
+            box-shadow: 0 5px 20px rgba(49, 130, 206, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        body.dark .footer {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        body.dark .footer a {
+            color: #a0aec0;
+        }
+
+        .footer a:hover {
+            color: #3182ce;
+        }
+
+        /* Scroll Up & Theme Switcher */
+        .scroll-up, .theme-switcher {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-up {
+            bottom: 80px;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-up.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-up svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .scroll-up circle {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .scroll-up.visible circle {
+            stroke-dashoffset: 0;
+        }
+
+        .scroll-up:hover, .theme-switcher:hover {
+            background: #2b6cb0;
+        }
+
+        .theme-switcher {
+            bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .team-section, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scroll-progress"></div>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="./trail logo.png" alt="Perkpal Logo">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="./port.html">Home</a></li>
+                <li><a href="./loginpage.html">Log In</a></li>
+                <li><a href="./registrationform.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-wave"></div>
+        <div class="hero-content">
+            <h1>About Perkpal</h1>
+            <p>Connecting You to Personalized Savings</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <main class="about-content">
+        <div class="about-section">
+            <h2>Who We Are</h2>
+            <p>At Perkpal, we believe in the power of personalized experiences. Our mission is to connect people with exclusive discounts and offers tailored to their unique lifestyles. Whether you're a student, senior citizen, a member of the LGBTQ+ community, or belong to other specific groups, Perkpal is your go-to platform for discovering deals that matter most to you. We understand that everyone has different needs, and that’s why we’ve designed our website to cater to a variety of communities, helping you save on things you love.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>What We Offer</h2>
+            <p>Our platform offers a wide range of categories to explore, including entertainment, electronics, fashion, transport, and more. Perkpal ensures that no matter your interests or preferences, you’ll find something that suits you. By offering personalized deals and targeted discounts, we make it easier than ever for individuals to enjoy what they love without breaking the bank.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Vision</h2>
+            <p>The idea for Perkpal was born out of the desire to bring meaningful value to people’s lives. We wanted to create a space where users can access offers that are not only relevant but also empowering. We are committed to providing a seamless experience by integrating cutting-edge technology, like our chatbot powered by LLM, which makes browsing our site and finding the perfect deal as easy as a conversation. We aim to continuously improve and adapt to the evolving needs of our diverse user base.</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Our Commitment</h2>
+            <p>At Perkpal, we value inclusivity, accessibility, and community. Our website was built with you in mind, offering easy navigation, engaging interactive forms, and a secure platform to explore and claim discounts. Whether you're looking for savings on your daily essentials or special offers to indulge in your passions, Perkpal is here to make those connections happen. Join us today and experience a smarter, more personalized way to shop and save.</p>
+        </div>
+
+        <!-- Team Section -->
+        <div class="team-section">
+            <article class="team-card">
+                <img src="https://via.placeholder.com/250x175" alt="Jane Doe">
+                <div class="team-info">
+                    <h3>Jane Doe</h3>
+                    <p>Founder & CEO<br>Passionate about inclusivity and tech innovation.</p>
+                </div>
+            </article>
+            <article class="team-card">
+                <img src="https://via.placeholder.com/250x175" alt="John Smith">
+                <div class="team-info">
+                    <h3>John Smith</h3>
+                    <p>CTO<br>Expert in AI and user experience design.</p>
+                </div>
+            </article>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question">What is Perkpal?</div>
+                <div class="faq-answer">Perkpal is a platform that connects users with personalized discounts tailored to their lifestyles, serving diverse communities like students, seniors, and more.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">How do I claim a deal?</div>
+                <div class="faq-answer">Simply browse our deals page, find an offer that suits you, and click "Claim Now" to be redirected to the provider’s site or receive instructions.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Is Perkpal free to use?</div>
+                <div class="faq-answer">Yes, Perkpal is completely free for users! We partner with businesses to bring you exclusive offers at no cost to you.</div>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="testimonials-section">
+            <div class="testimonials-header">
+                <h2>What Our Users Say</h2>
+                <div class="testimonial-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="student">Students</button>
+                    <button class="filter-btn" data-filter="senior">Seniors</button>
+                    <button class="filter-btn" data-filter="lgbtq">LGBTQ+</button>
+                </div>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card" data-category="student">
+                    
+                    <p>"Perkpal has saved me so much on student essentials! The personalized deals are a game-changer."</p>
+                    <h4>- Sarah, Student</h4>
+                </div>
+                <div class="testimonial-card" data-category="senior">
+                    
+                    <p>"I love how easy it is to find discounts that matter to me as a senior citizen."</p>
+                    <h4>- Robert, Senior</h4>
+                </div>
+                <div class="testimonial-card" data-category="lgbtq">
+                    
+                    <p>"The inclusivity of Perkpal is amazing. I found great offers tailored to the LGBTQ+ community!"</p>
+                    <h4>- Alex, Community Member</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Quick Links</h3>
+                <p><a href="./port.html">Home</a> | <a href="#">About Us</a> | <a href="#">Services</a></p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a><br>Phone: +123 456 789<br>Address: 123 Street, Etobicoke, Canada</p>
+            </div>
+        </div>
+        <p>© 2025 Perkpal. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scroll Up & Theme Switcher -->
+    <button class="scroll-up">
+        <svg viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="23"></circle>
+        </svg>
+        <i class="mdi mdi-arrow-up"></i>
+    </button>
+    <button class="theme-switcher"><i class="mdi mdi-white-balance-sunny"></i></button>
+
+    <script>
+        // Theme Toggle
+        document.querySelector('.theme-switcher').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-switcher i');
+            icon.classList.toggle('mdi-white-balance-sunny');
+            icon.classList.toggle('mdi-moon-waning-crescent');
+        });
+
+        // Scroll Up Button with Progress Circle and Navbar Shrink
+        const scrollUpBtn = document.querySelector('.scroll-up');
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollUpBtn.classList.toggle('visible', scrollTop > 300);
+            navbar.classList.toggle('shrink', scrollTop > 50);
+            const circle = scrollUpBtn.querySelector('circle');
+            circle.style.strokeDashoffset = 150 - (scrollPercent * 1.5); // Animate circle based on scroll
+        });
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll Progress Bar (Top Bar)
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+
+        // Section Reveal on Scroll
+        const sections = document.querySelectorAll('.about-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        sections.forEach(section => observer.observe(section));
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Testimonials Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                testimonialCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    card.style.display = (filter === 'all' || filter === category) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Contact Form Submission (Mock)
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We’ll get back to you soon.');
+            contactForm.reset();
+        });
+    </script>
+</body>
+</html>
