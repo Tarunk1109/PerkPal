@@ -6,60 +6,477 @@
     <title>Perkpal - Your Wishlist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./wishliststyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9fafb;
+            color: #2d3748;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        body.dark {
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        body.dark .navbar {
+            background: rgba(26, 32, 44, 0.95);
+        }
+
+        .navbar.shrink {
+            padding: 0.5rem 2rem;
+        }
+
+        .logo img {
+            height: 120px;
+            min-height: 60px;
+            transition: height 0.3s ease;
+        }
+
+        .navbar.shrink .logo img {
+            height: 100px;
+        }
+
+        .nav-menu > ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item > a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 400;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        body.dark .nav-item > a {
+            color: #e2e8f0;
+        }
+
+        .nav-item > a:hover {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 8px;
+        }
+
+        .btn-signup {
+            background: #3182ce;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #2b6cb0;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 30px;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #f9fafb;
+            transition: background 0.3s ease;
+            flex-grow: 1;
+        }
+
+        body.dark .hero {
+            background: #1a202c;
+        }
+
+        .hero-wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(49, 130, 206, 0.1), rgba(99, 179, 237, 0.05));
+            animation: waveFlow 15s infinite linear;
+            z-index: 0;
+        }
+
+        body.dark .hero-wave {
+            background: linear-gradient(45deg, rgba(49, 130, 206, 0.05), rgba(99, 179, 237, 0.02));
+        }
+
+        @keyframes waveFlow {
+            0% { transform: translateX(-100%) skew(10deg); }
+            100% { transform: translateX(100%) skew(10deg); }
+        }
+
+        .hero-content {
+            
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            margin-top: 40px;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
+            margin-bottom: 2rem;
+        }
+
+        body.dark .hero-content h1 {
+            color: #e2e8f0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Wishlist Styles (from old wishliststyle.css) */
+        .wishlist-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wishlist-item {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark .wishlist-item {
+            background: #2d3748;
+        }
+
+        .wishlist-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .wishlist-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .wishlist-item:hover .wishlist-image {
+            transform: scale(1.05);
+        }
+
+        .wishlist-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .wishlist-details h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        body.dark .wishlist-details h3 {
+            color: #e2e8f0;
+        }
+
+        .wishlist-details p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        body.dark .wishlist-details p {
+            color: #a0aec0;
+        }
+
+        .wishlist-details .expiry {
+            font-size: 14px;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+        }
+
+        body.dark .wishlist-details .expiry {
+            color: #ff6666;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .claim-btn, .remove-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .claim-btn {
+            background: #3182ce;
+            color: white;
+        }
+
+        .remove-btn {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        body.dark .remove-btn {
+            background: #ff6666;
+        }
+
+        .claim-btn:hover, .remove-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(49, 130, 206, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        body.dark .footer {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        body.dark .footer a {
+            color: #a0aec0;
+        }
+
+        .footer a:hover {
+            color: #3182ce;
+        }
+
+        /* Scroll Up & Theme Switcher */
+        .scroll-up, .theme-switcher {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-up {
+            bottom: 80px;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-up.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-up svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .scroll-up circle {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .scroll-up.visible circle {
+            stroke-dashoffset: 0;
+        }
+
+        .theme-switcher {
+            bottom: 20px;
+        }
+
+        .scroll-up:hover, .theme-switcher:hover {
+            background: #2b6cb0;
+        }
+
+        /* Scroll Progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: #3182ce;
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+            .logo img {
+                height: 100px;
+            }
+            .navbar.shrink .logo img {
+                height: 80px;
+            }
+            .nav-menu > ul {
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                display: none;
+            }
+            body.dark .nav-menu > ul {
+                background: rgba(26, 32, 44, 0.95);
+            }
+            .nav-menu.active > ul {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .wishlist-list {
+                grid-template-columns: 1fr;
+            }
+            .wishlist-image {
+                height: 150px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="logo-container">
-        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
-        <ul class="nav-list">
-            <li><a href="../Main Page/index.html">Home</a></li>
-            <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign up</a></li>
-        </ul>
-    </div>
+    <div id="scroll-progress"></div>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="./trail logo.png" alt="Perkpal Logo">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item"><a href="../Main Page/index.html">Home</a></li>
+                <li class="nav-item"><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                <li class="nav-item"><a href="../LogIn Page/loginpage.html">Login</a></li>
+                <li class="nav-item"><a href="../Registration Page/registrationform.html" class="btn-signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main>
-        <section class="wishlist-section">
-            <div class="section-header">
-                <h2>Your Wishlist</h2>
-            </div>
+    <!-- Hero Section with Wishlist -->
+    <section class="hero">
+        <div class="hero-wave"></div>
+        <div class="hero-content">
+            <h1>Your Wishlist</h1>
             <div class="wishlist-list" id="wishlistList"></div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-left">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
                 <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="./mainpagetest1.html">Home</a></li>
-                    <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+                <p><a href="../Main Page/index.html">Home</a> | <a href="../About us page/aboutuspage.html" target="_blank">About Us</a></p>
             </div>
-            <div class="footer-right">
-                <h2>Contact Us</h2>
-                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a></p><br>
-                <p>Phone: +123 456 789</p><br>
-                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a><br>Phone: +123 456 789<br>Address: 123 Street, Etobicoke, Canada</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 Perkpal. All Rights Reserved.</p>
-        </div>
+        <p>© 2025 Perkpal. All Rights Reserved.</p>
     </footer>
 
-    <button class="theme-toggle" onclick="toggleTheme()"></button>
-    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <!-- Scroll Up & Theme Switcher -->
+    <button class="scroll-up">
+        <svg viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="23"></circle>
+        </svg>
+        <i class="mdi mdi-arrow-up"></i>
+    </button>
+    <button class="theme-switcher"><i class="mdi mdi-white-balance-sunny"></i></button>
 
     <script>
         // Theme Toggle
         function toggleTheme() {
             document.body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-switcher i');
+            icon.classList.toggle('mdi-white-balance-sunny');
+            icon.classList.toggle('mdi-moon-waning-crescent');
             localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
         }
 
@@ -67,22 +484,30 @@
         window.addEventListener('load', () => {
             if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark');
+                document.querySelector('.theme-switcher i').classList.replace('mdi-white-balance-sunny', 'mdi-moon-waning-crescent');
             }
             updateWishlist();
         });
 
-        // Back to Top
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        // Theme Switcher Event
+        document.querySelector('.theme-switcher').addEventListener('click', toggleTheme);
 
+        // Scroll Up & Navbar Shrink
+        const scrollUpBtn = document.querySelector('.scroll-up');
+        const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollUpBtn.classList.toggle('visible', scrollTop > 300);
+            navbar.classList.toggle('shrink', scrollTop > 50);
+            const circle = scrollUpBtn.querySelector('circle');
+            circle.style.strokeDashoffset = 150 - (scrollPercent * 1.5);
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+        });
+
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         // Update Wishlist
@@ -92,7 +517,7 @@
             wishlistList.innerHTML = '';
 
             if (wishlist.length === 0) {
-                wishlistList.innerHTML = '<p style="text-align: center; font-size: 18px;">Your wishlist is empty.</p>';
+                wishlistList.innerHTML = '<p style="font-size: 18px; color: #718096; text-align: center;">Your wishlist is empty.</p>';
                 return;
             }
 
@@ -100,7 +525,7 @@
                 const div = document.createElement('div');
                 div.classList.add('wishlist-item');
                 div.innerHTML = `
-                    <img class="wishlist-image" src="${item.image}" alt="${item.title}">
+                    <img class="wishlist-image" src="${item.image}" alt="${item.title}" loading="lazy">
                     <div class="wishlist-details">
                         <h3>${item.title}</h3>
                         <p>${item.description}</p>
@@ -118,11 +543,10 @@
             document.querySelectorAll('.claim-btn').forEach(button => {
                 button.addEventListener('click', () => {
                     const url = button.getAttribute('data-link');
-                    if (url) {
-                        window.open(url, '_blank');
-                    }
+                    if (url) window.open(url, '_blank');
                     button.textContent = 'Claimed!';
                     button.disabled = true;
+                    button.style.background = '#38a169';
                 });
             });
         }
@@ -134,25 +558,6 @@
             localStorage.setItem('wishlist', JSON.stringify(wishlist));
             updateWishlist();
         }
-
-        // Lazy Load Images
-        const images = document.querySelectorAll('.wishlist-image');
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.getAttribute('src');
-                    img.style.opacity = '1';
-                    observer.unobserve(img);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        images.forEach(img => {
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 0.5s ease';
-            observer.observe(img);
-        });
     </script>
 </body>
 </html>

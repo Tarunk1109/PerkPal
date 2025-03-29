@@ -3,1129 +3,1209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perkpal - Discover Your Deals</title>
+    <title>Perkpal - Premium Deals Await</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="./styles.css"> -->
-     <style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+    <style>
         * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body, html {
-    width: 100%;
-    background: radial-gradient(circle at center, #cbe6e9, #e0f7fa);
-    background-size: 150% 150%;
-    animation: radialPulse 20s ease infinite;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: "Inter", serif;
-    overflow-x: hidden;
-    transition: color 0.3s ease;
-    position: relative;
-    color: #333;
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.1"%3E%3Cpath fill="%235DA8B5" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
-    z-index: -1;
-}
-
-body.dark {
-    background: radial-gradient(circle at center, #2A6073, #5DA8B5);
-    background-size: 150% 150%;
-    animation: radialPulse 20s ease infinite;
-    color: #ecf0f1;
-}
-
-.dark body::before {
-    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.1"%3E%3Cpath fill="%2373C8D5" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
-}
-
-@keyframes radialPulse {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-}
-
-.logo-container {
-    background-color: rgba(255, 255, 255, 0.95);
-    width: 100%;
-    height: 100px;
-    font-family: "Inter", serif;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.dark .logo-container {
-    background-color: rgba(44, 62, 80, 0.95);
-}
-
-.logo-container ul.nav-list {
-    display: flex;
-    list-style-type: none;
-    justify-content: flex-end;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-}
-.nav-list li {
-    margin-top: -55px;
-}
-
-.logo-container li {
-    margin-right: 40px;
-    position: relative;
-    padding: 10px 0;
-}
-
-.logo-container li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    padding: 8px 15px;
-    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
-    border-radius: 5px;
-}
-
-.dark .logo-container li a {
-    color: #ecf0f1;
-}
-
-.logo-container li a:hover {
-    color: #007BFF;
-    background-color: rgba(240, 248, 255, 0.8);
-    transform: scale(1.05);
-    outline: none;
-}
-
-.logo-container li a:focus {
-    outline: none;
-}
-
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #ffffff;
-    min-width: 240px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    list-style-type: none;
-    padding: 20px;
-    margin: 0;
-    z-index: 10;
-    opacity: 0;
-    transform: translateY(-10px) scale(0.95);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.logo-container li.active .dropdown {
-    display: block;
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-.dark .dropdown {
-    background-color: #34495e;
-}
-
-.dropdown h3 {
-    font-size: 16px;
-    color: #444;
-    padding: 0 15px 10px 15px;
-    margin: 0 0 10px 0;
-    border-bottom: 2px solid #eee;
-}
-
-.dark .dropdown h3 {
-    color: #bdc3c7;
-    border-bottom: 2px solid #4a6076;
-}
-
-.dropdown li {
-    margin: 8px 0;
-    padding: 8px 15px;
-    position: relative;
-    transition: background-color 0.2s ease;
-}
-
-.dropdown li:hover {
-    background-color: #e0f0ff;
-    border-radius: 5px;
-}
-
-.dark .dropdown li:hover {
-    background-color: #4a6076;
-}
-
-.dropdown li a {
-    font-size: 14px;
-    color: #333;
-    font-weight: normal;
-    text-decoration: none;
-    display: block;
-    transition: color 0.3s ease;
-}
-
-.dark .dropdown li a {
-    color: #ecf0f1;
-}
-
-.dropdown li a:hover {
-    color: #007BFF;
-}
-
-.dropdown .submenu {
-    display: none;
-    position: absolute;
-    top: -20px;
-    left: calc(100% + 10px);
-    background-color: #ffffff;
-    min-width: 240px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    list-style-type: none;
-    padding: 20px;
-    margin: 0;
-    z-index: 10;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.dark .dropdown .submenu {
-    background-color: #34495e;
-}
-
-.dropdown li:hover .submenu {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
-}
-
-.hero-section {
-    text-align: center;
-    padding: 120px 20px;
-    background: linear-gradient(45deg, #007BFF, #00c4cc);
-    color: white;
-    position: relative;
-    overflow: hidden;
-    background-size: 200% 200%;
-    animation: gradientShift 10s ease infinite;
-    z-index: 1;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://via.placeholder.com/1920x600?text=Hero+Background') no-repeat center/cover;
-    opacity: 0.2;
-    z-index: 0;
-}
-
-.hero-section h1 {
-    font-size: 60px;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section p {
-    font-size: 24px;
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-.filter-container {
-    position: sticky;
-    top: 100px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    text-align: center;
-    z-index: 10;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    border-radius: 0 0 12px 12px;
-}
-
-.dark .filter-container {
-    background: rgba(44, 62, 80, 0.9);
-}
-
-.filter-btn {
-    padding: 12px 30px;
-    margin: 5px;
-    background: #fff;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dark .filter-btn {
-    background: #34495e;
-    color: #ecf0f1;
-}
-
-.filter-btn.active, .filter-btn:hover {
-    background: linear-gradient(45deg, #007BFF, #00c4cc);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
-    outline: none;
-}
-
-.filter-btn:focus {
-    outline: none;
-}
-
-.featured-deal {
-    background: linear-gradient(45deg, #ff6b6b, #ff9ff3);
-    padding: 40px 20px;
-    text-align: center;
-    margin: 20px 0;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-}
-
-.featured-deal h2 {
-    font-size: 36px;
-    color: white;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.featured-deal p {
-    font-size: 18px;
-    color: white;
-    max-width: 600px;
-    margin: 0 auto 20px;
-}
-
-.countdown {
-    font-size: 24px;
-    color: #fff;
-    font-weight: bold;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 10px 20px;
-    border-radius: 25px;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.countdown:hover {
-    transform: scale(1.05);
-}
-
-.offers-section {
-    width: 100%;
-    padding: 60px 20px;
-    background: rgba(255, 255, 255, 0.95);
-    margin-bottom: 20px;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    position: relative;
-    z-index: 1;
-}
-
-.dark .offers-section {
-    background: rgba(52, 73, 94, 0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.section-header {
-    text-align: center;
-    padding: 25px;
-    color: white;
-    border-radius: 12px;
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-.section-header.student { background: linear-gradient(45deg, #28a745, #85e085); }
-.section-header.senior { background: linear-gradient(45deg, #f39c12, #f7c948); }
-.section-header.lgbtq { background: linear-gradient(45deg, #ff6b6b, #ff9ff3); }
-.section-header.black { background: linear-gradient(45deg, #8e44ad, #c39bd3); }
-
-.section-header h2 {
-    font-size: 40px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 1;
-}
-
-.section-header::after {
-    content: '✨';
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    animation: sparkle 2s infinite;
-}
-
-@keyframes sparkle {
-    0%, 100% { opacity: 0; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
-
-.offers-list {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.offer-item {
-    display: flex;
-    align-items: center;
-    background: #f9f9f9;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-    position: relative;
-}
-
-.dark .offer-item {
-    background: #2c3e50;
-}
-
-.offer-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    outline: none;
-}
-
-.offer-item::after {
-    content: '✨';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.offer-item:hover::after {
-    opacity: 1;
-    animation: sparkle 1.5s infinite;
-}
-
-.offer-image {
-    width: 50%;
-    height: 250px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.offer-item:hover .offer-image {
-    transform: scale(1.02);
-}
-
-.offer-details {
-    padding: 30px;
-    width: 50%;
-    position: relative;
-}
-
-.offer-details h3 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 15px;
-    transition: color 0.3s ease;
-}
-
-.dark .offer-details h3 {
-    color: #ecf0f1;
-}
-
-.offer-details p {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-.dark .offer-details p {
-    color: #bdc3c7;
-}
-
-.offer-details .expiry {
-    font-size: 16px;
-    color: #ff4d4d;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-}
-
-.dark .offer-details .expiry {
-    color: #ff6666;
-}
-
-.offer-details .expiry:hover {
-    transform: scale(1.05);
-}
-
-.claim-btn {
-    padding: 14px 30px;
-    background: linear-gradient(45deg, #007BFF, #00c4cc);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.claim-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(30deg);
-    transition: all 0.5s ease;
-}
-
-.claim-btn:hover::after {
-    top: 100%;
-    left: 100%;
-}
-
-.claim-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
-    outline: none;
-}
-
-.claim-btn:focus {
-    outline: none;
-}
-
-.explore-more-btn {
-    width: 200px;
-    height: 50px;
-    background: linear-gradient(45deg, #00c4cc, #007BFF);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    margin: 40px auto 0;
-}
-
-.explore-more-btn::after {
-    content: '➜';
-    position: absolute;
-    right: 20px;
-    font-size: 18px;
-    transition: right 0.3s ease;
-}
-
-.explore-more-btn:hover::after {
-    right: 15px;
-    animation: pulse-arrow 0.5s infinite;
-}
-
-.explore-more-btn:hover {
-    box-shadow: 0 0 15px #00c4cc, 0 0 30px #007BFF;
-    transform: scale(1.05);
-    outline: none;
-}
-
-.explore-more-btn:focus {
-    outline: none;
-}
-
-@keyframes pulse-arrow {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
-    100% { transform: translateX(0); }
-}
-
-.dark .explore-more-btn {
-    background: linear-gradient(45deg, #00c4cc, #007BFF);
-}
-
-.site-footer {
-    background-color: rgba(255, 255, 255, 0.95);
-    color: #333;
-    padding: 40px 0;
-    text-align: center;
-    border-top: 1px solid #eee;
-    width: 100%;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    position: relative;
-    z-index: 1;
-}
-
-.dark .site-footer {
-    background-color: rgba(44, 62, 80, 0.95);
-    color: #ecf0f1;
-    border-top: 1px solid #4a6076;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-left h3, .footer-right h2 {
-    color: #222;
-    margin-bottom: 20px;
-    font-size: 24px;
-    transition: color 0.3s ease;
-}
-
-.dark .footer-left h3, .dark .footer-right h2 {
-    color: #ecf0f1;
-}
-
-.footer-left ul {
-    list-style: none;
-}
-
-.footer-left ul li a {
-    color: #555;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-.footer-left ul li {
-    margin-top: 10px;
-}
-
-.dark .footer-left ul li a {
-    color: #bdc3c7;
-}
-
-.footer-left ul li a:hover {
-    color: #007BFF;
-    transform: translateX(5px);
-    outline: none;
-}
-
-.footer-left ul li a:focus {
-    outline: none;
-}
-
-.footer-right .social-icon {
-    color: #555;
-    font-size: 26px;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.dark .footer-right .social-icon {
-    color: #bdc3c7;
-}
-
-.footer-right .social-icon:hover {
-    color: #007BFF;
-    transform: scale(1.2) rotate(10deg);
-    outline: none;
-}
-
-.footer-right .social-icon:focus {
-    outline: none;
-}
-
-.footer-bottom {
-    font-size: 14px;
-    color: #777;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    transition: color 0.3s ease;
-}
-
-.dark .footer-bottom {
-    color: #bdc3c7;
-    border-top: 1px solid #4a6076;
-}
-
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 30px;
-    background: linear-gradient(45deg, #e0e0e0, #ffffff);
-    border-radius: 30px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    z-index: 30;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-    transition: background 0.3s ease;
-}
-
-.theme-toggle::before {
-    content: '☀️';
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    left: 2px;
-    top: 2px;
-    background-color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 26px;
-    font-size: 16px;
-    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.dark .theme-toggle {
-    background: linear-gradient(45deg, #007BFF, #00c4cc);
-}
-
-.dark .theme-toggle::before {
-    content: '🌙';
-    transform: translateX(30px);
-}
-
-.theme-toggle:hover {
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-}
-
-.theme-toggle:focus {
-    outline: none;
-}
-
-.back-to-top {
-    position: fixed;
-    bottom: 70px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(45deg, #007BFF, #00c4cc);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    z-index: 30;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    font-size: 24px;
-    transition: transform 0.3s ease;
-}
-
-.back-to-top.show {
-    display: block;
-}
-
-.back-to-top:hover {
-    transform: scale(1.1);
-    outline: none;
-}
-
-.back-to-top:focus {
-    outline: none;
-}
-
-@media (max-width: 768px) {
-    .hero-section h1 { font-size: 40px; }
-    .hero-section p { font-size: 18px; }
-    .offer-item { flex-direction: column; }
-    .offer-image { width: 100%; height: 200px; }
-    .offer-details { width: 100%; }
-    .footer-container { flex-direction: column; text-align: center; }
-    .explore-more-btn { width: 150px; height: 40px; font-size: 14px; }
-    .filter-container { padding: 10px; }
-    .filter-btn { padding: 10px 20px; font-size: 14px; }
-}
-     </style>
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9fafb;
+            color: #2d3748;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        body.dark {
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 0.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        body.dark .navbar {
+            background: rgba(26, 32, 44, 0.95);
+        }
+
+        .navbar.shrink {
+            padding: -10rem 2rem;
+        }
+
+        .logo img {
+            height: 120px;
+            min-height: 60px;
+            transition: height 0.3s ease;
+        }
+
+        .navbar.shrink .logo img {
+            height: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                height: 100px;
+            }
+            .navbar.shrink .logo img {
+                height: 80px;
+            }
+        }
+
+        .nav-menu > ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a, .nav-menu > ul > li > a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 400;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, background 0.3s;
+            display: block;
+        }
+
+        body.dark .nav-item > a, body.dark .nav-menu > ul > li > a {
+            color: #e2e8f0;
+        }
+
+        .nav-item:hover > a {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 8px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            min-width: 250px; /* Increased width */
+            list-style: none;
+            padding: 1rem; /* More padding for spacing */
+        }
+
+        body.dark .dropdown {
+            background: #2d3748;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            color: #3182ce;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(49, 130, 206, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark .dropdown-header {
+            color: #63b3ed;
+            border-bottom: 1px solid rgba(99, 179, 237, 0.2);
+        }
+
+        .dropdown li {
+            list-style: none; /* Remove bullet points */
+        }
+
+        .dropdown > li > a {
+            display: block;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 1rem 1.5rem; /* Increased padding for spacing */
+            font-size: 1rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        body.dark .dropdown > li > a {
+            color: #a0aec0;
+        }
+
+        .dropdown > li:hover > a {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
+        }
+
+        .submenu {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            min-width: 250px; /* Increased width */
+            list-style: none;
+            padding: 1rem; /* More padding for spacing */
+        }
+
+        body.dark .submenu {
+            background: #2d3748;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown li:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .submenu li {
+            list-style: none; /* Remove bullet points */
+        }
+
+        .submenu a {
+            display: block;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 1rem 1.5rem; /* Increased padding for spacing */
+            font-size: 0.95rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        body.dark .submenu a {
+            color: #a0aec0;
+        }
+
+        .submenu a:hover {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
+        }
+
+        .btn-signup {
+            background: #3182ce;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #2b6cb0;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #f9fafb;
+            transition: background 0.3s ease;
+        }
+
+        body.dark .hero {
+            background: #1a202c;
+        }
+
+        .hero-wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(49, 130, 206, 0.1), rgba(99, 179, 237, 0.05));
+            animation: waveFlow 15s infinite linear;
+            z-index: 0;
+        }
+
+        body.dark .hero-wave {
+            background: linear-gradient(45deg, rgba(49, 130, 206, 0.05), rgba(99, 179, 237, 0.02));
+        }
+
+        @keyframes waveFlow {
+            0% { transform: translateX(-100%) skew(10deg); }
+            100% { transform: translateX(100%) skew(10deg); }
+        }
+
+        .hero-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(49, 130, 206, 0.3);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .hero-particle:nth-child(2) { top: 20%; left: 10%; animation-delay: 1s; }
+        .hero-particle:nth-child(3) { bottom: 15%; right: 20%; animation-delay: 2s; }
+        .hero-particle:nth-child(4) { top: 50%; left: 80%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); opacity: 0.3; }
+            50% { transform: translateY(-20px); opacity: 0.5; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease;
+        }
+
+        body.dark .hero-content h1 {
+            color: #e2e8f0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content .typewriter {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin: 1rem 0 2rem;
+            min-height: 2rem;
+        }
+
+        body.dark .hero-content .typewriter {
+            color: #a0aec0;
+        }
+
+        .btn-explore {
+            padding: 0.9rem 2.5rem;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 400;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .btn-explore:hover {
+            background: #2b6cb0;
+            box-shadow: 0 5px 20px rgba(49, 130, 206, 0.4);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sidebar Filters */
+        .sidebar-filters {
+            margin-top: 85px;
+            position: fixed;
+            left: -260px;
+            top: 0;
+            width: 260px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 4rem 2rem 2rem;
+            transition: left 0.3s ease;
+            z-index: 999;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .sidebar-filters {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .sidebar-filters.open {
+            left: 0;
+        }
+
+        #deal-search {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body.dark #deal-search {
+            border-color: #4a5568;
+            background: #2d3748;
+            color: #e2e8f0;
+        }
+
+        .filter-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background: transparent;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 400;
+            transition: all 0.3s;
+            color: #2d3748;
+        }
+
+        body.dark .filter-btn {
+            color: #e2e8f0;
+        }
+
+        .filter-btn.active {
+            background: #3182ce;
+            color: #fff;
+            border-radius: 6px;
+        }
+
+        .filter-btn:hover {
+            background: #edf2f7;
+        }
+
+        body.dark .filter-btn:hover {
+            background: #4a5568;
+        }
+
+        .sidebar-toggle {
+            margin-top: 70px;
+            position: fixed;
+            left: 20px;
+            top: 80px;
+            width: 40px;
+            height: 40px;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            transition: left 0.3s ease, background 0.3s;
+        }
+
+        .sidebar-toggle.open {
+            left: 280px;
+        }
+
+        .sidebar-toggle:hover {
+            background: #2b6cb0;
+        }
+
+        /* Category Selector */
+        .category-selector {
+            position: sticky;
+            top: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem;
+            text-align: center;
+            z-index: 998;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .category-selector {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .category-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: #2d3748;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        body.dark .category-btn {
+            color: #e2e8f0;
+        }
+
+        .category-btn.active {
+            background: #3182ce;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        .category-btn:hover {
+            color: #3182ce;
+            transform: scale(1.05);
+        }
+
+        /* Deals */
+        .deals-container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .featured-deal {
+            background: linear-gradient(135deg, #63b3ed, #bee3f8);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            transition: transform 0.3s ease;
+        }
+
+        body.dark .featured-deal {
+            background: linear-gradient(135deg, #4a5568, #718096);
+            color: #e2e8f0;
+        }
+
+        .featured-deal:hover {
+            transform: scale(1.02);
+        }
+
+        .deal-category {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .deal-category.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .deal-category h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        body.dark .deal-category h2 {
+            color: #e2e8f0;
+        }
+
+        .deal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .deal-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .deal-card {
+            background: #2d3748;
+        }
+
+        .deal-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.2);
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #fff, #fff) padding-box,
+                        linear-gradient(45deg, #3182ce, #63b3ed) border-box;
+        }
+
+        body.dark .deal-card:hover {
+            background: linear-gradient(45deg, #2d3748, #2d3748) padding-box,
+                        linear-gradient(45deg, #3182ce, #63b3ed) border-box;
+        }
+
+        .deal-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .deal-info {
+            padding: 1.5rem;
+        }
+
+        .deal-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark .deal-info h3 {
+            color: #e2e8f0;
+        }
+
+        .deal-info p {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .deal-info p {
+            color: #a0aec0;
+        }
+
+        .deal-info .expiry {
+            color: #e53e3e;
+            font-size: 0.85rem;
+        }
+
+        .deal-card .tooltip {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #3182ce;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .deal-card:hover .tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-claim {
+            background: #3182ce;
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 400;
+            transition: all 0.3s;
+        }
+
+        .btn-claim:hover {
+            background: #2b6cb0;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        body.dark .footer {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        body.dark .footer a {
+            color: #a0aec0;
+        }
+
+        .footer a:hover {
+            color: #3182ce;
+        }
+
+        /* Scroll Up & Theme Switcher */
+        .scroll-up, .theme-switcher {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-up {
+            bottom: 80px;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-up.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-up svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .scroll-up circle {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+            stroke-dasharray: 150;
+            stroke-dashoffset: 150;
+            transition: stroke-dashoffset 0.3s ease;
+        }
+
+        .scroll-up.visible circle {
+            stroke-dashoffset: 0;
+        }
+
+        .theme-switcher {
+            bottom: 20px;
+        }
+
+        .scroll-up:hover, .theme-switcher:hover {
+            background: #2b6cb0;
+        }
+
+        /* Scroll Progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: #3182ce;
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu > ul {
+                flex-direction: column;
+                gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                display: none;
+            }
+
+            body.dark .nav-menu > ul {
+                background: rgba(26, 32, 44, 0.95);
+            }
+
+            .nav-menu.active > ul {
+                display: block;
+            }
+
+            .dropdown {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                background: none;
+                padding-left: 1rem;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                min-width: 100%; /* Full width on mobile */
+            }
+
+            .dropdown.active {
+                display: block;
+            }
+
+            .dropdown-header {
+                padding: 0.5rem 1rem;
+            }
+
+            .submenu {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                background: none;
+                padding-left: 1rem;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                min-width: 100%; /* Full width on mobile */
+            }
+
+            .submenu.active {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .typewriter {
+                font-size: 1.2rem;
+            }
+
+            .sidebar-toggle {
+                top: 70px;
+            }
+
+            .sidebar-toggle.open {
+                left: 220px;
+            }
+
+            .category-selector {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .nav-toggle {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: #2d3748;
+                cursor: pointer;
+            }
+
+            body.dark .nav-toggle {
+                color: #e2e8f0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="logo-container">
-        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
-        <ul class="nav-list">
-            <li>
-                <a href="#">Services</a>
-                <ul class="dropdown">
-                    <h3>Grab deals for</h3>
-                    <li><a href="#">Student</a>
-                        <ul class="submenu">
-                            <li><a href="./Student/Student Clothing Page/stdclothing.html">Clothing</a></li>
-                            <li><a href="./Student/Student Entertainment page/stdentertainment.html">Entertainment</a></li>
-                            <li><a href="./Student/Student Education page/stdeducation.html">Education</a></li>
-                            <li><a href="./Student/Students Transport page/stdtransport.html">Transport</a></li>
-                            <li><a href="./Student/Student Food page/stdfood.html">Food</a></li>
-                            <li><a href="./Student/Student Electronics page/stdelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Black Community</a>
-                        <ul class="submenu">
-                            <li><a href="./Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
-                            <li><a href="./Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
-                            <li><a href="./Black/Black Education Page/blackeducation.html">Education</a></li>
-                            <li><a href="./Black/Black Transport Page/blacktransport.html">Transport</a></li>
-                            <li><a href="./Black/Black Food Page/blackfood.html">Food</a></li>
-                            <li><a href="./Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">LGBTQ</a>
-                        <ul class="submenu">
-                            <li><a href="./LGBTQ/LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
-                            <li><a href="./LGBTQ/LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
-                            <li><a href="./LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
-                            <li><a href="./LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
-                            <li><a href="./LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
-                            
-                        </ul>
-                    </li>
-                    <li><a href="#">Sr. Citizen</a>
-                        <ul class="submenu">
-                            <li><a href="./Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
-                            <li><a href="./Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
-                            <li><a href="./Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
-                            <li><a href="./Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
-                            <li><a href="./Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
-                            <li><a href="./Sr Citizen/Sr Citizen Electronics Page/srcitizenelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="./About us page/aboutuspage.html" target="_blank">About Us</a></li>
-            <li><a href="../PerkPal/LogIn Page/loginpage.html">Login</a></li>
-            <li><a href="./Registration Page/registrationform.html">Sign up</a></li>
-        </ul>
-    </div>
+    <div id="scroll-progress"></div>
+    <!-- Navbar for top navigation -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="./trail logo.png" alt="Perkpal Logo" >
+        </div>
+        <nav class="nav-menu">
+            
+            <ul>
+                <li class="nav-item">
+                    <a href="#">Services</a>
+                    <ul class="dropdown">
+                        <li class="dropdown-header">Grab deals for</li>
+                        <li>
+                            <a href="#">Student</a>
+                            <ul class="submenu">
+                                <li><a href="./Student/Student Clothing Page/stdclothing.html">Clothing</a></li>
+                                <li><a href="./Student/Student Entertainment page/stdentertainment.html">Entertainment</a></li>
+                                <li><a href="./Student/Student Education page/stdeducation.html">Education</a></li>
+                                <li><a href="./Student/Students Transport page/stdtransport.html">Transport</a></li>
+                                <li><a href="./Student/Student Food page/stdfood.html">Food</a></li>
+                                <li><a href="./Student/Student Electronics page/stdelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Black Community</a>
+                            <ul class="submenu">
+                                <li><a href="./Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
+                                <li><a href="./Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
+                                <li><a href="./Black/Black Education Page/blackeducation.html">Education</a></li>
+                                <li><a href="./Black/Black Transport Page/blacktransport.html">Transport</a></li>
+                                <li><a href="./Black/Black Food Page/blackfood.html">Food</a></li>
+                                <li><a href="./Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">LGBTQ</a>
+                            <ul class="submenu">
+                                <li><a href="./LGBTQ/LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
+                                <li><a href="./LGBTQ/LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
+                                <li><a href="./LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
+                                <li><a href="./LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
+                                <li><a href="./LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Sr. Citizen</a>
+                            <ul class="submenu">
+                                <li><a href="./Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
+                                <li><a href="./Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
+                                <li><a href="./Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
+                                <li><a href="./Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
+                                <li><a href="./Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
+                                <li><a href="./Sr Citizen/Sr Citizen Electronics Page/srcitizenelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="./About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                <li><a href="../PerkPal/LogIn Page/loginpage.html">Login</a></li>
+                <li><a href="./Registration Page/registrationform.html" class="btn-signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <main>
-        <section class="hero-section">
-            <h1>Unwrap Your Exclusive Perks</h1>
-            <p>Explore deals crafted for you—save big, live bold!</p>
-        </section>
+    <!-- Hero Section with gradient wave and particles -->
+    <section class="hero">
+        <div class="hero-wave"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-particle"></div>
+        <div class="hero-content">
+            <h1>Unlock Your Perks</h1>
+            <div class="typewriter" id="typewriter"></div>
+            <button class="btn-explore" id="scroll-to-deals">Get Started</button>
+        </div>
+    </section>
 
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All Deals</button>
-            <button class="filter-btn" data-filter="student">Students</button>
-            <button class="filter-btn" data-filter="senior">Seniors</button>
-            <button class="filter-btn" data-filter="lgbtq">LGBTQ</button>
-            <button class="filter-btn" data-filter="black">Black Community</button>
+    <!-- Sidebar with toggle button -->
+    <button class="sidebar-toggle"><i class="mdi mdi-filter-variant"></i></button>
+    <aside class="sidebar-filters">
+        <input type="text" placeholder="Search deals..." id="deal-search">
+        <div class="filter-group">
+            <button data-filter="all" class="filter-btn active">All</button>
+            <button data-filter="student" class="filter-btn">Students</button>
+            <button data-filter="senior" class="filter-btn">Seniors</button>
+            <button data-filter="lgbtq" class="filter-btn">LGBTQ</button>
+            <button data-filter="black" class="filter-btn">Black Community</button>
+        </div>
+    </aside>
+
+    <!-- Main content with deals -->
+    <main class="deals-container">
+        <!-- Floating category selector -->
+        <div class="category-selector">
+            <button data-filter="all" class="category-btn active">All</button>
+            <button data-filter="student" class="category-btn">Students</button>
+            <button data-filter="senior" class="category-btn">Seniors</button>
+            <button data-filter="lgbtq" class="category-btn">LGBTQ</button>
+            <button data-filter="black" class="category-btn">Black Community</button>
         </div>
 
-        <div class="featured-deal">
+        <!-- Featured deal section -->
+        <section class="featured-deal">
             <h2>Deal of the Day</h2>
-            <p>Grab 50% off at Rainbow Cafe this weekend only!</p>
-            <div class="countdown" id="countdown">00:00:00</div>
-        </div>
-
-        <section class="offers-section" data-category="student">
-            <div class="section-header student">
-                <h2>Student Deals</h2>
-            </div>
-            <div class="offers-list">
-                <div class="offer-item">
-                    <img class="offer-image" src="./amazonprime1.jpg" alt="Student Deal">
-                    <div class="offer-details">
-                        <h3>Join Prime Student</h3>
-                        <p>Get 50% off on valid student ID!</p>
-                        <p class="expiry">Expires: March 31, 2025</p>
-                        <button class="claim-btn" data-link="https://www.amazon.ca/amazonprime?primeCampaignId=studentWlpPrimeRedir">Claim Now</button>
-                    </div>
-                </div>
-                <div class="offer-item">
-                    <img class="offer-image" src="./applestudentoffer.jpg" alt="Student Tech Deal">
-                    <div class="offer-details">
-                        <h3>Shop Mac for Students!</h3>
-                        <p>Get extra discounts on apple products for Students</p>
-                        <p class="expiry">Expires: March 25, 2025</p>
-                        <button class="claim-btn" data-link="https://www.apple.com/ca-edu/shop/buy-mac">Claim Now</button>
-                    </div>
-                </div>
-            </div>
-            <button class="explore-more-btn">Explore More</button>
+            <p>50% off at Rainbow Cafe—weekend exclusive!</p>
+            <div class="countdown" id="countdown"></div>
         </section>
 
-        <section class="offers-section" data-category="senior">
-            <div class="section-header senior">
-                <h2>Senior Citizen Deals</h2>
-            </div>
-            <div class="offers-list">
-                <div class="offer-item">
-                    <img class="offer-image" src="./srcitizenttc1.JPG" alt="Senior Deal">
-                    <div class="offer-details">
-                        <h3>Senior Citizen offer!</h3>
-                        <p>Save for every ride using your Photo ID.</p>
-                        <p class="expiry">Expires: April 15, 2025</p>
-                        <button class="claim-btn" data-link="https://www.ttc.ca/Fares-and-passes/Fare-information/Post-Secondary-Students-Seniors-Youths-and-Children">Claim Now</button>
+        <!-- Student Deals -->
+        <section class="deal-category" data-category="student">
+            <h2>Student Deals</h2>
+            <div class="deal-grid">
+                <article class="deal-card">
+                    <img src="./amazonprime1.jpg" alt="Prime Student" loading="lazy">
+                    <div class="deal-info">
+                        <h3>Prime Student</h3>
+                        <p>50% off with valid student ID</p>
+                        <span class="expiry">Expires: Mar 31, 2025</span>
+                        <button class="btn-claim" data-link="https://www.amazon.ca/amazonprime">Claim</button>
                     </div>
-                </div>
+                    <span class="tooltip">Hot Deal!</span>
+                </article>
+                <article class="deal-card">
+                    <img src="./applestudentoffer.jpg" alt="Apple Student" loading="lazy">
+                    <div class="deal-info">
+                        <h3>Shop Mac for Students</h3>
+                        <p>Extra discounts on Apple products</p>
+                        <span class="expiry">Expires: Mar 25, 2025</span>
+                        <button class="btn-claim" data-link="https://www.apple.com/ca-edu/shop/buy-mac">Claim</button>
+                    </div>
+                    <span class="tooltip">Limited Time</span>
+                </article>
             </div>
-            <button class="explore-more-btn">Explore More</button>
         </section>
 
-        <section class="offers-section" data-category="lgbtq">
-            <div class="section-header lgbtq">
-                <h2>LGBTQ Deals</h2>
+        <!-- Senior Deals -->
+        <section class="deal-category" data-category="senior">
+            <h2>Senior Citizen Deals</h2>
+            <div class="deal-grid">
+                <article class="deal-card">
+                    <img src="./srcitizenttc1.JPG" alt="TTC Senior" loading="lazy">
+                    <div class="deal-info">
+                        <h3>Senior Citizen Offer</h3>
+                        <p>Save on every ride with Photo ID</p>
+                        <span class="expiry">Expires: Apr 15, 2025</span>
+                        <button class="btn-claim" data-link="https://www.ttc.ca/Fares-and-passes">Claim</button>
+                    </div>
+                    <span class="tooltip">Exclusive</span>
+                </article>
             </div>
-            <div class="offers-list">
-                <div class="offer-item">
-                    <img class="offer-image" src="./lgbtqclothing1234.JPG" alt="LGBTQ Deal">
-                    <div class="offer-details">
+        </section>
+
+        <!-- LGBTQ Deals -->
+        <section class="deal-category" data-category="lgbtq">
+            <h2>LGBTQ Deals</h2>
+            <div class="deal-grid">
+                <article class="deal-card">
+                    <img src="./lgbtqclothing1234.JPG" alt="LGBTQ Clothing" loading="lazy">
+                    <div class="deal-info">
                         <h3>LGBTQ+ Clothing</h3>
-                        <p>Get amazing offers on clothing.</p>
-                        <p class="expiry">Expires: March 10, 2025</p>
-                        <button class="claim-btn" data-link="https://www.therainbowstores.com/">Claim Now</button>
+                        <p>Amazing offers on clothing</p>
+                        <span class="expiry">Expires: Mar 10, 2025</span>
+                        <button class="btn-claim" data-link="https://www.therainbowstores.com/">Claim</button>
                     </div>
-                </div>
+                    <span class="tooltip">New Arrival</span>
+                </article>
             </div>
-            <button class="explore-more-btn">Explore More</button>
         </section>
 
-        <section class="offers-section" data-category="black">
-            <div class="section-header black">
-                <h2>Black Community Deals</h2>
-            </div>
-            <div class="offers-list">
-                <div class="offer-item">
-                    <img class="offer-image" src="./blackscholorship1.JPG" alt="Black Community Deal">
-                    <div class="offer-details">
+        <!-- Black Community Deals -->
+        <section class="deal-category" data-category="black">
+            <h2>Black Community Deals</h2>
+            <div class="deal-grid">
+                <article class="deal-card">
+                    <img src="./blackscholorship1.JPG" alt="BBPA Scholarships" loading="lazy">
+                    <div class="deal-info">
                         <h3>BBPA Scholarships</h3>
-                        <p>Get Educational support from BBPA!</p>
-                        <p class="expiry">Expires: March 20, 2025</p>
-                        <button class="claim-btn" data-link="https://bbpa.org/bbpa-scholarships/">Claim Now</button>
+                        <p>Educational support from BBPA</p>
+                        <span class="expiry">Expires: Mar 20, 2025</span>
+                        <button class="btn-claim" data-link="https://bbpa.org/bbpa-scholarships/">Claim</button>
                     </div>
-                </div>
+                    <span class="tooltip">Scholarship</span>
+                </article>
             </div>
-            <button class="explore-more-btn">Explore More</button>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <div class="footer-container">
-            <div class="footer-left">
+    <!-- Footer with contact info -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
                 <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="./mainpagetest1.html">Home</a></li>
-                    <li><a href="../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+                <p><a href="#">Home</a> | <a href="./About us page/aboutuspage.html" target="_blank">About Us</a> | <a href="#">Services</a></p>
             </div>
-            <div class="footer-right">
-                <h2>Contact Us</h2>
-                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3978291968d88d2d2d3daa3848e828a8fcd808c8e">[email&#160;protected]</a></p><br>
-                <p>Phone: +123 456 789</p><br>
-                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+            <div>
+                <h3>Contact Us</h3>
+                <p>Email: <a href="/cdn-cgi/l/email-protection#9eedebeeeef1eceadeeefbecf5eefff2b0fdf1f3"><span class="__cf_email__" data-cfemail="42217772726d7076427267706972636e2c616d6f">[email protected]</span></a><br>Phone: +123 456 789<br>Address: 123 Street, Etobicoke, Canada</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 Perkpal. All Rights Reserved.</p>
-        </div>
+        <p>© 2025 Perkpal. All Rights Reserved.</p>
     </footer>
 
-    <button class="theme-toggle" onclick="toggleTheme()"></button>
-    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <!-- Scroll Up with progress circle -->
+    <button class="scroll-up">
+        <svg viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="23"></circle>
+        </svg>
+        <i class="mdi mdi-arrow-up"></i>
+    </button>
+    <!-- Theme Switcher -->
+    <button class="theme-switcher"><i class="mdi mdi-white-balance-sunny"></i></button>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
-        // Modified Dropdown Functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const servicesItem = document.querySelector('.nav-list > li:first-child');
-            const servicesLink = servicesItem.querySelector('a');
+        // Typewriter effect with smooth transitions
+        const typewriter = document.getElementById('typewriter');
+        const phrases = ['Unlock savings now.', 'Tailored just for you.', 'Exclusive deals await.'];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-            servicesLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                servicesItem.classList.toggle('active');
-            });
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            typewriter.textContent = currentPhrase.substring(0, charIndex);
 
-            document.addEventListener('click', (e) => {
-                const isClickInside = e.target.closest('.nav-list > li:first-child');
-                if (!isClickInside) {
-                    servicesItem.classList.remove('active');
+            if (!isDeleting && charIndex < currentPhrase.length) {
+                charIndex++;
+                setTimeout(type, 100);
+            } else if (isDeleting && charIndex > 0) {
+                charIndex--;
+                setTimeout(type, 50);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(type, 1000);
+                } else {
+                    setTimeout(type, 200);
                 }
-            });
+            }
+        }
+        type();
+
+        // Scroll to deals on "Get Started" click
+        document.getElementById('scroll-to-deals').addEventListener('click', () => {
+            document.querySelector('.deals-container').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Theme Toggle
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-        }
-
-        // Back to Top
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        window.addEventListener('scroll', () => {
-            const backToTop = document.querySelector('.back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
+        // Sidebar toggle with button movement
+        const sidebar = document.querySelector('.sidebar-filters');
+        const toggleBtn = document.querySelector('.sidebar-toggle');
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            toggleBtn.classList.toggle('open');
+            if (sidebar.classList.contains('open')) {
+                document.querySelector('#deal-search').focus();
             }
         });
 
-        // Filter Sections
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const offerSections = document.querySelectorAll('.offers-section');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filter = button.getAttribute('data-filter');
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                offerSections.forEach(section => {
-                    const category = section.getAttribute('data-category');
-                    if (filter === 'all' || filter === category) {
-                        section.style.display = 'block';
-                        section.style.opacity = '0';
-                        setTimeout(() => {
-                            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                            section.style.opacity = '1';
-                            section.style.transform = 'translateY(0)';
-                        }, 10);
-                    } else {
-                        section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                        section.style.opacity = '0';
-                        section.style.transform = 'translateY(50px)';
-                        setTimeout(() => section.style.display = 'none', 500);
-                    }
-                });
+        // Live search functionality
+        const searchInput = document.getElementById('deal-search');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.deal-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                card.style.display = title.includes(query) ? 'block' : 'none';
             });
         });
 
-        // Scroll Animation
+        // Theme toggle
+        document.querySelector('.theme-switcher').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-switcher i');
+            icon.classList.toggle('mdi-white-balance-sunny');
+            icon.classList.toggle('mdi-moon-waning-crescent');
+        });
+
+        // Scroll up button with progress circle and navbar shrink
+        const scrollUpBtn = document.querySelector('.scroll-up');
+        const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            offerSections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 150) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollUpBtn.classList.toggle('visible', scrollTop > 300);
+            navbar.classList.toggle('shrink', scrollTop > 50);
+            const circle = scrollUpBtn.querySelector('circle');
+            circle.style.strokeDashoffset = 150 - (scrollPercent * 1.5);
+        });
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll progress bar
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+
+        // Dynamic filter for sidebar and category selector
+        function applyFilter(filter) {
+            document.querySelectorAll('.filter-btn, .category-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll(`[data-filter="${filter}"]`).forEach(b => b.classList.add('active'));
+            document.querySelectorAll('.deal-category').forEach(section => {
+                section.style.display = (filter === 'all' || section.getAttribute('data-category') === filter) ? 'block' : 'none';
+            });
+            sidebar.classList.remove('open');
+            toggleBtn.classList.remove('open');
+        }
+
+        document.querySelectorAll('.filter-btn, .category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                applyFilter(filter);
+            });
+        });
+
+        // Section reveal on scroll
+        const sections = document.querySelectorAll('.deal-category');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        });
+        }, { threshold: 0.2 });
+        sections.forEach(section => observer.observe(section));
 
-        // Initial Setup
-        window.addEventListener('load', () => {
-            offerSections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(50px)';
-                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            });
-        });
-
-        // Countdown Timer for Featured Deal
+        // Countdown for featured deal
         function startCountdown() {
-            const countdownElement = document.getElementById('countdown');
-            const endDate = new Date('March 10, 2025 23:59:59').getTime();
-
+            const countdown = document.getElementById('countdown');
+            const endDate = new Date('March 31, 2025 23:59:59').getTime();
             setInterval(() => {
                 const now = new Date().getTime();
                 const distance = endDate - now;
-
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-                if (distance < 0) {
-                    countdownElement.textContent = 'Expired';
-                    countdownElement.style.background = 'rgba(255, 77, 77, 0.5)';
-                }
+                countdown.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                if (distance < 0) countdown.textContent = 'Expired';
             }, 1000);
         }
+        startCountdown();
 
-        window.addEventListener('load', startCountdown);
-
-        // Claim Buttons Logic
-        const claimButtons = document.querySelectorAll('.claim-btn');
-
-        claimButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const url = button.getAttribute('data-link');
-                if (url) {
-                    window.open(url, '_blank');
-                }
-                button.textContent = 'Claimed!';
-                button.disabled = true;
-                button.style.background = 'linear-gradient(45deg, #28a745, #85e085)';
-                button.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    button.style.transform = 'translateY(-3px)';
-                }, 300);
+        // Claim button functionality
+        document.querySelectorAll('.btn-claim').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const url = btn.getAttribute('data-link');
+                if (url) window.open(url, '_blank');
+                btn.textContent = 'Claimed';
+                btn.disabled = true;
+                btn.style.background = '#38a169';
             });
         });
 
-        // Reset buttons on page load
-        window.addEventListener('load', () => {
-            claimButtons.forEach(button => {
-                button.textContent = 'Claim Now';
-                button.disabled = false;
-                button.style.background = 'linear-gradient(45deg, #007BFF, #00c4cc)';
-                button.style.transform = 'none';
+        // Mobile menu toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Dropdown toggle for mobile
+        document.querySelectorAll('.nav-item > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdown = item.nextElementSibling;
+                    dropdown.classList.toggle('active');
+                }
             });
         });
 
-        // Lazy Load Images
-        const images = document.querySelectorAll('.offer-image');
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.getAttribute('src');
-                    img.style.opacity = '1';
-                    observer.unobserve(img);
+        document.querySelectorAll('.dropdown > li > a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const submenu = item.nextElementSibling;
+                    if (submenu) submenu.classList.toggle('active');
                 }
             });
-        }, { threshold: 0.1 });
-
-        images.forEach(img => {
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 0.5s ease';
-            observer.observe(img);
         });
     </script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91cbcfa6d8aae58e',t:'MTc0MTM2ODUyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'927a372a4ec3bd3a',t:'MTc0MzE5NzI4OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'927a492edcb29934',t:'MTc0MzE5ODAyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

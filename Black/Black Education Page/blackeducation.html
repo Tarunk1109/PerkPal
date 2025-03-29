@@ -6,653 +6,702 @@
     <title>Perkpal - Black Community Education Offers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
     <style>
         * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body, html {
-    width: 100%;
-    background: radial-gradient(circle at center, #cbe6e9, #e0f7fa);
-    background-size: 150% 150%;
-    animation: radialPulse 20s ease infinite;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: "Inter", serif;
-    overflow-x: hidden;
-    transition: color 0.3s ease;
-    position: relative;
-    color: #333;
-}
-
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.1"%3E%3Cpath fill="%235DA8B5" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
-    z-index: -1;
-}
-
-body.dark {
-    background: radial-gradient(circle at center, #2A6073, #5DA8B5);
-    color: #ecf0f1;
-}
-
-.dark body::before {
-    background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" opacity="0.1"%3E%3Cpath fill="%2373C8D5" fill-opacity="0.8" d="M0,224L80,213.3C160,203,320,181,480,181.3C640,181,800,203,960,202.7C1120,203,1280,181,1360,170.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"%3E%3C/path%3E%3C/svg%3E') repeat-x bottom;
-}
-
-@keyframes radialPulse {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
-    100% { background-position: 0% 0%; }
-}
-
-.logo-container {
-    background-color: rgba(255, 255, 255, 0.95);
-    width: 100%;
-    height: 100px;
-    font-family: "Inter", serif;
-    font-weight: bold;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-}
-
-.dark .logo-container {
-    background-color: rgba(44, 62, 80, 0.95);
-}
-
-.logo-container ul.nav-list {
-    display: flex;
-    list-style-type: none;
-    justify-content: flex-end;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    bottom: 15px;
-    right: 20px;
-}
-
-.nav-list li {
-    margin-top: -55px;
-    position: relative;
-    padding: 10px 0;
-}
-
-.logo-container li {
-    margin-right: 40px;
-}
-
-.logo-container li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    padding: 8px 15px;
-    transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
-    border-radius: 5px;
-}
-
-.dark .logo-container li a {
-    color: #ecf0f1;
-}
-
-.logo-container li a:hover {
-    color: #8e44ad;
-    background-color: rgba(240, 248, 255, 0.8);
-    transform: scale(1.05);
-}
-
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #ffffff;
-    min-width: 240px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    list-style-type: none;
-    padding: 20px;
-    margin: 0;
-    z-index: 10;
-    opacity: 0;
-    transform: translateY(-10px) scale(0.95);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.dark .dropdown {
-    background-color: #34495e;
-}
-
-.dropdown h3 {
-    font-size: 16px;
-    color: #444;
-    padding: 0 15px 10px 15px;           
-    margin: 0 0 10px 0;
-    border-bottom: 2px solid #eee;
-}
-
-.dark .dropdown h3 {
-    color: #bdc3c7;
-    border-bottom: 2px solid #4a6076;
-}
-
-.dropdown li {
-    margin: 8px 0;
-    padding: 8px 15px;
-    position: relative;
-    transition: background-color 0.2s ease;
-}
-
-.dropdown li:hover {
-    background-color: #e0f0ff;
-    border-radius: 5px;
-}
-
-.dark .dropdown li:hover {
-    background-color: #4a6076;
-}
-
-.dropdown li a {
-    font-size: 14px;
-    color: #333;
-    font-weight: normal;
-    text-decoration: none;
-    display: block;
-    transition: color 0.3s ease;
-}
-
-.dark .dropdown li a {
-    color: #ecf0f1;
-}
-
-.dropdown li a:hover {
-    color: #8e44ad;
-}
-
-.dropdown .submenu {
-    display: none;
-    position: absolute;
-    top: -20px;
-    left: calc(100% + 10px);
-    background-color: #ffffff;
-    min-width: 240px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    list-style-type: none;
-    padding: 20px;
-    margin: 0;
-    z-index: 10;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.dark .dropdown .submenu {
-    background-color: #34495e;
-}
-
-.dropdown li:hover .submenu {
-    display: block;
-    opacity: 1;
-    transform: scale(1);
-}
-
-.logo-container li:hover .dropdown {
-    display: block;
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    transition-delay: 0.1s;
-}
-
-.hero-section {
-    text-align: center;
-    padding: 120px 20px;
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-    color: white;
-    position: relative;
-    overflow: hidden;
-    background-size: 200% 200%;
-    animation: gradientShift 10s ease infinite;
-    z-index: 1;
-}
-
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://via.placeholder.com/1920x600?text=Black+Community+Education+Hero') no-repeat center/cover;
-    opacity: 0.2;
-    z-index: 0;
-}
-
-.hero-section h1 {
-    font-size: 60px;
-    margin-bottom: 20px;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 1;
-}
-
-.hero-section p {
-    font-size: 24px;
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-}
-
-.filter-container {
-    position: sticky;
-    top: 100px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    text-align: center;
-    z-index: 10;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    border-radius: 0 0 12px 12px;
-}
-
-.dark .filter-container {
-    background: rgba(44, 62, 80, 0.9);
-}
-
-.filter-btn {
-    padding: 12px 30px;
-    margin: 5px;
-    background: #fff;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dark .filter-btn {
-    background: #34495e;
-    color: #ecf0f1;
-}
-
-.filter-btn.active, .filter-btn:hover {
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-    color: white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(142, 68, 173, 0.5);
-}
-
-.offers-section {
-    width: 100%;
-    padding: 60px 20px;
-    background: rgba(255, 255, 255, 0.95);
-    margin-bottom: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    position: relative;
-    z-index: 1;
-}
-
-.dark .offers-section {
-    background: rgba(52, 73, 94, 0.95);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.section-header {
-    text-align: center;
-    padding: 25px;
-    color: white;
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-    border-radius: 12px;
-    margin-bottom: 40px;
-    position: relative;
-    overflow: hidden;
-}
-
-.section-header h2 {
-    font-size: 40px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 1;
-}
-
-.section-header::after {
-    content: '📚';
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 30px;
-    animation: sparkle 2s infinite;
-}
-
-@keyframes sparkle {
-    0%, 100% { opacity: 0; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
-
-.offers-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.offer-item {
-    background: #f9f9f9;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.dark .offer-item {
-    background: #2c3e50;
-}
-
-.offer-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-}
-
-.offer-item::after {
-    content: '✨';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.offer-item:hover::after {
-    opacity: 1;
-    animation: sparkle 1.5s infinite;
-}
-
-.offer-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.offer-item:hover .offer-image {
-    transform: scale(1.05);
-}
-
-.offer-details {
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.offer-details h3 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.dark .offer-details h3 {
-    color: #ecf0f1;
-}
-
-.offer-details p {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.dark .offer-details p {
-    color: #bdc3c7;
-}
-
-.offer-details .expiry {
-    font-size: 14px;
-    color: #ff4d4d;
-    margin-bottom: 15px;
-}
-
-.dark .offer-details .expiry {
-    color: #ff6666;
-}
-
-.offer-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.claim-btn, .wishlist-btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.claim-btn {
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-    color: white;
-}
-
-.wishlist-btn {
-    background: #fff;
-    color: #333;
-    border: 2px solid #8e44ad;
-}
-
-.dark .wishlist-btn {
-    background: #34495e;
-    color: #ecf0f1;
-    border-color: #c39bd3;
-}
-
-.claim-btn:hover, .wishlist-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(142, 68, 173, 0.4);
-}
-
-.wishlist-btn.active {
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-    color: white;
-    border: none;
-}
-
-.site-footer {
-    background-color: rgba(255, 255, 255, 0.95);
-    color: #333;
-    padding: 40px 0;
-    text-align: center;
-    border-top: 1px solid #eee;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-}
-
-.dark .site-footer {
-    background-color: rgba(44, 62, 80, 0.95);
-    color: #ecf0f1;
-    border-top: 1px solid #4a6076;
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-left h3, .footer-right h2 {
-    color: #222;
-    margin-bottom: 20px;
-    font-size: 24px;
-}
-
-.dark .footer-left h3, .dark .footer-right h2 {
-    color: #ecf0f1;
-}
-
-.footer-left ul {
-    list-style: none;
-}
-
-.footer-left ul li {
-    margin-top: 10px;
-}
-
-.footer-left ul li a {
-    color: #555;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.dark .footer-left ul li a {
-    color: #bdc3c7;
-}
-
-.footer-left ul li a:hover {
-    color: #8e44ad;
-    transform: translateX(5px);
-}
-
-.footer-bottom {
-    font-size: 14px;
-    color: #777;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
-.dark .footer-bottom {
-    color: #bdc3c7;
-    border-top: 1px solid #4a6076;
-}
-
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 30px;
-    background: linear-gradient(45deg, #e0e0e0, #ffffff);
-    border-radius: 30px;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    z-index: 30;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
-}
-
-.theme-toggle::before {
-    content: '☀️';
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    left: 2px;
-    top: 2px;
-    background-color: #fff;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 26px;
-    font-size: 16px;
-    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-.dark .theme-toggle {
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-}
-
-.dark .theme-toggle::before {
-    content: '🌙';
-    transform: translateX(30px);
-}
-
-.theme-toggle:hover {
-    box-shadow: 0 5px 15px rgba(142, 68, 173, 0.4);
-}
-
-.wishlist-page-btn {
-    position: fixed;
-    bottom: 130px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: block;
-    z-index: 30;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    font-size: 24px;
-}
-
-.wishlist-page-btn:hover {
-    transform: scale(1.1);
-}
-
-.back-to-top {
-    position: fixed;
-    bottom: 70px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(45deg, #8e44ad, #c39bd3);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    z-index: 30;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    font-size: 24px;
-}
-
-.back-to-top.show {
-    display: block;
-}
-
-.back-to-top:hover {
-    transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-    .hero-section h1 { font-size: 40px; }
-    .hero-section p { font-size: 18px; }
-    .offers-list { grid-template-columns: 1fr; }
-    .offer-image { height: 150px; }
-    .filter-container { padding: 10px; }
-    .filter-btn { padding: 10px 20px; font-size: 14px; }
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9fafb;
+            color: #2d3748;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark {
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+
+        /* Navbar */
+        .logo-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: padding 0.3s ease;
+            height: 80px;
+        }
+
+        .logo-container.shrink {
+            padding: 0.5rem 2rem;
+        }
+
+        body.dark .logo-container {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .logo-container img {
+            height: 40px;
+            transition: height 0.3s ease;
+        }
+
+        .logo-container.shrink img {
+            height: 30px;
+        }
+
+        .logo-container ul.nav-list {
+            display: flex;
+            list-style-type: none;
+            gap: 2rem;
+        }
+
+        .nav-list li {
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .logo-container li a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 400;
+            font-size: 16px;
+            padding: 8px 15px;
+            transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 5px;
+        }
+
+        body.dark .logo-container li a {
+            color: #e2e8f0;
+        }
+
+        .logo-container li a:hover {
+            color: #3182ce;
+            background-color: rgba(240, 248, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: translateY(-10px) scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        body.dark .dropdown {
+            background-color: #34495e;
+        }
+
+        .dropdown h3 {
+            font-size: 16px;
+            color: #444;
+            padding: 0 15px 10px 15px;
+            margin: 0 0 10px 0;
+            border-bottom: 2px solid #eee;
+        }
+
+        body.dark .dropdown h3 {
+            color: #bdc3c7;
+            border-bottom: 2px solid #4a6076;
+        }
+
+        .dropdown li {
+            margin: 8px 0;
+            padding: 8px 15px;
+            position: relative;
+            transition: background-color 0.2s ease;
+        }
+
+        .dropdown li:hover {
+            background-color: #e0f0ff;
+            border-radius: 5px;
+        }
+
+        body.dark .dropdown li:hover {
+            background-color: #4a5568;
+        }
+
+        .dropdown li a {
+            font-size: 14px;
+            color: #333;
+            font-weight: normal;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        body.dark .dropdown li a {
+            color: #e2e8f0;
+        }
+
+        .dropdown li a:hover {
+            color: #3182ce;
+        }
+
+        .dropdown .submenu {
+            display: none;
+            position: absolute;
+            top: -20px;
+            left: calc(100% + 10px);
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            list-style-type: none;
+            padding: 20px;
+            margin: 0;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        body.dark .dropdown .submenu {
+            background-color: #34495e;
+        }
+
+        .dropdown li:hover .submenu {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .logo-container li:hover .dropdown {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            transition-delay: 0.1s;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 80px;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: #f9fafb;
+        }
+
+        body.dark .hero-section {
+            background: #1a202c;
+        }
+
+        .hero-wave {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(49, 130, 206, 0.1), rgba(99, 179, 237, 0.05));
+            animation: waveFlow 15s infinite linear;
+            z-index: 0;
+        }
+
+        body.dark .hero-wave {
+            background: linear-gradient(45deg, rgba(43, 108, 176, 0.1), rgba(74, 144, 226, 0.05));
+        }
+
+        @keyframes waveFlow {
+            0% { transform: translateX(-100%) skew(10deg); }
+            100% { transform: translateX(100%) skew(10deg); }
+        }
+
+        .hero-particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(49, 130, 206, 0.4);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        body.dark .hero-particle {
+            background: rgba(74, 144, 226, 0.4);
+        }
+
+        .hero-particle:nth-child(2) { top: 20%; left: 15%; animation-delay: 1s; }
+        .hero-particle:nth-child(3) { bottom: 25%; right: 20%; animation-delay: 2.5s; }
+        .hero-particle:nth-child(4) { top: 60%; left: 75%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); opacity: 0.3; }
+            50% { transform: translateY(-25px); opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease-out;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .hero-content h1 {
+            color: #e2e8f0;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        body.dark .hero-content p {
+            color: #a0aec0;
+        }
+
+        .btn-explore {
+            padding: 0.9rem 2.5rem;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 400;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-explore:hover {
+            background: #2b6cb0;
+            box-shadow: 0 5px 20px rgba(49, 130, 206, 0.4);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding-top: 0;
+        }
+
+        /* Filter Container */
+        .filter-container {
+            position: sticky;
+            top: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem;
+            text-align: center;
+            z-index: 998;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark .filter-container {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .filter-btn, .sort-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: #2d3748;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        body.dark .filter-btn, body.dark .sort-btn {
+            color: #e2e8f0;
+        }
+
+        .filter-btn.active, .sort-btn.active {
+            background: #3182ce;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        .filter-btn:hover, .sort-btn:hover {
+            color: #3182ce;
+            transform: scale(1.05);
+        }
+
+        /* Offers Section */
+        .offers-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        body.dark .section-header h2 {
+            color: #e2e8f0;
+        }
+
+        .offers-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .offer-item {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        body.dark .offer-item {
+            background: #2d3748;
+        }
+
+        .offer-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.2);
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #fff, #fff) padding-box,
+                        linear-gradient(45deg, #3182ce, #63b3ed) border-box;
+        }
+
+        body.dark .offer-item:hover {
+            background: linear-gradient(45deg, #2d3748, #2d3748) padding-box,
+                        linear-gradient(45deg, #3182ce, #63b3ed) border-box;
+        }
+
+        .offer-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .offer-item:hover .offer-image {
+            transform: scale(1.05);
+        }
+
+        .offer-details {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .offer-details h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        body.dark .offer-details h3 {
+            color: #e2e8f0;
+        }
+
+        .offer-details p {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .offer-details p {
+            color: #a0aec0;
+        }
+
+        .offer-details .discount {
+            color: #059669;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .offer-details .discount {
+            color: #34d399;
+        }
+
+        .offer-details .expiry {
+            color: #e53e3e;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .offer-details .countdown {
+            font-size: 0.85rem;
+            color: #3182ce;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .offer-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .claim-btn, .wishlist-btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 400;
+            transition: all 0.3s;
+        }
+
+        .claim-btn {
+            background: #3182ce;
+            color: #fff;
+        }
+
+        .wishlist-btn {
+            background: transparent;
+            color: #2d3748;
+            border: 1px solid #3182ce;
+        }
+
+        body.dark .wishlist-btn {
+            color: #e2e8f0;
+            border-color: #e2e8f0;
+        }
+
+        .claim-btn:hover, .wishlist-btn:hover {
+            background: #2b6cb0;
+        }
+
+        .wishlist-btn:hover {
+            background: #edf2f7;
+        }
+
+        body.dark .wishlist-btn:hover {
+            background: #4a5568;
+        }
+
+        .wishlist-btn.active {
+            background: #38a169;
+            color: #fff;
+            border: none;
+        }
+
+        .offer-item .tooltip {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #3182ce;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .offer-item:hover .tooltip {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        body.dark .site-footer {
+            background: rgba(45, 55, 72, 0.95);
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-left h3, .footer-right h2 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .footer-left h3, body.dark .footer-right h2 {
+            color: #e2e8f0;
+        }
+
+        .footer-left ul {
+            list-style: none;
+        }
+
+        .footer-left ul li {
+            margin-top: 10px;
+        }
+
+        .site-footer a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        body.dark .site-footer a {
+            color: #a0aec0;
+        }
+
+        .site-footer a:hover {
+            color: #3182ce;
+        }
+
+        .footer-bottom {
+            margin-top: 1rem;
+        }
+
+        /* Scroll Up & Theme Switcher */
+        .back-to-top, .theme-toggle, .wishlist-page-btn {
+            position: fixed;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .back-to-top {
+            bottom: 80px;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 24px;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .theme-toggle {
+            bottom: 20px;
+            font-size: 24px;
+        }
+
+        .wishlist-page-btn {
+            bottom: 140px;
+            font-size: 24px;
+        }
+
+        .back-to-top:hover, .theme-toggle:hover, .wishlist-page-btn:hover {
+            background: #2b6cb0;
+            transform: scale(1.1);
+        }
+
+        /* Scroll Progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: #3182ce;
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-container ul.nav-list {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .offers-list {
+                grid-template-columns: 1fr;
+            }
+
+            .offer-image {
+                height: 150px;
+            }
+
+            .filter-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .hero-section {
+                height: 60vh;
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="scroll-progress"></div>
     <div class="logo-container">
-        <img src="./trail logo.png" alt="Perkpal Logo" style="width: 250px; height: 150px; margin-top: -28px;">
+        <img src="./trail logo.png" alt="Perkpal Logo">
         <ul class="nav-list">
             <li>
                 <a href="#">Services</a>
@@ -685,7 +734,6 @@ body.dark {
                             <li><a href="../../LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
                             <li><a href="../../LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
                             <li><a href="../../LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
-                            
                         </ul>
                     </li>
                     <li><a href="#">Sr. Citizen</a>
@@ -701,21 +749,30 @@ body.dark {
                 </ul>
             </li>
             <li><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="../../LogIn Page/loginpage.html">Login</a></li>
             <li><a href="../../Registration Page/registrationform.html">Sign up</a></li>
         </ul>
     </div>
 
     <main>
         <section class="hero-section">
-            <h1>Empowering Minds in the Black Community</h1>
-            <p>Unlock your potential with exclusive education deals tailored for you!</p>
+            <div class="hero-wave"></div>
+            <div class="hero-particle"></div>
+            <div class="hero-particle"></div>
+            <div class="hero-particle"></div>
+            <div class="hero-content">
+                <h1>Empowering Minds in the Black Community</h1>
+                <p>Unlock your potential with exclusive education deals tailored for you!</p>
+                <button class="btn-explore" id="scroll-to-offers">Explore Offers</button>
+            </div>
         </section>
 
         <div class="filter-container">
             <button class="filter-btn active" data-filter="all">All Education</button>
             <button class="filter-btn" data-filter="online">Online Learning</button>
             <button class="filter-btn" data-filter="inperson">In-Person Programs</button>
+            <button class="sort-btn" data-sort="discount">Sort by Discount</button>
+            <button class="sort-btn" data-sort="expiry">Sort by Expiry</button>
         </div>
 
         <section class="offers-section">
@@ -724,69 +781,82 @@ body.dark {
             </div>
             <div class="offers-list">
                 <!-- Online Learning Offers -->
-                <div class="offer-item" data-category="online">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Coursera+Black+Learning" alt="Coursera Black Learning">
+                <div class="offer-item" data-category="online" data-discount="20" data-expiry="2025-04-15">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Coursera+Black+Learning" alt="Coursera Black Learning" loading="lazy">
                     <div class="offer-details">
                         <h3>20% Off Coursera Courses</h3>
                         <p>Learn from top universities with exclusive discounts for Black learners!</p>
+                        <p class="discount">Save 20%</p>
                         <p class="expiry">Expires: April 15, 2025</p>
+                        <p class="countdown" data-end="2025-04-15T23:59:59"></p>
                         <div class="offer-actions">
                             <button class="claim-btn" data-link="https://www.coursera.org">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
+                    <span class="tooltip">Hot Deal!</span>
                 </div>
-                <div class="offer-item" data-category="online">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Udemy+Black+Education" alt="Udemy Black Education">
+                <div class="offer-item" data-category="online" data-discount="15" data-expiry="2025-03-31">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Udemy+Black+Education" alt="Udemy Black Education" loading="lazy">
                     <div class="offer-details">
                         <h3>15% Off Udemy Black History</h3>
                         <p>Explore courses celebrating Black culture and history at a discount!</p>
+                        <p class="discount">Save 15%</p>
                         <p class="expiry">Expires: March 31, 2025</p>
+                        <p class="countdown" data-end="2025-03-31T23:59:59"></p>
                         <div class="offer-actions">
                             <button class="claim-btn" data-link="https://www.udemy.com">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
+                    <span class="tooltip">Limited Time</span>
                 </div>
-
                 <!-- In-Person Programs Offers -->
-                <div class="offer-item" data-category="inperson">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=HBCU+Scholarship" alt="HBCU Scholarship">
+                <div class="offer-item" data-category="inperson" data-discount="500" data-expiry="2025-04-20">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=HBCU+Scholarship" alt="HBCU Scholarship" loading="lazy">
                     <div class="offer-details">
                         <h3>$500 HBCU Scholarship</h3>
                         <p>Support your education at a Historically Black College or University!</p>
+                        <p class="discount">Save $500</p>
                         <p class="expiry">Expires: April 20, 2025</p>
+                        <p class="countdown" data-end="2025-04-20T23:59:59"></p>
                         <div class="offer-actions">
                             <button class="claim-btn" data-link="https://www.hbcuconnect.com">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
+                    <span class="tooltip">Exclusive</span>
                 </div>
-                <div class="offer-item" data-category="inperson">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Community+Workshop" alt="Community Workshop">
+                <div class="offer-item" data-category="inperson" data-discount="100" data-expiry="2025-03-25">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Community+Workshop" alt="Community Workshop" loading="lazy">
                     <div class="offer-details">
                         <h3>Free Community Workshop</h3>
                         <p>Join a local workshop to enhance your skills—exclusive for the Black community!</p>
+                        <p class="discount">100% Off</p>
                         <p class="expiry">Expires: March 25, 2025</p>
+                        <p class="countdown" data-end="2025-03-25T23:59:59"></p>
                         <div class="offer-actions">
                             <button class="claim-btn" data-link="https://www.eventbrite.com">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
+                    <span class="tooltip">New Arrival</span>
                 </div>
-
-                <!-- Hybrid Offer (Appears for Both Online and In-Person) -->
-                <div class="offer-item" data-category="online inperson">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Black+Ed+Fund" alt="Black Education Fund">
+                <!-- Hybrid Offer -->
+                <div class="offer-item" data-category="online inperson" data-discount="10" data-expiry="2025-03-15">
+                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Black+Ed+Fund" alt="Black Education Fund" loading="lazy">
                     <div class="offer-details">
                         <h3>10% Off Black Education Fund</h3>
                         <p>Support your learning journey with flexible online or in-person options!</p>
+                        <p class="discount">Save 10%</p>
                         <p class="expiry">Expires: March 15, 2025</p>
+                        <p class="countdown" data-end="2025-03-15T23:59:59"></p>
                         <div class="offer-actions">
                             <button class="claim-btn" data-link="https://www.blackeducationfund.org">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
+                    <span class="tooltip">Popular</span>
                 </div>
             </div>
         </section>
@@ -806,7 +876,7 @@ body.dark {
             </div>
             <div class="footer-right">
                 <h2>Contact Us</h2>
-                <p>Email: <a href="/cdn-cgi/l/email-protection#b2c1c7c2c2ddc0c6f2c2d7c0d9c2d3de9cd1dddf"><span class="__cf_email__" data-cfemail="82f1f7f2f2edf0f6c2f2e7f0e9f2e3eeace1edef">[email&#160;protected]</span></a></p><br>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a></p><br>
                 <p>Phone: +123 456 789</p><br>
                 <p>Address: 123 Street, Etobicoke, Canada</p><br>
             </div>
@@ -816,46 +886,64 @@ body.dark {
         </div>
     </footer>
 
-    <button class="theme-toggle" onclick="toggleTheme()"></button>
-    <button class="wishlist-page-btn" onclick="goToWishlist()">♥</button>
-    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+    <button class="back-to-top"><i class="mdi mdi-arrow-up"></i></button>
+    <button class="theme-toggle"><i class="mdi mdi-white-balance-sunny"></i></button>
+    <button class="wishlist-page-btn">♥</button>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // Theme Toggle
         function toggleTheme() {
             document.body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-toggle i');
+            icon.classList.toggle('mdi-white-balance-sunny');
+            icon.classList.toggle('mdi-moon-waning-crescent');
             localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
         }
 
-        // Load Theme
         window.addEventListener('load', () => {
             if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark');
+                const icon = document.querySelector('.theme-toggle i');
+                icon.classList.remove('mdi-white-balance-sunny');
+                icon.classList.add('mdi-moon-waning-crescent');
             }
         });
+
+        document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
 
         // Back to Top
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Wishlist Page Navigation
-        function goToWishlist() {
-            window.location.href = '../../Wishlist Page/wishlist.html'; // Update this path as needed
-        }
-
         window.addEventListener('scroll', () => {
             const backToTop = document.querySelector('.back-to-top');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
+            const navbar = document.querySelector('.logo-container');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            backToTop.classList.toggle('show', scrollTop > 300);
+            navbar.classList.toggle('shrink', scrollTop > 50);
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
         });
 
-        // Filter Sections
+        document.querySelector('.back-to-top').addEventListener('click', scrollToTop);
+
+        // Scroll to Offers
+        document.getElementById('scroll-to-offers').addEventListener('click', () => {
+            document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Wishlist Page Navigation
+        function goToWishlist() {
+            window.location.href = "../../Wishlist Page/wishlist.html";
+        }
+
+        document.querySelector('.wishlist-page-btn').addEventListener('click', goToWishlist);
+
+        // Filter and Sort Sections
         const filterButtons = document.querySelectorAll('.filter-btn');
+        const sortButtons = document.querySelectorAll('.sort-btn');
         const offerItems = document.querySelectorAll('.offer-item');
 
         filterButtons.forEach(button => {
@@ -884,6 +972,39 @@ body.dark {
             });
         });
 
+        sortButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const sortType = button.getAttribute('data-sort');
+                sortButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const itemsArray = Array.from(offerItems);
+                itemsArray.sort((a, b) => {
+                    if (sortType === 'discount') {
+                        const discountA = parseInt(a.getAttribute('data-discount'));
+                        const discountB = parseInt(b.getAttribute('data-discount'));
+                        return discountB - discountA;
+                    } else if (sortType === 'expiry') {
+                        const expiryA = new Date(a.getAttribute('data-expiry'));
+                        const expiryB = new Date(b.getAttribute('data-expiry'));
+                        return expiryA - expiryB;
+                    }
+                });
+
+                const offersList = document.querySelector('.offers-list');
+                offersList.innerHTML = '';
+                itemsArray.forEach(item => offersList.appendChild(item));
+                itemsArray.forEach(item => {
+                    item.style.display = 'flex';
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+            });
+        });
+
         // Scroll Animation
         window.addEventListener('scroll', () => {
             offerItems.forEach(item => {
@@ -895,7 +1016,6 @@ body.dark {
             });
         });
 
-        // Initial Setup
         window.addEventListener('load', () => {
             offerItems.forEach(item => {
                 item.style.opacity = '0';
@@ -914,12 +1034,9 @@ body.dark {
                 if (url) {
                     window.open(url, '_blank');
                 }
-                button.textContent = 'Claimed!';
+                button.textContent = 'Claimed';
                 button.disabled = true;
-                button.style.transform = 'scale(1.1)';
-                setTimeout(() => {
-                    button.style.transform = 'translateY(-3px)';
-                }, 300);
+                button.style.background = '#38a169';
             });
         });
 
@@ -927,7 +1044,7 @@ body.dark {
             button.addEventListener('click', () => {
                 const offerItem = button.closest('.offer-item');
                 const title = offerItem.querySelector('h3').textContent;
-                const description = offerItem.querySelector('p:not(.expiry)').textContent;
+                const description = offerItem.querySelector('p:not(.discount):not(.expiry):not(.countdown)').textContent;
                 const expiry = offerItem.querySelector('.expiry').textContent.replace('Expires: ', '');
                 const image = offerItem.querySelector('.offer-image').src;
                 const link = offerItem.querySelector('.claim-btn').getAttribute('data-link');
@@ -939,7 +1056,7 @@ body.dark {
                     wishlist.push({ title, description, expiry, image, link });
                     localStorage.setItem('wishlist', JSON.stringify(wishlist));
                     button.classList.add('active');
-                    button.textContent = 'Wishlisted!';
+                    button.textContent = 'Wishlisted';
                 } else {
                     wishlist = wishlist.filter(item => item.title !== title);
                     localStorage.setItem('wishlist', JSON.stringify(wishlist));
@@ -948,13 +1065,12 @@ body.dark {
                 }
             });
 
-            // Check if item is already in wishlist on page load
             const offerItem = button.closest('.offer-item');
             const title = offerItem.querySelector('h3').textContent;
             const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
             if (wishlist.some(item => item.title === title)) {
                 button.classList.add('active');
-                button.textContent = 'Wishlisted!';
+                button.textContent = 'Wishlisted';
             }
         });
 
@@ -976,6 +1092,29 @@ body.dark {
             img.style.transition = 'opacity 0.5s ease';
             observer.observe(img);
         });
+
+        // Countdown Timer
+        function updateCountdown() {
+            offerItems.forEach(item => {
+                const countdownElement = item.querySelector('.countdown');
+                const endDate = new Date(countdownElement.getAttribute('data-end')).getTime();
+                const now = new Date().getTime();
+                const timeLeft = endDate - now;
+
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    countdownElement.textContent = `Time Left: ${days}d ${hours}h ${minutes}m`;
+                } else {
+                    countdownElement.textContent = 'Expired';
+                    countdownElement.style.color = '#e53e3e';
+                }
+            });
+        }
+
+        setInterval(updateCountdown, 60000); // Update every minute
+        updateCountdown(); // Initial call
     </script>
 </body>
 </html>
