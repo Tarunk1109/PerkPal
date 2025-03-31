@@ -357,10 +357,10 @@
         <div class="logo"><img src="./trail logo.png" alt="Perkpal Logo"></div>
         <nav class="nav-menu">
             <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../About us page/aboutuspage.html">About</a></li>
-                <li><a href="../LogIn Page/loginpage.html">Login</a></li>
-                <li><a href="#">Sign Up</a></li>
+                <li><a href="./port.html">Home</a></li>
+                <li><a href="./aboutuspage.html">About</a></li>
+                <li><a href="./loginpage.html">Login</a></li>
+                <li><a href="./registrationform.html">Sign Up</a></li>
             </ul>
         </nav>
     </header>
@@ -454,293 +454,274 @@
     <button class="theme-switcher"><i class="mdi mdi-moon-waning-crescent"></i></button>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // ParticleJS initialization
-        particlesJS('particles-js', {
-            "particles": {
-                "number": {
-                    "value": 60,
-                    "density": {
-                        "enable": true,
-                        "value_area": 1000
-                    }
-                },
-                "color": {
-                    "value": ["#1e40af", "#3b82f6", "#7e22ce"] // Deep blue tones for light mode
-                },
-                "shape": {
-                    "type": ["circle", "triangle", "edge"],
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-                "opacity": {
-                    "value": 0.7,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 0.3,
-                        "opacity_min": 0.3,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3.5,
-                    "random": true,
-                    "anim": {
-                        "enable": true,
-                        "speed": 1.5,
-                        "size_min": 0.8,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 200,
-                    "color": "#1f2a44",
-                    "opacity": 0.4,
-                    "width": 1.2
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 2,
-                    "direction": "none",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": true,
-                        "rotateX": 800,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "window",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 250,
-                        "line_linked": {
-                            "opacity": 0.6
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 60,
+                        "density": {
+                            "enable": true,
+                            "value_area": 1000
                         }
                     },
-                    "push": {
-                        "particles_nb": 3
-                    }
-                }
-            },
-            "retina_detect": true
-        });
-    });
-
-    const form = document.querySelector('.userForm');
-    const nameInput = document.getElementById('name');
-    const dobInput = document.getElementById('dob');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const genderSelect = document.getElementById('gender');
-    const ethnicitySelect = document.getElementById('ethnicity');
-    const ethnicityOtherInput = document.getElementById('ethnicityOther');
-    const studentYes = document.getElementById('studentYes');
-    const studentNo = document.getElementById('studentNo');
-    const studentNumberInput = document.getElementById('studentNumber');
-    const progressBar = document.querySelector('.form-progress-bar');
-    const requiredInputs = [nameInput, dobInput, emailInput, passwordInput, genderSelect, ethnicitySelect];
-
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        document.getElementById('scroll-progress').style.width = scrollPercent + '%';
-        document.querySelector('.scroll-up').classList.toggle('visible', scrollTop > 300);
-        document.querySelector('.navbar').classList.toggle('shrink', scrollTop > 50);
-    });
-
-    document.querySelector('.scroll-up').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    document.querySelector('.theme-switcher').addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        const icon = document.querySelector('.theme-switcher i');
-        icon.classList.toggle('mdi-moon-waning-crescent');
-        icon.classList.toggle('mdi-white-balance-sunny');
-        
-        if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
-            const particlesColors = document.body.classList.contains('dark') 
-                ? ["#e5c07b", "#60a5fa", "#c678dd"] // Gold, blue, purple for dark mode
-                : ["#1e40af", "#3b82f6", "#7e22ce"]; // Deep blue tones for light mode
-            pJSDom[0].pJS.particles.color.value = particlesColors;
-            pJSDom[0].pJS.particles.line_linked.color = document.body.classList.contains('dark') ? "#e2e8f0" : "#1f2a44";
-            pJSDom[0].pJS.fn.particlesRefresh();
-        }
-    });
-
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        if (validateForm()) {
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name'),
-                dob: formData.get('dob'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-                gender: formData.get('gender'),
-                ethnicity: formData.get('ethnicity'),
-                ethnicityOther: formData.get('ethnicityOther'),
-                student: formData.get('student'),
-                studentNumber: formData.get('studentNumber')
-            };
-
-            try {
-                // Sending form data to backend (Spring Boot API endpoint)
-                const response = await fetch('http://your-backend-api-url/registration', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
+                    "color": {
+                        "value": ["#1e40af", "#3b82f6", "#7e22ce"] // Deep blue tones for light mode
                     },
-                    body: JSON.stringify(data),
-                });
+                    "shape": {
+                        "type": ["circle", "triangle", "edge"],
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.7,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 0.3,
+                            "opacity_min": 0.3,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3.5,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1.5,
+                            "size_min": 0.8,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 200,
+                        "color": "#1f2a44",
+                        "opacity": 0.4,
+                        "width": 1.2
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 800,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "window",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 250,
+                            "line_linked": {
+                                "opacity": 0.6
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 3
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
 
-                const result = await response.json();
-                if (result.success) {
-                    alert('Registration Successful!');
-                    resetForm();
-                } else {
-                    alert('Registration Failed: ' + result.message);
-                }
-            } catch (error) {
-                alert('Error: ' + error.message);
+        const form = document.querySelector('.userForm');
+        const nameInput = document.getElementById('name');
+        const dobInput = document.getElementById('dob');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const genderSelect = document.getElementById('gender');
+        const ethnicitySelect = document.getElementById('ethnicity');
+        const ethnicityOtherInput = document.getElementById('ethnicityOther');
+        const studentYes = document.getElementById('studentYes');
+        const studentNo = document.getElementById('studentNo');
+        const studentNumberInput = document.getElementById('studentNumber');
+        const progressBar = document.querySelector('.form-progress-bar');
+        const requiredInputs = [nameInput, dobInput, emailInput, passwordInput, genderSelect, ethnicitySelect];
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+            document.querySelector('.scroll-up').classList.toggle('visible', scrollTop > 300);
+            document.querySelector('.navbar').classList.toggle('shrink', scrollTop > 50);
+        });
+
+        document.querySelector('.scroll-up').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelector('.theme-switcher').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-switcher i');
+            icon.classList.toggle('mdi-moon-waning-crescent');
+            icon.classList.toggle('mdi-white-balance-sunny');
+            
+            if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
+                const particlesColors = document.body.classList.contains('dark') 
+                    ? ["#e5c07b", "#60a5fa", "#c678dd"] // Gold, blue, purple for dark mode
+                    : ["#1e40af", "#3b82f6", "#7e22ce"]; // Deep blue tones for light mode
+                pJSDom[0].pJS.particles.color.value = particlesColors;
+                pJSDom[0].pJS.particles.line_linked.color = document.body.classList.contains('dark') ? "#e2e8f0" : "#1f2a44";
+                pJSDom[0].pJS.fn.particlesRefresh();
             }
-        }
-    });
+        });
 
-    requiredInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            validateField(input, input.id + 'Error');
-            if (input.id === 'password') updatePasswordStrength();
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (validateForm()) {
+                alert('Registration Successful!');
+                resetForm();
+            }
+        });
+
+        requiredInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                validateField(input, input.id + 'Error');
+                if (input.id === 'password') updatePasswordStrength();
+                updateProgress();
+            });
+        });
+
+        studentNumberInput.addEventListener('input', () => {
+            if (studentYes.checked) validateField(studentNumberInput, 'studentNumberError');
             updateProgress();
         });
-    });
 
-    studentNumberInput.addEventListener('input', () => {
-        if (studentYes.checked) validateField(studentNumberInput, 'studentNumberError');
-        updateProgress();
-    });
+        ethnicityOtherInput.addEventListener('input', () => {
+            if (ethnicitySelect.value === 'Other') validateField(ethnicityOtherInput, 'ethnicityOtherError');
+            updateProgress();
+        });
 
-    ethnicityOtherInput.addEventListener('input', () => {
-        if (ethnicitySelect.value === 'Other') validateField(ethnicityOtherInput, 'ethnicityOtherError');
-        updateProgress();
-    });
+        studentYes.addEventListener('change', () => {
+            document.querySelector('.student-number-container').classList.remove('hidden');
+            studentNumberInput.setAttribute('required', 'true');
+            updateProgress();
+        });
 
-    studentYes.addEventListener('change', () => {
-        document.querySelector('.student-number-container').classList.remove('hidden');
-        studentNumberInput.setAttribute('required', 'true');
-        updateProgress();
-    });
+        studentNo.addEventListener('change', () => {
+            document.querySelector('.student-number-container').classList.add('hidden');
+            studentNumberInput.removeAttribute('required');
+            studentNumberInput.value = '';
+            document.getElementById('studentNumberError').textContent = '';
+            updateProgress();
+        });
 
-    studentNo.addEventListener('change', () => {
-        document.querySelector('.student-number-container').classList.add('hidden');
-        studentNumberInput.removeAttribute('required');
-        studentNumberInput.value = '';
-        document.getElementById('studentNumberError').textContent = '';
-        updateProgress();
-    });
-
-    ethnicitySelect.addEventListener('change', () => {
-        const container = document.querySelector('.ethnicity-other-container');
-        if (ethnicitySelect.value === 'Other') {
-            container.classList.remove('hidden');
-            ethnicityOtherInput.setAttribute('required', 'true');
-        } else {
-            container.classList.add('hidden');
-            ethnicityOtherInput.removeAttribute('required');
-            ethnicityOtherInput.value = '';
-            document.getElementById('ethnicityOtherError').textContent = '';
-        }
-        updateProgress();
-    });
-
-    function validateField(input, errorId) {
-        const value = input.value.trim();
-        const errorElement = document.getElementById(errorId);
-        if (value === '' && input.hasAttribute('required')) {
-            errorElement.textContent = 'Required';
-            errorElement.classList.add('active');
-            return false;
-        } else if (input.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-            errorElement.textContent = 'Invalid email';
-            errorElement.classList.add('active');
-            return false;
-        } else if (input.id === 'password' && value.length < 6) {
-            errorElement.textContent = 'Password must be at least 6 characters';
-            errorElement.classList.add('active');
-            return false;
-        } else if (input.id === 'dob' && new Date(value) > new Date('2025-03-26')) {
-            errorElement.textContent = 'Date cannot be in the future';
-            errorElement.classList.add('active');
-            return false;
-        } else {
-            errorElement.textContent = '';
-            errorElement.classList.remove('active');
-            return true;
-        }
-    }
-
-    function validateForm() {
-        let valid = true;
-        requiredInputs.forEach(input => {
-            if (!validateField(input, input.id + 'Error')) {
-                valid = false;
+        ethnicitySelect.addEventListener('change', () => {
+            const container = document.querySelector('.ethnicity-other-container');
+            if (ethnicitySelect.value === 'Other') {
+                container.classList.remove('hidden');
+                ethnicityOtherInput.setAttribute('required', 'true');
+            } else {
+                container.classList.add('hidden');
+                ethnicityOtherInput.removeAttribute('required');
+                ethnicityOtherInput.value = '';
+                document.getElementById('ethnicityOtherError').textContent = '';
             }
+            updateProgress();
         });
-        if (studentYes.checked && !validateField(studentNumberInput, 'studentNumberError')) {
-            valid = false;
+
+        function validateField(input, errorId) {
+            const value = input.value.trim();
+            const errorElement = document.getElementById(errorId);
+            if (value === '' && input.hasAttribute('required')) {
+                errorElement.textContent = 'Required';
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                errorElement.textContent = 'Invalid email';
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'password' && value.length < 6) {
+                errorElement.textContent = 'Password must be at least 6 characters';
+                errorElement.classList.add('active');
+                return false;
+            } else if (input.id === 'dob' && new Date(value) > new Date('2025-03-26')) {
+                errorElement.textContent = 'Date cannot be in the future';
+                errorElement.classList.add('active');
+                return false;
+            } else {
+                errorElement.textContent = '';
+                errorElement.classList.remove('active');
+                return true;
+            }
         }
-        if (ethnicitySelect.value === 'Other' && !validateField(ethnicityOtherInput, 'ethnicityOtherError')) {
-            valid = false;
+
+        function validateForm() {
+            const studentSelected = studentYes.checked || studentNo.checked;
+            const baseValid = requiredInputs.every(input => validateField(input, input.id + 'Error'));
+            const ethnicityOtherValid = ethnicitySelect.value !== 'Other' || validateField(ethnicityOtherInput, 'ethnicityOtherError');
+            const studentNumberValid = !studentYes.checked || validateField(studentNumberInput, 'studentNumberError');
+            if (!studentSelected) {
+                document.getElementById('studentError').textContent = 'Please select Yes or No';
+                document.getElementById('studentError').classList.add('active');
+            } else {
+                document.getElementById('studentError').textContent = '';
+                document.getElementById('studentError').classList.remove('active');
+            }
+            return baseValid && ethnicityOtherValid && studentSelected && studentNumberValid;
         }
-        return valid;
-    }
 
-    function resetForm() {
-        form.reset();
-        document.querySelectorAll('.form-error').forEach(error => error.classList.remove('active'));
-        updateProgress();
-    }
+        function updateProgress() {
+            let totalFields = 6;
+            if (studentYes.checked || studentNo.checked) totalFields++;
+            if (studentYes.checked) totalFields++;
+            if (ethnicitySelect.value === 'Other') totalFields++;
+            let filledFields = requiredInputs.filter(input => input.value.trim() !== '').length;
+            if (studentYes.checked || studentNo.checked) filledFields++;
+            if (studentYes.checked && studentNumberInput.value.trim() !== '') filledFields++;
+            if (ethnicitySelect.value === 'Other' && ethnicityOtherInput.value.trim() !== '') filledFields++;
+            progressBar.style.width = `${(filledFields / totalFields) * 100}%`;
+        }
 
-    function updateProgress() {
-        let progress = 0;
-        requiredInputs.forEach(input => {
-            if (input.value.trim() !== '') progress += 10;
-        });
-        if (studentYes.checked && studentNumberInput.value.trim() !== '') progress += 10;
-        if (ethnicitySelect.value === 'Other' && ethnicityOtherInput.value.trim() !== '') progress += 10;
-        progressBar.style.width = `${progress}%`;
-    }
+        function resetForm() {
+            form.reset();
+            progressBar.style.width = '0%';
+            document.querySelector('.student-number-container').classList.add('hidden');
+            document.querySelector('.ethnicity-other-container').classList.add('hidden');
+            document.getElementById('passwordStrength').className = 'password-strength';
+            document.querySelectorAll('.error').forEach(error => {
+                error.textContent = '';
+                error.classList.remove('active');
+            });
+        }
 
-    function updatePasswordStrength() {
-        const strength = document.getElementById('passwordStrength');
-        const value = passwordInput.value;
-        let strengthValue = 'Weak';
-        if (value.length > 8) strengthValue = 'Medium';
-        if (value.length > 12) strengthValue = 'Strong';
-        strength.textContent = `Strength: ${strengthValue}`;
-    }
-</script>
+        function updatePasswordStrength() {
+            const value = passwordInput.value;
+            const strength = document.getElementById('passwordStrength');
+            if (value.length === 0) strength.className = 'password-strength';
+            else if (value.length < 8) strength.className = 'password-strength weak';
+            else if (value.length < 12 || !/[A-Z]/.test(value) || !/[0-9]/.test(value)) strength.className = 'password-strength medium';
+            else strength.className = 'password-strength strong';
+        }
 
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+            toggleIcon.textContent = passwordField.type === 'password' ? '👁️' : '👁️‍🗨️';
+        }
+    </script>
     <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92680b3c8affbaec',t:'MTc0MzAwNjc0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
