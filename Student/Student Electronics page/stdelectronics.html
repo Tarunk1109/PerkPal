@@ -671,6 +671,73 @@
             .hero-section {
                 height: 60vh;
             }
+            .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.offer-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: #fff;
+    transition: transform 0.3s;
+}
+
+.offer-card:hover {
+    transform: translateY(-10px);
+}
+
+.offer-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.offer-description {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.offer-category {
+    font-size: 14px;
+    font-weight: bold;
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.offer-discount {
+    color: #e74c3c;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.offer-expiry {
+    color: #27ae60;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.offer-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.offer-link:hover {
+    background-color: #2980b9;
+}
+
         }
     </style>
 </head>
@@ -754,6 +821,10 @@
             <div class="section-header">
                 <h2>Student Electronics Offers</h2>
             </div>
+            <div id="offers-container" class="offers-grid">
+                <!-- Offers will be dynamically injected here from the backend -->
+            </div>
+            
             <div class="offers-list">
                 <!-- Laptops -->
                 <div class="offer-item" data-category="laptops">
@@ -1038,6 +1109,51 @@
             img.style.transition = 'opacity 0.5s ease';
             observer.observe(img);
         });
+        const offersContainer = document.getElementById('offers-container');
+
+    // Function to fetch and display offers
+    async function fetchOffers() {
+        try {
+            const response = await fetch('http://localhost:8080/api/offers'); // Replace with your backend URL
+            const offers = await response.json();
+
+            // Filter offers by category (Student + Clothing)
+            const studentClothingOffers = offers.filter(offer => 
+                offer.category.toLowerCase().includes('clothing') &&
+                offer.active
+            );
+
+            offersContainer.innerHTML = '';  // Clear the container
+
+            if (studentClothingOffers.length === 0) {
+                offersContainer.innerHTML = '<p>No offers available in this category.</p>';
+                return;
+            }
+
+            studentClothingOffers.forEach(offer => {
+                const offerCard = document.createElement('div');
+                offerCard.classList.add('offer-card');
+
+                offerCard.innerHTML = `
+                    <h3 class="offer-title">${offer.title}</h3>
+                    <p class="offer-description">${offer.description}</p>
+                    <p class="offer-category">Category: ${offer.category}</p>
+                    <p class="offer-discount">${offer.discount}</p>
+                    <p class="offer-expiry">Expires on: ${new Date(offer.expiryDate).toLocaleDateString()}</p>
+                    <a href="${offer.link}" target="_blank" class="offer-link">View Offer</a>
+                `;
+
+                offersContainer.appendChild(offerCard);
+            });
+
+        } catch (error) {
+            console.error('Error fetching offers:', error);
+            offersContainer.innerHTML = '<p>Failed to load offers. Please try again later.</p>';
+        }
+    }
+
+    // Fetch offers when the page loads
+    window.addEventListener('DOMContentLoaded', fetchOffers);
     </script>
 </body>
 </html>
