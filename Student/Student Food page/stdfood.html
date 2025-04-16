@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perkpal - Student Food Offers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
     <style>
@@ -32,176 +31,198 @@
         }
 
         /* Navbar */
-        .logo-container {
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            padding: 1rem 2rem;
+            padding: 0.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: padding 0.3s ease;
-            height: 80px;
+            transition: all 0.3s ease;
         }
 
-        .logo-container.shrink {
-            padding: 0.5rem 2rem;
+        body.dark .navbar {
+            background: rgba(26, 32, 44, 0.95);
         }
 
-        body.dark .logo-container {
-            background: rgba(45, 55, 72, 0.95);
+        .navbar.shrink {
+            padding: 0.25rem 2rem;
         }
 
-        .logo-container img {
-            height: 40px;
+        .logo img {
+            height: 120px;
+            min-height: 60px;
             transition: height 0.3s ease;
         }
 
-        .logo-container.shrink img {
-            height: 30px;
+        .navbar.shrink .logo img {
+            height: 78px;
         }
 
-        .logo-container ul.nav-list {
+        .nav-menu > ul {
             display: flex;
-            list-style-type: none;
+            list-style: none;
             gap: 2rem;
         }
 
-        .nav-list li {
+        .nav-item {
             position: relative;
-            padding: 10px 0;
         }
 
-        .logo-container li a {
+        .nav-item > a, .nav-menu > ul > li > a {
             text-decoration: none;
             color: #2d3748;
             font-weight: 400;
-            font-size: 16px;
-            padding: 8px 15px;
-            transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
-            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, background 0.3s;
+            display: block;
         }
 
-        body.dark .logo-container li a {
+        body.dark .nav-item > a, body.dark .nav-menu > ul > li > a {
             color: #e2e8f0;
         }
 
-        .logo-container li a:hover {
+        .nav-item:hover > a, .nav-menu > ul > li:hover > a:not(.btn-signup) {
             color: #3182ce;
-            background-color: rgba(240, 248, 255, 0.8);
-            transform: scale(1.05);
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 8px;
         }
 
         .dropdown {
-            display: none;
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #ffffff;
-            min-width: 240px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            list-style-type: none;
-            padding: 20px;
-            margin: 0;
-            z-index: 10;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             opacity: 0;
-            transform: translateY(-10px) scale(0.95);
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            min-width: 250px;
+            list-style: none;
+            padding: 1rem;
         }
 
         body.dark .dropdown {
-            background-color: #34495e;
+            background: #2d3748;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .dropdown h3 {
-            font-size: 16px;
-            color: #444;
-            padding: 0 15px 10px 15px;
-            margin: 0 0 10px 0;
-            border-bottom: 2px solid #eee;
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        body.dark .dropdown h3 {
-            color: #bdc3c7;
-            border-bottom: 2px solid #4a6076;
+        .dropdown-header {
+            color: #3182ce;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(49, 130, 206, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark .dropdown-header {
+            color: #63b3ed;
+            border-bottom: 1px solid rgba(99, 179, 237, 0.2);
         }
 
         .dropdown li {
-            margin: 8px 0;
-            padding: 8px 15px;
-            position: relative;
-            transition: background-color 0.2s ease;
+            list-style: none;
         }
 
-        .dropdown li:hover {
-            background-color: #e0f0ff;
-            border-radius: 5px;
-        }
-
-        body.dark .dropdown li:hover {
-            background-color: #4a5568;
-        }
-
-        .dropdown li a {
-            font-size: 14px;
-            color: #333;
-            font-weight: normal;
-            text-decoration: none;
+        .dropdown > li > a {
             display: block;
-            transition: color 0.3s ease;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            transition: color 0.3s, background 0.3s;
         }
 
-        body.dark .dropdown li a {
-            color: #e2e8f0;
+        body.dark .dropdown > li > a {
+            color: #a0aec0;
         }
 
-        .dropdown li a:hover {
+        .dropdown > li:hover > a {
             color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
         }
 
-        .dropdown .submenu {
-            display: none;
+        .submenu {
             position: absolute;
-            top: -20px;
-            left: calc(100% + 10px);
-            background-color: #ffffff;
-            min-width: 240px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            list-style-type: none;
-            padding: 20px;
-            margin: 0;
-            z-index: 10;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            min-width: 250px;
+            list-style: none;
+            padding: 1rem;
         }
 
-        body.dark .dropdown .submenu {
-            background-color: #34495e;
+        body.dark .submenu {
+            background: #2d3748;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .dropdown li:hover .submenu {
-            display: block;
             opacity: 1;
-            transform: scale(1);
+            visibility: visible;
+            transform: translateX(0);
         }
 
-        .logo-container li:hover .dropdown {
+        .submenu li {
+            list-style: none;
+        }
+
+        .submenu a {
             display: block;
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            transition-delay: 0.1s;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        body.dark .submenu a {
+            color: #a0aec0;
+        }
+
+        .submenu a:hover {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
+        }
+
+        .btn-signup {
+            background: #3182ce;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #2b6cb0;
         }
 
         /* Hero Section */
         .hero-section {
-            margin-top: 80px;
+            margin-top: 94px;
             height: 80vh;
             display: flex;
             align-items: center;
@@ -317,49 +338,6 @@
             padding-top: 0;
         }
 
-        /* Filter Container */
-        .filter-container {
-            position: sticky;
-            top: 80px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            padding: 1rem;
-            text-align: center;
-            z-index: 998;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        body.dark .filter-container {
-            background: rgba(45, 55, 72, 0.95);
-        }
-
-        .filter-btn {
-            padding: 0.5rem 1.5rem;
-            background: transparent;
-            border: none;
-            color: #2d3748;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        body.dark .filter-btn {
-            color: #e2e8f0;
-        }
-
-        .filter-btn.active {
-            background: #3182ce;
-            color: #fff;
-            border-radius: 20px;
-        }
-
-        .filter-btn:hover {
-            color: #3182ce;
-            transform: scale(1.05);
-        }
-
         /* Offers Section */
         .offers-section {
             padding: 2rem;
@@ -455,18 +433,6 @@
 
         body.dark .offer-details p {
             color: #a0aec0;
-        }
-
-        .offer-details .expiry {
-            color: #e53e3e;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .offer-details .rating {
-            font-size: 0.85rem;
-            color: #f59e0b;
-            margin-bottom: 1rem;
         }
 
         .offer-actions {
@@ -739,7 +705,7 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .logo-container ul.nav-list {
+            .nav-menu > ul {
                 flex-direction: column;
                 gap: 1rem;
             }
@@ -764,13 +730,6 @@
                 height: 150px;
             }
 
-            .filter-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-
             .hero-section {
                 height: 60vh;
             }
@@ -779,59 +738,67 @@
 </head>
 <body>
     <div id="scroll-progress"></div>
-    <div class="logo-container">
-        <img src="./trail logo.png" alt="Perkpal Logo">
-        <ul class="nav-list">
-            <li>
-                <a href="#">Services</a>
-                <ul class="dropdown">
-                    <h3>Grab deals for</h3>
-                    <li><a href="#">Student</a>
-                        <ul class="submenu">
-                            <li><a href="../Student Clothing Page/stdclothing.html">Clothing</a></li>
-                            <li><a href="../Student entertainment page/stdentertainment.html">Entertainment</a></li>
-                            <li><a href="../Student Education page/stdeducation.html">Education</a></li>
-                            <li><a href="../Students transport page/stdtransport.html">Transport</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="../Student Electronics page/stdelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Black Community</a>
-                        <ul class="submenu">
-                            <li><a href="../../Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
-                            <li><a href="../../Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
-                            <li><a href="../../Black/Black Education Page/blackeducation.html">Education</a></li>
-                            <li><a href="../../Black/Black Transport Page/blacktransport.html">Transport</a></li>
-                            <li><a href="../../Black/Black Food Page/blackfood.html">Food</a></li>
-                            <li><a href="../../Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">LGBTQ</a>
-                        <ul class="submenu">
-                            <li><a href="../../LGBTQ/LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
-                            <li><a href="../../LGBTQ/LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
-                            <li><a href="../../LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
-                            <li><a href="../../LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
-                            <li><a href="../../LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Sr. Citizen</a>
-                        <ul class="submenu">
-                            <li><a href="../../Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Electronics Page/srcitizenelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-            <li><a href="../../LogIn Page/loginpage.html">Login</a></li>
-            <li><a href="../../Registration Page/registrationform.html">Sign up</a></li>
-        </ul>
-    </div>
+    <header class="navbar">
+        <div class="logo">
+            <img src="./trail logo.png" alt="Perkpal Logo">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item">
+                    <a href="#">Services</a>
+                    <ul class="dropdown">
+                        <li class="dropdown-header">Grab deals for</li>
+                        <li>
+                            <a href="#">Student</a>
+                            <ul class="submenu">
+                                <li><a href="../Student Clothing Page/stdclothing.html">Clothing</a></li>
+                                <li><a href="../Student entertainment page/stdentertainment.html">Entertainment</a></li>
+                                <li><a href="../Student Education page/stdeducation.html">Education</a></li>
+                                <li><a href="../Students Transport page/stdtransport.html">Transport</a></li>
+                                <li><a href="#">Food</a></li>
+                                <li><a href="../Student Electronics page/stdelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Black Community</a>
+                            <ul class="submenu">
+                                <li><a href="../../Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
+                                <li><a href="../../Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
+                                <li><a href="../../Black/Black Education Page/blackeducation.html">Education</a></li>
+                                <li><a href="../../Black/Black Transport Page/blacktransport.html">Transport</a></li>
+                                <li><a href="../../Black/Black Food Page/blackfood.html">Food</a></li>
+                                <li><a href="../../Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">LGBTQ</a>
+                            <ul class="submenu">
+                                <li><a href="../../LGBTQ/LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
+                                <li><a href="../../LGBTQ/LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
+                                <li><a href="../../LGBTQ/LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
+                                <li><a href="../../LGBTQ/LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
+                                <li><a href="../../LGBTQ/LGBTQ Food Page/lgbtqfood.html">Food</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Sr. Citizen</a>
+                            <ul class="submenu">
+                                <li><a href="../../Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Electronics Page/srcitizenelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                <li class="nav-item"><a href="../../LogIn Page/loginpage.html">Login</a></li>
+                <li><a href="../../Registration Page/registrationform.html" class="btn-signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section class="hero-section">
@@ -846,74 +813,57 @@
             </div>
         </section>
 
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All Food</button>
-            <button class="filter-btn" data-filter="fast-food">Fast Food</button>
-            <button class="filter-btn" data-filter="cafe">Café</button>
-        </div>
-
         <section class="offers-section">
             <div class="section-header">
                 <h2>Student Food Offers</h2>
             </div>
             <div class="offers-list">
-                <!-- Fast Food -->
-                <div class="offer-item" data-category="fast-food">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Burger+King" alt="Burger King" loading="lazy">
+                <div class="offer-item">
+                    <img class="offer-image" src="./walmart-logo.png" alt="Burger King" loading="lazy">
                     <div class="offer-details">
-                        <h3>20% Off Burger King</h3>
-                        <p>Grab a whopper deal with this student discount!</p>
-                        <p class="expiry">Expires: April 15, 2025</p>
-                        <p class="rating">★★★★★ (4.7/5)</p>
+                        <h3>Walmart Student Grocery Discount</h3>
+                        <p>Save $20 on each of your first 4 online grocery orders over $100.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn" data-link="https://www.burgerking.com">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.studentbeans.com/student-discount/ca/walmart?source=category_page&offer=0-student-discount-8c7406bf-d2ad-40c3-8b3e-3168dd4bb9e1">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                             <button class="share-btn">Share</button>
                         </div>
                     </div>
                     <span class="tooltip">Hot Deal!</span>
                 </div>
-                <div class="offer-item" data-category="fast-food">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Pizza+Hut" alt="Pizza Hut" loading="lazy">
+                <div class="offer-item">
+                    <img class="offer-image" src="./Myprotein-PR.webp" alt="Pizza Hut" loading="lazy">
                     <div class="offer-details">
-                        <h3>Buy 1 Get 1 Free Pizza Hut</h3>
-                        <p>Double the pizza, half the cost for students!</p>
-                        <p class="expiry">Expires: March 31, 2025</p>
-                        <p class="rating">★★★★☆ (4.5/5)</p>
+                        <h3>Myprotein Student Discount</h3>
+                        <p>40% off + $5 shipping on fitness supplements for students.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn" data-link="https://www.pizzahut.com">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.studentbeans.com/student-discount/ca/myprotein?source=category_page&offer=code-38-student-discount">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                             <button class="share-btn">Share</button>
                         </div>
                     </div>
                     <span class="tooltip">Limited Time</span>
                 </div>
-
-                <!-- Café -->
-                <div class="offer-item" data-category="cafe">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Starbucks" alt="Starbucks" loading="lazy">
+                <div class="offer-item">
+                    <img class="offer-image" src="./factor.jpeg" alt="Starbucks" loading="lazy">
                     <div class="offer-details">
-                        <h3>25% Off Starbucks</h3>
-                        <p>Fuel your study sessions with this caffeine boost!</p>
-                        <p class="expiry">Expires: April 10, 2025</p>
-                        <p class="rating">★★★★★ (4.8/5)</p>
+                        <h3>Factor Student Meal Discount</h3>
+                        <p>Save up to $85 on ready-made meals with a student plan.​</p>
                         <div class="offer-actions">
-                            <button class="claim-btn" data-link="https://www.starbucks.com">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.studentbeans.com/student-discount/ca/factor?source=category_page&offer=0-student-discount-16dad9d0-4622-4a3c-ac54-5849464d9303">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                             <button class="share-btn">Share</button>
                         </div>
                     </div>
                     <span class="tooltip">Exclusive</span>
                 </div>
-                <div class="offer-item" data-category="cafe">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Tim+Hortons" alt="Tim Hortons" loading="lazy">
+                <div class="offer-item">
+                    <img class="offer-image" src="./Hello+Fresh+Logo.png" alt="Tim Hortons" loading="lazy">
                     <div class="offer-details">
-                        <h3>20% Off Tim Hortons</h3>
-                        <p>Enjoy your coffee and donuts at a discount!</p>
-                        <p class="expiry">Expires: March 25, 2025</p>
-                        <p class="rating">★★★★★ (4.6/5)</p>
+                        <h3>HelloFresh Student Discount</h3>
+                        <p>Up to 25 free meals, free sides for life, and free shipping on your first box.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn" data-link="https://www.timhortons.com">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.studentbeans.com/student-discount/ca/hellofresh?source=category_page&offer=0-student-discount-496e8c65-dd42-4c8c-85cd-cdfa20f428c2">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                             <button class="share-btn">Share</button>
                         </div>
@@ -928,19 +878,11 @@
         <div class="footer-container">
             <div class="footer-left">
                 <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../../index.html">Home</a></li>
-                    <li><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+                <p><a href="/index.html">Home</a> | <a href="./About us page/aboutuspage.html" target="_blank">About Us</a> | <a href="./Registration Page/registrationform.html">Sign Up</a></p>
             </div>
             <div class="footer-right">
-                <h2>Contact Us</h2>
-                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a></p><br>
-                <p>Phone: +123 456 789</p><br>
-                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+                <h3>Contact Us</h3>
+                <p>Email: support@perkpal.com <br> Address: Etobicoke, Canada</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -989,7 +931,7 @@
 
         window.addEventListener('scroll', () => {
             const backToTop = document.querySelector('.back-to-top');
-            const navbar = document.querySelector('.logo-container');
+            const navbar = document.querySelector('.navbar');
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrollPercent = (scrollTop / docHeight) * 100;
@@ -1012,37 +954,8 @@
 
         document.querySelector('.wishlist-page-btn').addEventListener('click', goToWishlist);
 
-        // Filter Sections
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const offerItems = document.querySelectorAll('.offer-item');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filter = button.getAttribute('data-filter');
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                offerItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    if (filter === 'all' || filter === category) {
-                        item.style.display = 'flex';
-                        item.style.opacity = '0';
-                        setTimeout(() => {
-                            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, 10);
-                    } else {
-                        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                        item.style.opacity = '0';
-                        item.style.transform = 'translateY(50px)';
-                        setTimeout(() => item.style.display = 'none', 500);
-                    }
-                });
-            });
-        });
-
         // Scroll Animation
+        const offerItems = document.querySelectorAll('.offer-item');
         window.addEventListener('scroll', () => {
             offerItems.forEach(item => {
                 const rect = item.getBoundingClientRect();
@@ -1082,8 +995,7 @@
             button.addEventListener('click', () => {
                 const offerItem = button.closest('.offer-item');
                 const title = offerItem.querySelector('h3').textContent;
-                const description = offerItem.querySelector('p:not(.expiry):not(.rating)').textContent;
-                const expiry = offerItem.querySelector('.expiry').textContent.replace('Expires: ', '');
+                const description = offerItem.querySelector('p').textContent;
                 const image = offerItem.querySelector('.offer-image').src;
                 const link = offerItem.querySelector('.claim-btn').getAttribute('data-link');
 
@@ -1091,7 +1003,7 @@
                 const isAlreadyWishlisted = wishlist.some(item => item.title === title);
 
                 if (!isAlreadyWishlisted) {
-                    wishlist.push({ title, description, expiry, image, link });
+                    wishlist.push({ title, description, image, link });
                     localStorage.setItem('wishlist', JSON.stringify(wishlist));
                     button.classList.add('active');
                     button.textContent = 'Wishlisted';
@@ -1116,7 +1028,7 @@
             button.addEventListener('click', () => {
                 const offerItem = button.closest('.offer-item');
                 const title = offerItem.querySelector('h3').textContent;
-                const description = offerItem.querySelector('p:not(.expiry):not(.rating)').textContent;
+                const description = offerItem.querySelector('p').textContent;
                 const link = offerItem.querySelector('.claim-btn').getAttribute('data-link');
 
                 if (navigator.share) {
@@ -1144,7 +1056,7 @@
                 if (!e.target.classList.contains('claim-btn') && !e.target.classList.contains('wishlist-btn') && !e.target.classList.contains('share-btn')) {
                     const image = item.querySelector('.offer-image').src;
                     const title = item.querySelector('h3').textContent;
-                    const description = item.querySelector('p:not(.expiry):not(.rating)').textContent;
+                    const description = item.querySelector('p').textContent;
                     modalImage.src = image;
                     modalTitle.textContent = title;
                     modalDescription.textContent = description;
@@ -1179,29 +1091,6 @@
             img.style.transition = 'opacity 0.5s ease';
             observer.observe(img);
         });
-
-        // Countdown Timer for Expiry
-        function updateCountdown() {
-            offerItems.forEach(item => {
-                const expiryElement = item.querySelector('.expiry');
-                const expiryDate = new Date(expiryElement.textContent.replace('Expires: ', '')).getTime();
-                const now = new Date().getTime();
-                const timeLeft = expiryDate - now;
-
-                if (timeLeft > 0) {
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    expiryElement.innerHTML = `Expires in: ${days}d ${hours}h ${minutes}m`;
-                } else {
-                    expiryElement.innerHTML = 'Expired';
-                    expiryElement.style.color = '#ff0000';
-                }
-            });
-        }
-
-        setInterval(updateCountdown, 60000); // Update every minute
-        updateCountdown(); // Initial call
     </script>
 </body>
 </html>

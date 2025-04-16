@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Perkpal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9fafb;
+            color: #2d3748;
+            transition: background 0.3s, color 0.3s;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body.dark {
+            background: #1a202c;
+            color: #e2e8f0;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .header {
+            height: 110px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        body.dark .header {
+            background: rgba(26, 32, 44, 0.95);
+        }
+        .header .logo img {
+            height: 100px;
+            transition: height 0.3s ease;
+        }
+        .nav-menu > ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-item {
+            position: relative;
+        }
+        .nav-item > a, .nav-menu > ul > li > a {
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 400;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, background 0.3s;
+            display: block;
+        }
+        body.dark .nav-item > a, body.dark .nav-menu > ul > li > a {
+            color: #e2e8f0;
+        }
+        .nav-item:hover > a {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 8px;
+        }
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            min-width: 200px;
+            list-style: none;
+            padding: 1rem;
+        }
+        body.dark .dropdown {
+            background: #2d3748;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown li a {
+            display: block;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            transition: color 0.3s, background 0.3s;
+            cursor: pointer;
+        }
+        body.dark .dropdown li a {
+            color: #a0aec0;
+        }
+        .dropdown li:hover a {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
+        }
+        .btn-signout {
+            background: #e53e3e;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn-signout:hover {
+            background: #c53030;
+        }
+        .welcome-section {
+            margin-top: 50px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e2e8f0, #f9fafb);
+        }
+        body.dark .welcome-section {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+        }
+        .welcome-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem 6rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 60px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(49, 130, 206, 0.2);
+        }
+        body.dark .welcome-content {
+            background: rgba(45, 55, 72, 0.95);
+            border: 1px solid rgba(99, 179, 237, 0.2);
+        }
+        .welcome-content:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 70px rgba(49, 130, 206, 0.25);
+        }
+        .welcome-content h1 {
+            font-size: 4rem;
+            font-weight: 600;
+            color: #3182ce;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        body.dark .welcome-content h1 {
+            color: #63b3ed;
+        }
+        .welcome-content .typewriter {
+            font-size: 1.5rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+            min-height: 2rem;
+        }
+        body.dark .welcome-content .typewriter {
+            color: #a0aec0;
+        }
+        #offers-container {
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .offer-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark .offer-card {
+            background: #2d3748;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(49, 130, 206, 0.3);
+        }
+        .offer-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .offer-card h3 {
+            color: #3182ce;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        body.dark .offer-card h3 {
+            color: #63b3ed;
+        }
+        .offer-card p {
+            color: #718096;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        body.dark .offer-card p {
+            color: #a0aec0;
+        }
+        .offer-card .discount {
+            font-weight: 600;
+            color: #e53e3e;
+        }
+        .offer-card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: #3182ce;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .offer-card a:hover {
+            background: #2b6cb0;
+        }
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+        body.dark .footer {
+            background: rgba(45, 55, 72, 0.95);
+        }
+        .footer a {
+            color: #718096;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        body.dark .footer a {
+            color: #a0aec0;
+        }
+        .footer a:hover {
+            color: #3182ce;
+        }
+        .theme-switcher {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 50px;
+            height: 50px;
+            background: #3182ce;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(49, 130, 206, 0.3);
+        }
+        .theme-switcher:hover {
+            background: #2b6cb0;
+            transform: scale(1.1);
+        }
+        .signout-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(49, 130, 206, 0.95);
+            color: #fff;
+            padding: 1.5rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .signout-message.show {
+            opacity: 1;
+        }
+        @media (max-width: 768px) {
+            .header .logo img {
+                height: 80px;
+            }
+            .nav-menu > ul {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                display: none;
+            }
+            body.dark .nav-menu > ul {
+                background: rgba(26, 32, 44, 0.95);
+            }
+            .nav-menu.active > ul {
+                display: block;
+            }
+            .dropdown {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                background: none;
+                padding-left: 1rem;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+            }
+            .dropdown.active {
+                display: block;
+            }
+            .welcome-content h1 {
+                font-size: 2.5rem;
+            }
+            .welcome-content .typewriter {
+                font-size: 1.2rem;
+            }
+            .welcome-content {
+                padding: 2rem 3rem;
+            }
+            #offers-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <header class="header">
+        <div class="logo">
+            <img src="/LogIn Page/trail logo.png" alt="Perkpal Logo">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item">
+                    <a href="#">Explore</a>
+                    <ul class="dropdown">
+                        <li><a onclick="loadOffersByCategory('Clothing')">Clothing</a></li>
+                        <li><a onclick="loadOffersByCategory('Education')">Education</a></li>
+                        <li><a onclick="loadOffersByCategory('Entertainment')">Entertainment</a></li>
+                        <li><a onclick="loadOffersByCategory('Electronics')">Electronics</a></li>
+                        <li><a onclick="loadOffersByCategory('Food')">Food</a></li>
+                        <li><a onclick="loadOffersByCategory('Travel')">Travel</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="btn-signout" onclick="signOut()">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="welcome-section">
+        <div class="welcome-content">
+            <h1 id="welcomeMessage">Welcome!</h1>
+            <p class="typewriter">Explore your personalized offers below.</p>
+        </div>
+    </section>
+
+    <div id="offers-container"></div>
+
+    <footer class="footer">
+        <p>© 2025 Perkpal. All Rights Reserved.</p>
+    </footer>
+
+    <button class="theme-switcher"><i class="mdi mdi-moon-waning-crescent"></i></button>
+    <div id="signoutMessage" class="signout-message">Sign Out Successful!</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": { "value": 60, "density": { "enable": true, "value_area": 1000 } },
+                    "color": { "value": ["#3182ce", "#63b3ed", "#4299e1"] },
+                    "shape": { "type": ["circle", "triangle"], "polygon": { "nb_sides": 5 } },
+                    "opacity": { "value": 0.6, "random": true, "anim": { "enable": true, "speed": 0.5, "opacity_min": 0.2 } },
+                    "size": { "value": 4, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 1 } },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#2d3748", "opacity": 0.3, "width": 1 },
+                    "move": { "enable": true, "speed": 3, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+                },
+                "interactivity": {
+                    "detect_on": "window",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 200, "line_linked": { "opacity": 0.5 } }, "push": { "particles_nb": 4 } }
+                },
+                "retina_detect": true
+            });
+
+            const userName = localStorage.getItem('userName') || 'User';
+            document.getElementById('welcomeMessage').textContent = `Welcome, ${userName}!`;
+
+            const userEmail = localStorage.getItem('userEmail');
+            if (!userEmail) {
+                alert('Please log in to view your offers.');
+                window.location.href = '/LogIn Page/loginpage.html';
+                return;
+            }
+
+            // Load all eligible offers initially
+            loadOffersByCategory(null);
+        });
+
+        function loadOffersByCategory(category) {
+            const userEmail = localStorage.getItem('userEmail');
+            let url = `http://localhost:8080/api/offers/user/${encodeURIComponent(userEmail)}`;
+            if (category) {
+                url = `http://localhost:8080/api/offers/user/${encodeURIComponent(userEmail)}/category/${encodeURIComponent(category)}`;
+            }
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to fetch offers');
+                    return response.json();
+                })
+                .then(offers => {
+                    const offersContainer = document.getElementById('offers-container');
+                    offersContainer.innerHTML = '';
+                    if (offers.length === 0) {
+                        offersContainer.innerHTML = `<p>No ${category ? category : 'offers'} available at the moment.</p>`;
+                    } else {
+                        offers.forEach(offer => {
+                            const offerCard = document.createElement('div');
+                            offerCard.classList.add('offer-card');
+                            offerCard.innerHTML = `
+                                ${offer.imageLink ? `<img src="${offer.imageLink}" alt="${offer.title}">` : ''}
+                                <h3>${offer.title}</h3>
+                                <p>${offer.description}</p>
+                                <p class="discount">Discount: ${offer.discount}</p>
+                                <p>Category: ${offer.category}</p>
+                                ${offer.link ? `<a href="${offer.link}" target="_blank">Claim Offer</a>` : ''}
+                            `;
+                            offersContainer.appendChild(offerCard);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching offers:', error);
+                    document.getElementById('offers-container').innerHTML = '<p>Error loading offers. Please try again later.</p>';
+                });
+        }
+
+        function signOut() {
+            const signoutMessage = document.getElementById('signoutMessage');
+            signoutMessage.classList.add('show');
+            localStorage.clear();
+            setTimeout(() => {
+                window.location.href = '/index.html';
+            }, 1500);
+        }
+
+        document.querySelector('.theme-switcher').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const icon = document.querySelector('.theme-switcher i');
+            icon.classList.toggle('mdi-moon-waning-crescent');
+            icon.classList.toggle('mdi-white-balance-sunny');
+            if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
+                const particlesColors = document.body.classList.contains('dark') ? ["#63b3ed", "#e5c07b", "#c678dd"] : ["#3182ce", "#63b3ed", "#4299e1"];
+                pJSDom[0].pJS.particles.color.value = particlesColors;
+                pJSDom[0].pJS.particles.line_linked.color = document.body.classList.contains('dark') ? "#e2e8f0" : "#2d3748";
+                pJSDom[0].pJS.fn.particlesRefresh();
+            }
+        });
+    </script>
+</body>
+</html>

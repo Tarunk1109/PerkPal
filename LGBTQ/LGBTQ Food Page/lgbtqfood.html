@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perkpal - LGBTQ Community Food Offers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
     <style>
@@ -32,176 +31,198 @@
         }
 
         /* Navbar */
-        .logo-container {
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            padding: 1rem 2rem;
+            padding: 0.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: padding 0.3s ease;
-            height: 80px;
+            transition: all 0.3s ease;
         }
 
-        .logo-container.shrink {
-            padding: 0.5rem 2rem;
+        body.dark .navbar {
+            background: rgba(26, 32, 44, 0.95);
         }
 
-        body.dark .logo-container {
-            background: rgba(45, 55, 72, 0.95);
+        .navbar.shrink {
+            padding: 0.25rem 2rem;
         }
 
-        .logo-container img {
-            height: 40px;
+        .logo img {
+            height: 120px;
+            min-height: 60px;
             transition: height 0.3s ease;
         }
 
-        .logo-container.shrink img {
-            height: 30px;
+        .navbar.shrink .logo img {
+            height: 78px;
         }
 
-        .logo-container ul.nav-list {
+        .nav-menu > ul {
             display: flex;
-            list-style-type: none;
+            list-style: none;
             gap: 2rem;
         }
 
-        .nav-list li {
+        .nav-item {
             position: relative;
-            padding: 10px 0;
         }
 
-        .logo-container li a {
+        .nav-item > a, .nav-menu > ul > li > a {
             text-decoration: none;
             color: #2d3748;
             font-weight: 400;
-            font-size: 16px;
-            padding: 8px 15px;
-            transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
-            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, background 0.3s;
+            display: block;
         }
 
-        body.dark .logo-container li a {
+        body.dark .nav-item > a, body.dark .nav-menu > ul > li > a {
             color: #e2e8f0;
         }
 
-        .logo-container li a:hover {
-            color: #ff69b4;
-            background-color: rgba(240, 248, 255, 0.8);
-            transform: scale(1.05);
+        .nav-item:hover > a, .nav-menu > ul > li:hover > a:not(.btn-signup) {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 8px;
         }
 
         .dropdown {
-            display: none;
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #ffffff;
-            min-width: 240px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            list-style-type: none;
-            padding: 20px;
-            margin: 0;
-            z-index: 10;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             opacity: 0;
-            transform: translateY(-10px) scale(0.95);
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            min-width: 250px;
+            list-style: none;
+            padding: 1rem;
         }
 
         body.dark .dropdown {
-            background-color: #34495e;
+            background: #2d3748;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .dropdown h3 {
-            font-size: 16px;
-            color: #444;
-            padding: 0 15px 10px 15px;
-            margin: 0 0 10px 0;
-            border-bottom: 2px solid #eee;
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        body.dark .dropdown h3 {
-            color: #bdc3c7;
-            border-bottom: 2px solid #4a6076;
+        .dropdown-header {
+            color: #3182ce;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(49, 130, 206, 0.2);
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark .dropdown-header {
+            color: #63b3ed;
+            border-bottom: 1px solid rgba(99, 179, 237, 0.2);
         }
 
         .dropdown li {
-            margin: 8px 0;
-            padding: 8px 15px;
-            position: relative;
-            transition: background-color 0.2s ease;
+            list-style: none;
         }
 
-        .dropdown li:hover {
-            background-color: #ffe6f0;
-            border-radius: 5px;
-        }
-
-        body.dark .dropdown li:hover {
-            background-color: #4a5568;
-        }
-
-        .dropdown li a {
-            font-size: 14px;
-            color: #333;
-            font-weight: normal;
-            text-decoration: none;
+        .dropdown > li > a {
             display: block;
-            transition: color 0.3s ease;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            transition: color 0.3s, background 0.3s;
         }
 
-        body.dark .dropdown li a {
-            color: #e2e8f0;
+        body.dark .dropdown > li > a {
+            color: #a0aec0;
         }
 
-        .dropdown li a:hover {
-            color: #ff69b4;
+        .dropdown > li:hover > a {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
         }
 
-        .dropdown .submenu {
-            display: none;
+        .submenu {
             position: absolute;
-            top: -20px;
-            left: calc(100% + 10px);
-            background-color: #ffffff;
-            min-width: 240px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            list-style-type: none;
-            padding: 20px;
-            margin: 0;
-            z-index: 10;
+            top: 0;
+            left: 100%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.2s ease, transform 0.2s ease;
+            visibility: hidden;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            min-width: 250px;
+            list-style: none;
+            padding: 1rem;
         }
 
-        body.dark .dropdown .submenu {
-            background-color: #34495e;
+        body.dark .submenu {
+            background: #2d3748;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .dropdown li:hover .submenu {
-            display: block;
             opacity: 1;
-            transform: scale(1);
+            visibility: visible;
+            transform: translateX(0);
         }
 
-        .logo-container li:hover .dropdown {
+        .submenu li {
+            list-style: none;
+        }
+
+        .submenu a {
             display: block;
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            transition-delay: 0.1s;
+            color: #4a5568;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        body.dark .submenu a {
+            color: #a0aec0;
+        }
+
+        .submenu a:hover {
+            color: #3182ce;
+            background: rgba(49, 130, 206, 0.1);
+            border-radius: 6px;
+        }
+
+        .btn-signup {
+            background: #3182ce;
+            color: #fff;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #2b6cb0;
         }
 
         /* Hero Section */
         .hero-section {
-            margin-top: 80px;
+            margin-top: 94px;
             height: 80vh;
             display: flex;
             align-items: center;
@@ -220,13 +241,13 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(255, 105, 180, 0.1), rgba(255, 204, 203, 0.05));
+            background: linear-gradient(45deg, rgba(49, 130, 206, 0.1), rgba(99, 179, 237, 0.05));
             animation: waveFlow 15s infinite linear;
             z-index: 0;
         }
 
         body.dark .hero-wave {
-            background: linear-gradient(45deg, rgba(255, 105, 180, 0.1), rgba(255, 204, 203, 0.05));
+            background: linear-gradient(45deg, rgba(43, 108, 176, 0.1), rgba(74, 144, 226, 0.05));
         }
 
         @keyframes waveFlow {
@@ -238,14 +259,14 @@
             position: absolute;
             width: 12px;
             height: 12px;
-            background: rgba(255, 105, 180, 0.4);
+            background: rgba(49, 130, 206, 0.4);
             border-radius: 50%;
             animation: float 6s infinite ease-in-out;
             z-index: 1;
         }
 
         body.dark .hero-particle {
-            background: rgba(255, 105, 180, 0.4);
+            background: rgba(74, 144, 226, 0.4);
         }
 
         .hero-particle:nth-child(2) { top: 20%; left: 15%; animation-delay: 1s; }
@@ -290,7 +311,7 @@
 
         .btn-explore {
             padding: 0.9rem 2.5rem;
-            background: #ff69b4;
+            background: #3182ce;
             color: #fff;
             border: none;
             border-radius: 30px;
@@ -301,8 +322,8 @@
         }
 
         .btn-explore:hover {
-            background: #ff1493;
-            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
+            background: #2b6cb0;
+            box-shadow: 0 5px 20px rgba(49, 130, 206, 0.4);
             transform: translateY(-2px);
         }
 
@@ -315,74 +336,6 @@
         main {
             flex: 1;
             padding-top: 0;
-        }
-
-        /* Filter Container */
-        .filter-container {
-            position: sticky;
-            top: 80px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            padding: 1rem;
-            text-align: center;
-            z-index: 998;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        body.dark .filter-container {
-            background: rgba(45, 55, 72, 0.95);
-        }
-
-        .filter-btn, .sort-btn {
-            padding: 0.5rem 1.5rem;
-            background: transparent;
-            border: none;
-            color: #2d3748;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        body.dark .filter-btn, body.dark .sort-btn {
-            color: #e2e8f0;
-        }
-
-        .filter-btn.active, .sort-btn.active {
-            background: #ff69b4;
-            color: #fff;
-            border-radius: 20px;
-        }
-
-        .filter-btn:hover, .sort-btn:hover {
-            color: #ff69b4;
-            transform: scale(1.05);
-        }
-
-        .search-bar {
-            padding: 0.5rem 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            width: 200px;
-            max-width: 100%;
-            transition: border-color 0.3s ease;
-        }
-
-        body.dark .search-bar {
-            border-color: #4a5568;
-            background: #2d3748;
-            color: #e2e8f0;
-        }
-
-        .search-bar:focus {
-            border-color: #ff69b4;
-            outline: none;
         }
 
         /* Offers Section */
@@ -422,7 +375,6 @@
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            cursor: pointer;
         }
 
         body.dark .offer-item {
@@ -431,26 +383,21 @@
 
         .offer-item:hover {
             transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.2);
             border: 2px solid transparent;
             background: linear-gradient(45deg, #fff, #fff) padding-box,
-                        linear-gradient(45deg, #ff69b4, #ffcccb) border-box;
+                        linear-gradient(45deg, #3182ce, #63b3ed) border-box;
         }
 
         body.dark .offer-item:hover {
             background: linear-gradient(45deg, #2d3748, #2d3748) padding-box,
-                        linear-gradient(45deg, #ff69b4, #ffcccb) border-box;
+                        linear-gradient(45deg, #3182ce, #63b3ed) border-box;
         }
 
         .offer-image {
             width: 100%;
             height: 180px;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .offer-item:hover .offer-image {
-            transform: scale(1.05);
         }
 
         .offer-details {
@@ -482,59 +429,14 @@
             color: #a0aec0;
         }
 
-        .offer-details .discount {
-            color: #059669;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        body.dark .offer-details .discount {
-            color: #34d399;
-        }
-
-        .offer-details .expiry {
-            color: #e53e3e;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .offer-details .countdown {
-            font-size: 0.85rem;
-            color: #ff69b4;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .offer-details .rating {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .rating-stars .star {
-            cursor: pointer;
-            transition: color 0.2s ease;
-            color: #e2e8f0;
-        }
-
-        body.dark .rating-stars .star {
-            color: #4a5568;
-        }
-
-        .rating-stars .star.filled {
-            color: #f1c40f;
-        }
-
-        body.dark .rating-stars .star.filled {
-            color: #f39c12;
-        }
-
         .offer-actions {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
         }
 
         .claim-btn, .wishlist-btn {
+            background: #3182ce;
+            color: #fff;
             padding: 0.6rem 1.5rem;
             border: none;
             border-radius: 20px;
@@ -543,15 +445,10 @@
             transition: all 0.3s;
         }
 
-        .claim-btn {
-            background: #ff69b4;
-            color: #fff;
-        }
-
         .wishlist-btn {
             background: transparent;
             color: #2d3748;
-            border: 1px solid #ff69b4;
+            border: 1px solid #3182ce;
         }
 
         body.dark .wishlist-btn {
@@ -560,7 +457,7 @@
         }
 
         .claim-btn:hover, .wishlist-btn:hover {
-            background: #ff1493;
+            background: #2b6cb0;
         }
 
         .wishlist-btn:hover {
@@ -575,90 +472,6 @@
             background: #38a169;
             color: #fff;
             border: none;
-        }
-
-        .offer-item .tooltip {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff69b4;
-            color: #fff;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-        }
-
-        .offer-item:hover .tooltip {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Testimonials Section */
-        .testimonials-section {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto 2rem;
-        }
-
-        .testimonials-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .testimonials-header h2 {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #2d3748;
-        }
-
-        body.dark .testimonials-header h2 {
-            color: #e2e8f0;
-        }
-
-        .testimonials-carousel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .testimonial-item {
-            background: #fff;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        body.dark .testimonial-item {
-            background: #2d3748;
-        }
-
-        .testimonial-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
-        }
-
-        .testimonial-item p {
-            color: #718096;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        body.dark .testimonial-item p {
-            color: #a0aec0;
-        }
-
-        .testimonial-item .author {
-            font-size: 0.9rem;
-            color: #ff69b4;
-            font-weight: 600;
-        }
-
-        body.dark .testimonial-item .author {
-            color: #ffcccb;
         }
 
         /* Footer */
@@ -682,12 +495,12 @@
             margin-bottom: 1rem;
         }
 
-        .footer-left h3, .footer-right h2 {
+        .footer-left h3, .footer-right h3 {
             color: #2d3748;
             margin-bottom: 1rem;
         }
 
-        body.dark .footer-left h3, body.dark .footer-right h2 {
+        body.dark .footer-left h3, body.dark .footer-right h3 {
             color: #e2e8f0;
         }
 
@@ -710,7 +523,7 @@
         }
 
         .site-footer a:hover {
-            color: #ff69b4;
+            color: #3182ce;
         }
 
         .footer-bottom {
@@ -723,7 +536,7 @@
             right: 20px;
             width: 50px;
             height: 50px;
-            background: #ff69b4;
+            background: #3182ce;
             color: #fff;
             border: none;
             border-radius: 50%;
@@ -755,7 +568,7 @@
         }
 
         .back-to-top:hover, .theme-toggle:hover, .wishlist-page-btn:hover {
-            background: #ff1493;
+            background: #2b6cb0;
             transform: scale(1.1);
         }
 
@@ -766,14 +579,14 @@
             left: 0;
             width: 0;
             height: 4px;
-            background: #ff69b4;
+            background: #3182ce;
             z-index: 1001;
             transition: width 0.3s ease;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            .logo-container ul.nav-list {
+            .nav-menu > ul {
                 flex-direction: column;
                 gap: 1rem;
             }
@@ -786,24 +599,16 @@
                 font-size: 1rem;
             }
 
-            .section-header h2, .testimonials-header h2 {
+            .section-header h2 {
                 font-size: 1.5rem;
             }
 
-            .offers-list, .testimonials-carousel {
+            .offers-list {
                 grid-template-columns: 1fr;
             }
 
             .offer-image {
                 height: 150px;
-            }
-
-            .filter-container {
-                gap: 0.5rem;
-            }
-
-            .search-bar {
-                width: 100%;
             }
 
             .hero-section {
@@ -814,59 +619,68 @@
 </head>
 <body>
     <div id="scroll-progress"></div>
-    <div class="logo-container">
-        <img src="./trail logo.png" alt="Perkpal Logo">
-        <ul class="nav-list">
-            <li>
-                <a href="#">Services</a>
-                <ul class="dropdown">
-                    <h3>Grab deals for</h3>
-                    <li><a href="#">Student</a>
-                        <ul class="submenu">
-                            <li><a href="../../Student/Student Clothing Page/stdclothing.html">Clothing</a></li>
-                            <li><a href="../../Student/Student Entertainment page/stdentertainment.html">Entertainment</a></li>
-                            <li><a href="../../Student/Student Education page/stdeducation.html">Education</a></li>
-                            <li><a href="../../Student/Students Transport page/stdtransport.html">Transport</a></li>
-                            <li><a href="../../Student/Student Food page/stdfood.html">Food</a></li>
-                            <li><a href="../../Student/Student Electronics page/stdelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Black Community</a>
-                        <ul class="submenu">
-                            <li><a href="../../Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
-                            <li><a href="../../Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
-                            <li><a href="../../Black/Black Education Page/blackeducation.html">Education</a></li>
-                            <li><a href="../../Black/Black Transport Page/blacktransport.html">Transport</a></li>
-                            <li><a href="../../Black/Black Food Page/blackfood.html">Food</a></li>
-                            <li><a href="../../Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">LGBTQ</a>
-                        <ul class="submenu">
-                            <li><a href="../LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
-                            <li><a href="../LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
-                            <li><a href="../LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
-                            <li><a href="../LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
-                            <li><a href="../LGBTQ Food Page/lgbtqfood.html">Food</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Sr. Citizen</a>
-                        <ul class="submenu">
-                            <li><a href="../../Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
-                            <li><a href="../../Sr Citizen/Sr Citizen Electronics Page/srcitizenelectronics.html">Electronics</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-            <li><a href="../../LogIn Page/loginpage.html">Login</a></li>
-            <li><a href="../../Registration Page/registrationform.html">Sign up</a></li>
-        </ul>
-    </div>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="./trail logo.png" alt="Perkpal Logo">
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li class="nav-item">
+                    <a href="#">Services</a>
+                    <ul class="dropdown">
+                        <li class="dropdown-header">Grab deals for</li>
+                        <li>
+                            <a href="#">Student</a>
+                            <ul class="submenu">
+                                <li><a href="../../Student/Student Clothing Page/stdclothing.html">Clothing</a></li>
+                                <li><a href="../../Student/Student Entertainment page/stdentertainment.html">Entertainment</a></li>
+                                <li><a href="../../Student/Student Education page/stdeducation.html">Education</a></li>
+                                <li><a href="../../Student/Students Transport page/stdtransport.html">Transport</a></li>
+                                <li><a href="../../Student/Student Food page/stdfood.html">Food</a></li>
+                                <li><a href="../../Student/Student Electronics page/stdelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Black Community</a>
+                            <ul class="submenu">
+                                <li><a href="../../Black/Black Clothing Page/blackclothing.html">Clothing</a></li>
+                                <li><a href="../../Black/Black Entertainment Page/blackentertainment.html">Entertainment</a></li>
+                                <li><a href="../../Black/Black Education Page/blackeducation.html">Education</a></li>
+                                <li><a href="../../Black/Black Transport Page/blacktransport.html">Transport</a></li>
+                                <li><a href="../../Black/Black Food Page/blackfood.html">Food</a></li>
+                                <li><a href="../../Black/Black Electronics Page/blackelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">LGBTQ</a>
+                            <ul class="submenu">
+                                <li><a href="../LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
+                                <li><a href="../LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
+                                <li><a href="../LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
+                                <li><a href="../LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
+                                <li><a href="../LGBTQ Food Page/lgbtqfood.html">Food</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Sr. Citizen</a>
+                            <ul class="submenu">
+                                <li><a href="../../Sr Citizen/Sr Citizen Clothing/srcitizenclothing.html">Clothing</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Entertainment Page/srcitizenentertainment.html">Entertainment</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Education Page/srcitizeneducation.html">Education</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Travel Page/srcitizentravel.html">Transport</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Food page/srcitizenfood.html">Food</a></li>
+                                <li><a href="../../Sr Citizen/Sr Citizen Electronics Page/srcitizenelectronics.html">Electronics</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                <li class="nav-item"><a href="../../LogIn Page/loginpage.html">Login</a></li>
+                <li><a href="../../Registration Page/registrationform.html" class="btn-signup">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <section class="hero-section">
@@ -881,151 +695,58 @@
             </div>
         </section>
 
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All Food</button>
-            <button class="filter-btn" data-filter="dining">Dining</button>
-            <button class="filter-btn" data-filter="delivery">Delivery</button>
-            <input type="text" class="search-bar" placeholder="Search offers..." id="search-bar">
-            <button class="sort-btn" data-sort="title">Sort by Title</button>
-            <button class="sort-btn" data-sort="discount">Sort by Discount</button>
-            <button class="sort-btn" data-sort="expiry">Sort by Expiry</button>
-        </div>
-
         <section class="offers-section">
             <div class="section-header">
                 <h2>LGBTQ Community Food Offers</h2>
             </div>
             <div class="offers-list">
-                <div class="offer-item" data-category="dining" data-discount="20" data-expiry="2025-04-15" data-link="https://www.priderestaurant.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Pride+Brunch" alt="Pride Brunch" loading="lazy">
+                <!-- Dining Offers -->
+                <div class="offer-item">
+                    <img class="offer-image" src="./ellie's.webp" alt="Pride Brunch" loading="lazy">
                     <div class="offer-details">
-                        <h3>20% Off Pride Brunch</h3>
-                        <p>Enjoy a colorful brunch at a queer-friendly spot!</p>
-                        <p class="discount">Save 20%</p>
-                        <p class="expiry">Expires: April 15, 2025</p>
-                        <p class="countdown" data-end="2025-04-15T23:59:59"></p>
-                        <div class="rating-stars" data-title="20% Off Pride Brunch">
-                            <span class="star" data-value="1">★</span>
-                            <span class="star" data-value="2">★</span>
-                            <span class="star" data-value="3">★</span>
-                            <span class="star" data-value="4">★</span>
-                            <span class="star" data-value="5">★</span>
-                        </div>
+                        <h3>Ellie's Tap & Vine</h3>
+                        <p>LGBTQ+-friendly restaurant offering tapas and curated wines in Santa Ynez.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
+                            <button class="claim-btn" data-link="https://elliestapandvine.com/">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
-                    <span class="tooltip">Hot Deal!</span>
                 </div>
-                <div class="offer-item" data-category="delivery" data-discount="15" data-expiry="2025-03-31" data-link="https://www.rainbowdelivery.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Rainbow+Meal+Kit" alt="Rainbow Meal Kit" loading="lazy">
+                <div class="offer-item">
+                    <img class="offer-image" src="./Bluewater_Grill_Logo_PNG.jpg" alt="Queer Dinner" loading="lazy">
                     <div class="offer-details">
-                        <h3>15% Off Rainbow Meal Kit</h3>
-                        <p>Delicious meals delivered with pride!</p>
-                        <p class="discount">Save 15%</p>
-                        <p class="expiry">Expires: March 31, 2025</p>
-                        <p class="countdown" data-end="2025-03-31T23:59:59"></p>
-                        <div class="rating-stars" data-title="15% Off Rainbow Meal Kit">
-                            <span class="star" data-value="1">★</span>
-                            <span class="star" data-value="2">★</span>
-                            <span class="star" data-value="3">★</span>
-                            <span class="star" data-value="4">★</span>
-                            <span class="star" data-value="5">★</span>
-                        </div>
+                        <h3>Bluewater Grill – LGBTQ+ Friendly Seafood Dining</h3>
+                        <p>Casual seafood restaurant offering Southern California cuisine with ocean views.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.bluewatergrill.com/">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
-                    <span class="tooltip">Limited Time</span>
                 </div>
-                <div class="offer-item" data-category="dining" data-discount="25" data-expiry="2025-04-20" data-link="https://www.queercuisine.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Queer+Dinner" alt="Queer Dinner" loading="lazy">
+                <!-- Delivery Offers -->
+                <div class="offer-item">
+                    <img class="offer-image" src="./hugo.png" alt="Rainbow Meal Kit" loading="lazy">
                     <div class="offer-details">
-                        <h3>25% Off Queer Dinner Special</h3>
-                        <p>Dine in style with inclusive flavors!</p>
-                        <p class="discount">Save 25%</p>
-                        <p class="expiry">Expires: April 20, 2025</p>
-                        <p class="countdown" data-end="2025-04-20T23:59:59"></p>
-                        <div class="rating-stars" data-title="25% Off Queer Dinner Special">
-                            <span class="star" data-value="1">★</span>
-                            <span class="star" data-value="2">★</span>
-                            <span class="star" data-value="3">★</span>
-                            <span class="star" data-value="4">★</span>
-                            <span class="star" data-value="5">★</span>
-                        </div>
+                        <h3>Hugo’s Restaurant – West Hollywood</h3>
+                        <p>LGBTQ+-friendly spot offering vegan and organic dishes in a cozy setting.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.hugosrestaurant.com/">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
-                    <span class="tooltip">Exclusive</span>
                 </div>
-                <div class="offer-item" data-category="delivery" data-discount="10" data-expiry="2025-03-25" data-link="https://www.lgbtqfood.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Pride+Desserts" alt="Pride Desserts" loading="lazy">
+                <div class="offer-item">
+                    <img class="offer-image" src="./mxd.png" alt="Pride Desserts" loading="lazy">
                     <div class="offer-details">
-                        <h3>10% Off Pride Desserts</h3>
-                        <p>Sweet treats delivered to your door!</p>
-                        <p class="discount">Save 10%</p>
-                        <p class="expiry">Expires: March 25, 2025</p>
-                        <p class="countdown" data-end="2025-03-25T23:59:59"></p>
-                        <div class="rating-stars" data-title="10% Off Pride Desserts">
-                            <span class="star" data-value="1">★</span>
-                            <span class="star" data-value="2">★</span>
-                            <span class="star" data-value="3">★</span>
-                            <span class="star" data-value="4">★</span>
-                            <span class="star" data-value="5">★</span>
-                        </div>
+                        <h3>Mama Por Dios – Rancho Cucamonga</h3>
+                        <p>LGBTQ+-friendly Mexican restaurant offering gourmet dishes, live music, and a vibrant atmosphere.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.mamapordios.com/">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
-                    <span class="tooltip">New Arrival</span>
                 </div>
-                <div class="offer-item" data-category="dining delivery" data-discount="15" data-expiry="2025-05-10" data-link="https://www.inclusiveeats.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Rainbow+Buffet" alt="Rainbow Buffet" loading="lazy">
-                    <div class="offer-details">
-                        <h3>15% Off Rainbow Buffet</h3>
-                        <p>Buffet dining or delivery - your choice!</p>
-                        <p class="discount">Save 15%</p>
-                        <p class="expiry">Expires: May 10, 2025</p>
-                        <p class="countdown" data-end="2025-05-10T23:59:59"></p>
-                        <div class="rating-stars" data-title="15% Off Rainbow Buffet">
-                            <span class="star" data-value="1">★</span>
-                            <span class="star" data-value="2">★</span>
-                            <span class="star" data-value="3">★</span>
-                            <span class="star" data-value="4">★</span>
-                            <span class="star" data-value="5">★</span>
-                        </div>
-                        <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
-                            <button class="wishlist-btn">Wishlist</button>
-                        </div>
-                    </div>
-                    <span class="tooltip">Popular</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonials-section">
-            <div class="testimonials-header">
-                <h2>What Our Community Says</h2>
-            </div>
-            <div class="testimonials-carousel">
-                <div class="testimonial-item">
-                    <p>"The Pride Brunch was a burst of flavor and joy!"</p>
-                    <p class="author">- Alex, Brunch Lover</p>
-                </div>
-                <div class="testimonial-item">
-                    <p>"Rainbow Meal Kits make dinner so colorful and easy."</p>
-                    <p class="author">- Taylor, Home Chef</p>
-                </div>
-                <div class="testimonial-item">
-                    <p>"Queer Dinner Special was a delicious experience!"</p>
-                    <p class="author">- Jordan, Foodie</p>
-                </div>
+                <!-- Buffet Offer -->
             </div>
         </section>
     </main>
@@ -1034,19 +755,11 @@
         <div class="footer-container">
             <div class="footer-left">
                 <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="../../index.html">Home</a></li>
-                    <li><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+                <p><a href="/index.html">Home</a> | <a href="../../About us page/aboutuspage.html" target="_blank">About Us</a> | <a href="../../Registration Page/registrationform.html">Sign Up</a></p>
             </div>
             <div class="footer-right">
-                <h2>Contact Us</h2>
-                <p>Email: <a href="/cdn-cgi/l/email-protection#c1b2b4b1b1aeb3b581b1a4b3aab1a0adefa2aeac"><span class="__cf_email__" data-cfemail="84f7f1f4f4ebf6f0c4f4e1f6eff4e5e8aae7ebe9">[email&#160;protected]</span></a></p><br>
-                <p>Phone: +123 456 789</p><br>
-                <p>Address: 123 Street, Etobicoke, Canada</p><br>
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a><br>Address: Etobicoke, Canada</p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -1058,7 +771,6 @@
     <button class="theme-toggle"><i class="mdi mdi-white-balance-sunny"></i></button>
     <button class="wishlist-page-btn">♥</button>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // Theme Toggle
         function toggleTheme() {
@@ -1076,7 +788,7 @@
                 icon.classList.remove('mdi-white-balance-sunny');
                 icon.classList.add('mdi-moon-waning-crescent');
             }
-            loadRatings();
+            attachOfferListeners();
         });
 
         document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
@@ -1088,7 +800,7 @@
 
         window.addEventListener('scroll', () => {
             const backToTop = document.querySelector('.back-to-top');
-            const navbar = document.querySelector('.logo-container');
+            const navbar = document.querySelector('.navbar');
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrollPercent = (scrollTop / docHeight) * 100;
@@ -1106,182 +818,61 @@
 
         // Wishlist Page Navigation
         function goToWishlist() {
-            window.location.href = "../../Wishlist page/wishlist.html";
+            window.location.href = "../../Wishlist Page/wishlist.html";
         }
 
         document.querySelector('.wishlist-page-btn').addEventListener('click', goToWishlist);
 
-        // Filter, Search, and Sort Sections
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const sortButtons = document.querySelectorAll('.sort-btn');
-        const offerItems = document.querySelectorAll('.offer-item');
-        const searchBar = document.getElementById('search-bar');
+        // Offer Button Listeners
+        function attachOfferListeners() {
+            const claimButtons = document.querySelectorAll('.claim-btn');
+            const wishlistButtons = document.querySelectorAll('.wishlist-btn');
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filter = button.getAttribute('data-filter');
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                applyFilterAndSort();
-            });
-        });
-
-        searchBar.addEventListener('input', applyFilterAndSort);
-
-        sortButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const sortType = button.getAttribute('data-sort');
-                sortButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                applyFilterAndSort(sortType);
-            });
-        });
-
-        function applyFilterAndSort(sortType = document.querySelector('.sort-btn.active')?.getAttribute('data-sort') || 'title') {
-            const filter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-            const searchTerm = searchBar.value.toLowerCase();
-            let itemsArray = Array.from(offerItems);
-
-            // Filter by category and search term
-            itemsArray = itemsArray.filter(item => {
-                const categories = item.getAttribute('data-category').split(' ');
-                const title = item.querySelector('h3').textContent.toLowerCase();
-                const description = item.querySelector('p:not(.discount):not(.expiry):not(.countdown)').textContent.toLowerCase();
-                const matchesFilter = filter === 'all' || categories.includes(filter);
-                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
-                return matchesFilter && matchesSearch;
+            claimButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const url = button.getAttribute('data-link');
+                    if (url && url !== '#') {
+                        window.open(url, '_blank');
+                    }
+                    button.textContent = 'Claimed';
+                    button.disabled = true;
+                    button.style.background = '#38a169';
+                });
             });
 
-            // Sort items
-            itemsArray.sort((a, b) => {
-                if (sortType === 'title') {
-                    return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
-                } else if (sortType === 'discount') {
-                    const discountA = parseInt(a.getAttribute('data-discount'));
-                    const discountB = parseInt(b.getAttribute('data-discount'));
-                    return discountB - discountA;
-                } else if (sortType === 'expiry') {
-                    const expiryA = new Date(a.getAttribute('data-expiry'));
-                    const expiryB = new Date(b.getAttribute('data-expiry'));
-                    return expiryA - expiryB;
-                }
-            });
+            wishlistButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const offerItem = button.closest('.offer-item');
+                    const title = offerItem.querySelector('h3').textContent;
+                    const description = offerItem.querySelector('p').textContent;
+                    const image = offerItem.querySelector('.offer-image').src;
+                    const link = offerItem.querySelector('.claim-btn').getAttribute('data-link');
 
-            // Update display
-            const offersList = document.querySelector('.offers-list');
-            offersList.innerHTML = '';
-            itemsArray.forEach(item => offersList.appendChild(item));
-            itemsArray.forEach(item => {
-                item.style.display = 'flex';
-                item.style.opacity = '0';
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, 10);
-            });
-        }
+                    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                    const isAlreadyWishlisted = wishlist.some(item => item.title === title);
 
-        // Scroll Animation
-        window.addEventListener('scroll', () => {
-            offerItems.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 150) {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }
-            });
-        });
+                    if (!isAlreadyWishlisted) {
+                        wishlist.push({ title, description, image, link });
+                        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                        button.classList.add('active');
+                        button.textContent = 'Wishlisted';
+                    } else {
+                        wishlist = wishlist.filter(item => item.title !== title);
+                        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                        button.classList.remove('active');
+                        button.textContent = 'Wishlist';
+                    }
+                });
 
-        window.addEventListener('load', () => {
-            offerItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(50px)';
-                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            });
-            applyFilterAndSort();
-        });
-
-        // Claim and Wishlist Buttons
-        const claimButtons = document.querySelectorAll('.claim-btn');
-        const wishlistButtons = document.querySelectorAll('.wishlist-btn');
-
-        claimButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const url = button.closest('.offer-item').getAttribute('data-link');
-                if (url) {
-                    window.open(url, '_blank');
-                }
-                button.textContent = 'Claimed';
-                button.disabled = true;
-                button.style.background = '#38a169';
-            });
-        });
-
-        wishlistButtons.forEach(button => {
-            button.addEventListener('click', () => {
                 const offerItem = button.closest('.offer-item');
                 const title = offerItem.querySelector('h3').textContent;
-                const description = offerItem.querySelector('p:not(.discount):not(.expiry):not(.countdown)').textContent;
-                const expiry = offerItem.querySelector('.expiry').textContent.replace('Expires: ', '');
-                const image = offerItem.querySelector('.offer-image').src;
-                const link = offerItem.getAttribute('data-link');
-
-                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-                const isAlreadyWishlisted = wishlist.some(item => item.title === title);
-
-                if (!isAlreadyWishlisted) {
-                    wishlist.push({ title, description, expiry, image, link });
-                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                if (wishlist.some(item => item.title === title)) {
                     button.classList.add('active');
                     button.textContent = 'Wishlisted';
-                } else {
-                    wishlist = wishlist.filter(item => item.title !== title);
-                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
-                    button.classList.remove('active');
-                    button.textContent = 'Wishlist';
                 }
             });
-
-            const offerItem = button.closest('.offer-item');
-            const title = offerItem.querySelector('h3').textContent;
-            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-            if (wishlist.some(item => item.title === title)) {
-                button.classList.add('active');
-                button.textContent = 'Wishlisted';
-            }
-        });
-
-        // Rating System
-        function saveRating(title, rating) {
-            let ratings = JSON.parse(localStorage.getItem('ratings')) || {};
-            ratings[title] = rating;
-            localStorage.setItem('ratings', JSON.stringify(ratings));
         }
-
-        function loadRatings() {
-            const ratings = JSON.parse(localStorage.getItem('ratings')) || {};
-            document.querySelectorAll('.rating-stars').forEach(stars => {
-                const title = stars.getAttribute('data-title');
-                const rating = ratings[title] || 0;
-                stars.querySelectorAll('.star').forEach(star => {
-                    const value = parseInt(star.getAttribute('data-value'));
-                    star.classList.toggle('filled', value <= rating);
-                });
-            });
-        }
-
-        document.querySelectorAll('.rating-stars .star').forEach(star => {
-            star.addEventListener('click', () => {
-                const ratingStars = star.closest('.rating-stars');
-                const title = ratingStars.getAttribute('data-title');
-                const ratingValue = parseInt(star.getAttribute('data-value'));
-                saveRating(title, ratingValue);
-                ratingStars.querySelectorAll('.star').forEach(s => {
-                    const value = parseInt(s.getAttribute('data-value'));
-                    s.classList.toggle('filled', value <= ratingValue);
-                });
-            });
-        });
 
         // Lazy Load Images
         const images = document.querySelectorAll('.offer-image');
@@ -1301,29 +892,6 @@
             img.style.transition = 'opacity 0.5s ease';
             observer.observe(img);
         });
-
-        // Countdown Timer
-        function updateCountdown() {
-            offerItems.forEach(item => {
-                const countdownElement = item.querySelector('.countdown');
-                const endDate = new Date(countdownElement.getAttribute('data-end')).getTime();
-                const now = new Date().getTime();
-                const timeLeft = endDate - now;
-
-                if (timeLeft > 0) {
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    countdownElement.textContent = `Time Left: ${days}d ${hours}h ${minutes}m`;
-                } else {
-                    countdownElement.textContent = 'Expired';
-                    countdownElement.style.color = '#e53e3e';
-                }
-            });
-        }
-
-        setInterval(updateCountdown, 60000); // Update every minute
-        updateCountdown(); // Initial call
     </script>
 </body>
 </html>

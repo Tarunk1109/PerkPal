@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
+        /* Your existing styles remain unchanged */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
@@ -25,14 +26,12 @@
             background: linear-gradient(135deg, #1a2634 0%, #2e4a67 100%);
             color: #e2e8f0;
         }
-
         #particles-js {
             position: absolute;
             width: 100%;
             height: 100%;
             z-index: 0;
         }
-
         #scroll-progress {
             position: fixed;
             top: 0;
@@ -44,7 +43,6 @@
             transition: width 0.3s ease;
             box-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
         }
-
         .navbar {
             position: fixed;
             top: 0;
@@ -94,7 +92,6 @@
         }
         .nav-menu a:hover::after { width: 100%; }
         .nav-menu a:hover { color: #60a5fa; }
-
         main {
             flex: 1;
             display: flex;
@@ -158,7 +155,7 @@
             text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             animation: textGlow 3s ease-in-out infinite alternate;
-            display: inline-block; /* Ensure the text doesn't stretch unnecessarily */
+            display: inline-block;
         }
         @keyframes textGlow {
             0% { text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); }
@@ -177,7 +174,6 @@
             0% { text-shadow: 0 3px 10px rgba(0, 0, 0, 0.3); }
             100% { text-shadow: 0 3px 15px rgba(96, 165, 250, 0.4); }
         }
-
         .input-group { margin-bottom: 2rem; position: relative; }
         label {
             font-weight: 400;
@@ -301,7 +297,6 @@
             animation: spin 1s ease-in-out infinite;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
         .signup-prompt { text-align: center; margin-top: 2rem; }
         .signup-prompt a { 
             color: #1e40af;
@@ -311,7 +306,6 @@
         }
         body.dark .signup-prompt a { color: #60a5fa; }
         .signup-prompt a:hover { color: #a855f7; }
-
         .footer {
             background: rgba(255, 255, 255, 0.9);
             padding: 2.5rem;
@@ -333,7 +327,6 @@
         }
         body.dark .footer a { color: #a0aec0; }
         .footer a:hover { color: #60a5fa; }
-
         .scroll-up, .theme-switcher {
             position: fixed;
             right: 30px;
@@ -355,7 +348,6 @@
             box-shadow: 0 10px 30px rgba(96, 165, 250, 0.6);
         }
         .theme-switcher { bottom: 30px; }
-
         @media (max-width: 768px) {
             .nav-menu ul { flex-direction: column; gap: 1.5rem; }
             .welcome-text { font-size: 2rem; }
@@ -406,7 +398,7 @@
                 </div>
             </form>
             <div class="signup-prompt">
-                <p>Not a member? <a href="./registrationform.html">Sign up now</a></p>
+                <p>Not a member? <a href="/Registration Page/registrationform.html">Sign up now</a></p>
             </div>
         </div>
     </main>
@@ -420,198 +412,148 @@
         document.addEventListener('DOMContentLoaded', function() {
             particlesJS('particles-js', {
                 "particles": {
-                    "number": {
-                        "value": 60,
-                        "density": {
-                            "enable": true,
-                            "value_area": 1000
-                        }
-                    },
-                    "color": {
-                        "value": ["#1e40af", "#3b82f6", "#7e22ce"] // Deep blue tones for light mode
-                    },
-                    "shape": {
-                        "type": ["circle", "triangle", "edge"],
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.7,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 0.3,
-                            "opacity_min": 0.3,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3.5,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1.5,
-                            "size_min": 0.8,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 200,
-                        "color": "#1f2a44",
-                        "opacity": 0.4,
-                        "width": 1.2
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": true,
-                            "rotateX": 800,
-                            "rotateY": 1200
-                        }
-                    }
+                    "number": { "value": 60, "density": { "enable": true, "value_area": 1000 } },
+                    "color": { "value": ["#1e40af", "#3b82f6", "#7e22ce"] },
+                    "shape": { "type": ["circle", "triangle", "edge"], "polygon": { "nb_sides": 5 } },
+                    "opacity": { "value": 0.7, "random": true, "anim": { "enable": true, "speed": 0.3, "opacity_min": 0.3, "sync": false } },
+                    "size": { "value": 3.5, "random": true, "anim": { "enable": true, "speed": 1.5, "size_min": 0.8, "sync": false } },
+                    "line_linked": { "enable": true, "distance": 200, "color": "#1f2a44", "opacity": 0.4, "width": 1.2 },
+                    "move": { "enable": true, "speed": 2, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": true, "rotateX": 800, "rotateY": 1200 } }
                 },
                 "interactivity": {
                     "detect_on": "window",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 250,
-                            "line_linked": {
-                                "opacity": 0.6
-                            }
-                        },
-                        "push": {
-                            "particles_nb": 3
-                        }
-                    }
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 250, "line_linked": { "opacity": 0.6 } }, "push": { "particles_nb": 3 } }
                 },
                 "retina_detect": true
             });
-        });
 
-        const form = document.querySelector('.loginForm');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const loginButton = document.querySelector('.login-btn');
-        const spinner = loginButton.querySelector('.spinner');
+            const form = document.querySelector('.loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const loginButton = document.querySelector('.login-btn');
+            const spinner = loginButton.querySelector('.spinner');
 
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
-            document.querySelector('.scroll-up').classList.toggle('visible', scrollTop > 300);
-            document.querySelector('.navbar').classList.toggle('shrink', scrollTop > 50);
-        });
-
-        document.querySelector('.scroll-up').addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        document.querySelector('.theme-switcher').addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            const icon = document.querySelector('.theme-switcher i');
-            icon.classList.toggle('mdi-moon-waning-crescent');
-            icon.classList.toggle('mdi-white-balance-sunny');
-            
-            if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
-                const particlesColors = document.body.classList.contains('dark') 
-                    ? ["#e5c07b", "#60a5fa", "#c678dd"] // Gold, blue, purple for dark mode
-                    : ["#1e40af", "#3b82f6", "#7e22ce"]; // Deep blue tones for light mode
-                pJSDom[0].pJS.particles.color.value = particlesColors;
-                pJSDom[0].pJS.particles.line_linked.color = document.body.classList.contains('dark') ? "#e2e8f0" : "#1f2a44";
-                pJSDom[0].pJS.fn.particlesRefresh();
-            }
-        });
-
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            if (validateForm()) {
-                showLoadingSpinner();
-                setTimeout(() => {
-                    hideLoadingSpinner();
-                    alert('Login Successful!');
-                    resetForm();
-                }, 1500);
-            }
-        });
-
-        [emailInput, passwordInput].forEach(input => {
-            input.addEventListener('input', () => validateField(input, input.id + 'Error'));
-        });
-
-        function validateField(input, errorId) {
-            const value = input.value.trim();
-            const errorElement = document.getElementById(errorId);
-            if (value === '') {
-                errorElement.textContent = 'Required';
-                errorElement.classList.add('active');
-                return false;
-            } else if (input.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                errorElement.textContent = 'Invalid email';
-                errorElement.classList.add('active');
-                return false;
-            } else if (input.id === 'password' && value.length < 6) {
-                errorElement.textContent = 'Too short';
-                errorElement.classList.add('active');
-                return false;
-            } else {
-                errorElement.textContent = '';
-                errorElement.classList.remove('active');
-                return true;
-            }
-        }
-
-        function validateForm() {
-            return validateField(emailInput, 'emailError') && validateField(passwordInput, 'passwordError');
-        }
-
-        function showLoadingSpinner() {
-            loginButton.classList.add('loading');
-            loginButton.disabled = true;
-            spinner.classList.remove('hidden');
-        }
-
-        function hideLoadingSpinner() {
-            loginButton.classList.remove('loading');
-            loginButton.disabled = false;
-            spinner.classList.add('hidden');
-        }
-
-        function resetForm() {
-            form.reset();
-            document.querySelectorAll('.error').forEach(error => {
-                error.textContent = '';
-                error.classList.remove('active');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+                document.querySelector('.scroll-up').classList.toggle('visible', scrollTop > 300);
+                document.querySelector('.navbar').classList.toggle('shrink', scrollTop > 50);
             });
-            hideLoadingSpinner();
-        }
 
-        function togglePassword() {
-            const passwordField = document.getElementById('password');
-            const toggleIcon = document.querySelector('.toggle-password');
-            passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
-            toggleIcon.textContent = passwordField.type === 'password' ? '👁️' : '👁️‍🗨️';
-        }
+            document.querySelector('.scroll-up').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            document.querySelector('.theme-switcher').addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                const icon = document.querySelector('.theme-switcher i');
+                icon.classList.toggle('mdi-moon-waning-crescent');
+                icon.classList.toggle('mdi-white-balance-sunny');
+                if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
+                    const particlesColors = document.body.classList.contains('dark') ? ["#e5c07b", "#60a5fa", "#c678dd"] : ["#1e40af", "#3b82f6", "#7e22ce"];
+                    pJSDom[0].pJS.particles.color.value = particlesColors;
+                    pJSDom[0].pJS.particles.line_linked.color = document.body.classList.contains('dark') ? "#e2e8f0" : "#1f2a44";
+                    pJSDom[0].pJS.fn.particlesRefresh();
+                }
+            });
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                if (validateForm()) {
+                    showLoadingSpinner();
+                    const loginData = {
+                        email: emailInput.value.trim(),
+                        password: passwordInput.value.trim()
+                    };
+
+                    fetch('http://localhost:8080/api/users/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(loginData)
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Invalid email or password');
+                        }
+                    })
+                    .then(user => {
+                        hideLoadingSpinner();
+                        localStorage.setItem('userEmail', user.email);
+                        localStorage.setItem('userGroups', JSON.stringify(user.userGroups));
+                        localStorage.setItem('userName', user.name);
+                        window.location.href = '/welcomepage.html'; // Absolute path to root
+                    })
+                    .catch(error => {
+                        hideLoadingSpinner();
+                        document.getElementById('emailError').textContent = error.message;
+                        document.getElementById('emailError').classList.add('active');
+                    });
+                }
+            });
+
+            [emailInput, passwordInput].forEach(input => {
+                input.addEventListener('input', () => validateField(input, input.id + 'Error'));
+            });
+
+            function validateField(input, errorId) {
+                const value = input.value.trim();
+                const errorElement = document.getElementById(errorId);
+                if (value === '') {
+                    errorElement.textContent = 'Required';
+                    errorElement.classList.add('active');
+                    return false;
+                } else if (input.id === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    errorElement.textContent = 'Invalid email';
+                    errorElement.classList.add('active');
+                    return false;
+                } else if (input.id === 'password' && value.length < 6) {
+                    errorElement.textContent = 'Too short';
+                    errorElement.classList.add('active');
+                    return false;
+                } else {
+                    errorElement.textContent = '';
+                    errorElement.classList.remove('active');
+                    return true;
+                }
+            }
+
+            function validateForm() {
+                return validateField(emailInput, 'emailError') && validateField(passwordInput, 'passwordError');
+            }
+
+            function showLoadingSpinner() {
+                loginButton.classList.add('loading');
+                loginButton.disabled = true;
+                spinner.classList.remove('hidden');
+            }
+
+            function hideLoadingSpinner() {
+                loginButton.classList.remove('loading');
+                loginButton.disabled = false;
+                spinner.classList.add('hidden');
+            }
+
+            function resetForm() {
+                form.reset();
+                document.querySelectorAll('.error').forEach(error => {
+                    error.textContent = '';
+                    error.classList.remove('active');
+                });
+                hideLoadingSpinner();
+            }
+
+            function togglePassword() {
+                const passwordField = document.getElementById('password');
+                const toggleIcon = document.querySelector('.toggle-password');
+                passwordField.type = passwordField.type === 'password' ? 'text' : 'password';
+                toggleIcon.textContent = passwordField.type === 'password' ? '👁️' : '👁️‍🗨️';
+            }
+        });
     </script>
-    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9267c3722a4312ea',t:'MTc0MzAwMzgwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

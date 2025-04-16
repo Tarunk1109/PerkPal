@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perkpal - LGBTQ Community Clothing Offers</title>
+    <title>Perkpal - LGBTQ Community Education Offers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
     <style>
@@ -37,7 +38,7 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            padding: 0.5rem 2rem;
+            padding: 0.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -51,7 +52,7 @@
         }
 
         .navbar.shrink {
-            padding: 0.25rem 2rem;
+            padding: -10rem 2rem;
         }
 
         .logo img {
@@ -61,7 +62,7 @@
         }
 
         .navbar.shrink .logo img {
-            height: 100px;
+            height: 78px;
         }
 
         @media (max-width: 768px) {
@@ -83,7 +84,7 @@
             position: relative;
         }
 
-        .nav-item > a {
+        .nav-item > a, .nav-menu > ul > li > a {
             text-decoration: none;
             color: #2d3748;
             font-weight: 400;
@@ -92,11 +93,11 @@
             display: block;
         }
 
-        body.dark .nav-item > a {
+        body.dark .nav-item > a, body.dark .nav-menu > ul > li > a {
             color: #e2e8f0;
         }
 
-        .nav-item:hover > a {
+        .nav-item:hover > a, .nav-menu > ul > li:hover > a:not(.btn-signup) {
             color: #3182ce;
             background: rgba(49, 130, 206, 0.1);
             border-radius: 8px;
@@ -193,6 +194,10 @@
             transform: translateX(0);
         }
 
+        .submenu li {
+            list-style: none;
+        }
+
         .submenu a {
             display: block;
             color: #4a5568;
@@ -227,7 +232,7 @@
 
         /* Hero Section */
         .hero-section {
-            margin-top: 120px;
+            margin-top: 94px;
             height: 80vh;
             display: flex;
             align-items: center;
@@ -236,7 +241,6 @@
             position: relative;
             overflow: hidden;
             background: #f9fafb;
-            transition: background 0.3s ease;
         }
 
         body.dark .hero-section {
@@ -253,7 +257,7 @@
         }
 
         body.dark .hero-wave {
-            background: linear-gradient(45deg, rgba(49, 130, 206, 0.05), rgba(99, 179, 237, 0.02));
+            background: linear-gradient(45deg, rgba(43, 108, 176, 0.1), rgba(74, 144, 226, 0.05));
         }
 
         @keyframes waveFlow {
@@ -261,22 +265,47 @@
             100% { transform: translateX(100%) skew(10deg); }
         }
 
-        .hero-content {
-            position: relative;
+        .hero-particle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(49, 130, 206, 0.4);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
             z-index: 1;
         }
 
+        body.dark .hero-particle {
+            background: rgba(74, 144, 226, 0.4);
+        }
+
+        .hero-particle:nth-child(2) { top: 20%; left: 15%; animation-delay: 1s; }
+        .hero-particle:nth-child(3) { bottom: 25%; right: 20%; animation-delay: 2.5s; }
+        .hero-particle:nth-child(4) { top: 60%; left: 75%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); opacity: 0.3; }
+            50% { transform: translateY(-25px); opacity: 0.6; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
         .hero-content h1 {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-weight: 600;
             color: #2d3748;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease;
+            animation: fadeInUp 1s ease-out;
+            margin-bottom: 1rem;
         }
 
         body.dark .hero-content h1 {
             color: #e2e8f0;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero-content .typewriter {
@@ -309,51 +338,14 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Filter Container */
-        .filter-container {
-            position: sticky;
-            top: 130px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            padding: 1rem;
-            text-align: center;
-            z-index: 998;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        body.dark .filter-container {
-            background: rgba(45, 55, 72, 0.95);
-        }
-
-        .filter-btn, .sort-btn {
-            padding: 0.5rem 1.5rem;
-            background: transparent;
-            border: none;
-            color: #2d3748;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        body.dark .filter-btn, body.dark .sort-btn {
-            color: #e2e8f0;
-        }
-
-        .filter-btn.active, .sort-btn.active {
-            background: #3182ce;
-            color: #fff;
-            border-radius: 20px;
-        }
-
-        .filter-btn:hover, .sort-btn:hover {
-            color: #3182ce;
-            transform: scale(1.05);
+        /* Main Content */
+        main {
+            flex: 1;
+            padding-top: 0;
         }
 
         /* Offers Section */
@@ -361,6 +353,21 @@
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        body.dark .section-header h2 {
+            color: #e2e8f0;
         }
 
         .offers-list {
@@ -376,6 +383,8 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             position: relative;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
             cursor: pointer;
         }
 
@@ -409,12 +418,17 @@
 
         .offer-details {
             padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .offer-details h3 {
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: #2d3748;
         }
 
         body.dark .offer-details h3 {
@@ -429,33 +443,6 @@
 
         body.dark .offer-details p {
             color: #a0aec0;
-        }
-
-        .offer-details .discount {
-            color: #059669;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        body.dark .offer-details .discount {
-            color: #34d399;
-        }
-
-        .offer-details .expiry {
-            color: #e53e3e;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .offer-details .countdown {
-            font-size: 0.85rem;
-            color: #3182ce;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        body.dark .offer-details .countdown {
-            color: #63b3ed;
         }
 
         .offer-actions {
@@ -486,12 +473,19 @@
 
         body.dark .wishlist-btn {
             color: #e2e8f0;
-            border-color: #63b3ed;
+            border-color: #e2e8f0;
         }
 
         .claim-btn:hover, .wishlist-btn:hover {
             background: #2b6cb0;
-            color: #fff;
+        }
+
+        .wishlist-btn:hover {
+            background: #edf2f7;
+        }
+
+        body.dark .wishlist-btn:hover {
+            background: #4a5568;
         }
 
         .wishlist-btn.active {
@@ -540,22 +534,43 @@
             margin-bottom: 1rem;
         }
 
-        .footer-container a {
+        .footer-left h3, .footer-right h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .footer-left h3, body.dark .footer-right h3 {
+            color: #e2e8f0;
+        }
+
+        .footer-left p {
+            color: #718096;
+        }
+
+        body.dark .footer-left p {
+            color: #a0aec0;
+        }
+
+        .site-footer a {
             color: #718096;
             text-decoration: none;
             transition: color 0.3s;
         }
 
-        body.dark .footer-container a {
+        body.dark .site-footer a {
             color: #a0aec0;
         }
 
-        .footer-container a:hover {
+        .site-footer a:hover {
             color: #3182ce;
         }
 
-        /* Buttons */
-        .theme-switcher, .back-to-top, .wishlist-btn-fixed {
+        .footer-bottom {
+            margin-top: 1rem;
+        }
+
+        /* Scroll Up & Theme Switcher */
+        .back-to-top, .theme-switcher, .wishlist-btn-fixed {
             position: fixed;
             right: 20px;
             width: 50px;
@@ -569,18 +584,11 @@
             z-index: 1000;
         }
 
-        .theme-switcher {
-            bottom: 20px;
-        }
-
         .back-to-top {
             bottom: 80px;
             opacity: 0;
             visibility: hidden;
-        }
-
-        .wishlist-btn-fixed {
-            bottom: 140px;
+            font-size: 24px;
         }
 
         .back-to-top.visible {
@@ -588,9 +596,31 @@
             visibility: visible;
         }
 
-        .theme-switcher:hover, .back-to-top:hover, .wishlist-btn-fixed:hover {
+        .theme-switcher {
+            bottom: 20px;
+            font-size: 24px;
+        }
+
+        .wishlist-btn-fixed {
+            bottom: 140px;
+            font-size: 24px;
+        }
+
+        .back-to-top:hover, .theme-switcher:hover, .wishlist-btn-fixed:hover {
             background: #2b6cb0;
             transform: scale(1.1);
+        }
+
+        /* Scroll Progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: #3182ce;
+            z-index: 1001;
+            transition: width 0.3s ease;
         }
 
         /* Modal */
@@ -778,6 +808,7 @@
     </style>
 </head>
 <body>
+    <div id="scroll-progress"></div>
     <header class="navbar">
         <div class="logo">
             <img src="./trail logo.png" alt="Perkpal Logo">
@@ -814,9 +845,9 @@
                         <li>
                             <a href="#">LGBTQ</a>
                             <ul class="submenu">
-                                <li><a href="#">Clothing</a></li>
+                                <li><a href="../LGBTQ Clothing Page/lgbtqclothing.html">Clothing</a></li>
                                 <li><a href="../LGBTQ Entertainment Page/lgbtqentertainment.html">Entertainment</a></li>
-                                <li><a href="../LGBTQ Education Page/lgbtqeducation.html">Education</a></li>
+                                <li><a href="#">Education</a></li>
                                 <li><a href="../LGBTQ Travel/lgbtqtravelpage.html">Transport</a></li>
                                 <li><a href="../LGBTQ Food Page/lgbtqfood.html">Food</a></li>
                             </ul>
@@ -834,8 +865,8 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
-                <li><a href="../../LogIn Page/loginpage.html">Login</a></li>
+                <li class="nav-item"><a href="../../About us page/aboutuspage.html" target="_blank">About Us</a></li>
+                <li class="nav-item"><a href="../../LogIn Page/loginpage.html">Login</a></li>
                 <li><a href="../../Registration Page/registrationform.html" class="btn-signup">Sign Up</a></li>
             </ul>
         </nav>
@@ -844,118 +875,83 @@
     <main>
         <section class="hero-section">
             <div class="hero-wave"></div>
+            <div class="hero-particle"></div>
+            <div class="hero-particle"></div>
+            <div class="hero-particle"></div>
             <div class="hero-content">
-                <h1>Express Yourself with Pride</h1>
+                <h1>Empower Your Mind with Knowledge</h1>
                 <div class="typewriter" id="typewriter"></div>
                 <button class="btn-explore" id="scroll-to-offers">Explore Offers</button>
             </div>
         </section>
 
-        <div class="filter-container">
-            <button class="filter-btn active" data-filter="all">All Clothing</button>
-            <button class="filter-btn" data-filter="casual">Casual Wear</button>
-            <button class="filter-btn" data-filter="formal">Formal Wear</button>
-            <button class="sort-btn" data-sort="discount">Sort by Discount</button>
-            <button class="sort-btn" data-sort="expiry">Sort by Expiry</button>
-        </div>
-
         <section class="offers-section">
+            <div class="section-header">
+                <h2>LGBTQ Community Education Offers</h2>
+            </div>
             <div class="offers-list">
-                <div class="offer-item" data-category="casual" data-discount="20" data-expiry="2025-04-15" data-link="https://www.prideapparel.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Pride+T-Shirts" alt="Pride T-Shirts" loading="lazy">
+                <!-- Placeholder Offer 1 -->
+                <div class="offer-item">
+                    <img class="offer-image" src="./bold.jpg" alt="Online Courses" loading="lazy">
                     <div class="offer-details">
-                        <h3>20% Off Pride T-Shirts</h3>
-                        <p>Rock vibrant tees that celebrate your identity!</p>
-                        <p class="discount">Save 20%</p>
-                        <p class="expiry">Expires: April 15, 2025</p>
-                        <p class="countdown" data-end="2025-04-15T23:59:59"></p>
+                        <h3>LGBTQ+ Scholarships – Bold.org</h3>
+                        <p>Scholarships for LGBTQ+ students to support their education.​</p>
                         <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
+                            <button class="claim-btn" data-link="https://bold.org/scholarships/by-demographics/lgbtq-scholarships/">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
                     <span class="tooltip">Hot Deal!</span>
                 </div>
-                <div class="offer-item" data-category="casual" data-discount="15" data-expiry="2025-03-31" data-link="https://www.rainbowdepot.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Rainbow+Hoodies" alt="Rainbow Hoodies" loading="lazy">
+                <!-- Placeholder Offer 2 -->
+                <div class="offer-item">
+                    <img class="offer-image" src="./scholarships_com_logo.jpeg" alt="Workshops" loading="lazy">
                     <div class="offer-details">
-                        <h3>15% Off Rainbow Hoodies</h3>
-                        <p>Stay cozy with these colorful hoodies!</p>
-                        <p class="discount">Save 15%</p>
-                        <p class="expiry">Expires: March 31, 2025</p>
-                        <p class="countdown" data-end="2025-03-31T23:59:59"></p>
+                        <h3>LGBTQ+ Scholarships – Scholarships.com</h3>
+                        <p>Scholarships supporting gay and lesbian students' education.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
+                            <button class="claim-btn" data-link="https://www.scholarships.com/financial-aid/college-scholarships/scholarships-by-type/scholarships-for-gay-or-lesbian-students">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
                     <span class="tooltip">Limited Time</span>
                 </div>
-                <div class="offer-item" data-category="formal" data-discount="25" data-expiry="2025-04-20" data-link="https://www.queerfashion.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Genderless+Suits" alt="Genderless Suits" loading="lazy">
+                <!-- Placeholder Offer 3 -->
+                <div class="offer-item">
+                    <img class="offer-image" src="./Point_Foundation_Rainbow_Logo.jpg" alt="Scholarships" loading="lazy">
                     <div class="offer-details">
-                        <h3>25% Off Genderless Suits</h3>
-                        <p>Elevate your style with inclusive formal wear!</p>
-                        <p class="discount">Save 25%</p>
-                        <p class="expiry">Expires: April 20, 2025</p>
-                        <p class="countdown" data-end="2025-04-20T23:59:59"></p>
+                        <h3>Point Foundation Flagship Scholarship</h3>
+                        <p>Financial aid and mentorship for LGBTQ+ students in U.S. colleges.</p>
                         <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
+                            <button class="claim-btn" data-link="https://pointfoundation.org/scholarships/flagship">Claim Now</button>
                             <button class="wishlist-btn">Wishlist</button>
                         </div>
                     </div>
                     <span class="tooltip">Exclusive</span>
                 </div>
-                <div class="offer-item" data-category="formal" data-discount="10" data-expiry="2025-03-25" data-link="https://www.lgbtqstyle.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Pride+Dresses" alt="Pride Dresses" loading="lazy">
-                    <div class="offer-details">
-                        <h3>10% Off Pride Dresses</h3>
-                        <p>Shine bright in these stunning dresses!</p>
-                        <p class="discount">Save 10%</p>
-                        <p class="expiry">Expires: March 25, 2025</p>
-                        <p class="countdown" data-end="2025-03-25T23:59:59"></p>
-                        <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
-                            <button class="wishlist-btn">Wishlist</button>
-                        </div>
-                    </div>
-                    <span class="tooltip">New Arrival</span>
-                </div>
-                <div class="offer-item" data-category="casual formal" data-discount="15" data-expiry="2025-03-15" data-link="https://www.inclusivethreads.com">
-                    <img class="offer-image" src="https://via.placeholder.com/300x200?text=Versatile+Jackets" alt="Versatile Jackets" loading="lazy">
-                    <div class="offer-details">
-                        <h3>15% Off Versatile Jackets</h3>
-                        <p>Perfect for any occasion, with a rainbow twist!</p>
-                        <p class="discount">Save 15%</p>
-                        <p class="expiry">Expires: March 15, 2025</p>
-                        <p class="countdown" data-end="2025-03-15T23:59:59"></p>
-                        <div class="offer-actions">
-                            <button class="claim-btn">Claim Now</button>
-                            <button class="wishlist-btn">Wishlist</button>
-                        </div>
-                    </div>
-                    <span class="tooltip">Popular</span>
-                </div>
+                
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
         <div class="footer-container">
-            <div>
+            <div class="footer-left">
                 <h3>Quick Links</h3>
-                <p><a href="../../index.html">Home</a> | <a href="../../About us page/aboutuspage.html" target="_blank">About Us</a> | <a href="#">Services</a></p>
+                <p><a href="/index.html">Home</a> | <a href="../../About us page/aboutuspage.html" target="_blank">About Us</a> | <a href="../../Registration Page/registrationform.html">Sign Up</a></p>
             </div>
-            <div>
+            <div class="footer-right">
                 <h3>Contact Us</h3>
-                <p>Email: <a href="/cdn-cgi/l/email-protection#c1b2b4b1b1aeb3b581b1a4b3aab1a0adefa2aeac"><span class="__cf_email__" data-cfemail="84f7f1f4f4ebf6f0c4f4e1f6eff4e5e8aae7ebe9">[email&#160;protected]</span></a><br>Phone: +123 456 789<br>Address: 123 Street, Etobicoke, Canada</p>
+                <p>Email: support@perkpal.com <br> Address: Etobicoke, Canada</p>
             </div>
         </div>
-        <p>© 2025 Perkpal. All Rights Reserved.</p>
+        <div class="footer-bottom">
+            <p>© 2025 Perkpal. All Rights Reserved.</p>
+        </div>
     </footer>
 
-    <button class="theme-switcher"><i class="mdi mdi-white-balance-sunny"></i></button>
     <button class="back-to-top"><i class="mdi mdi-arrow-up"></i></button>
+    <button class="theme-switcher"><i class="mdi mdi-white-balance-sunny"></i></button>
     <button class="wishlist-btn-fixed">♥</button>
 
     <div class="modal" id="offer-modal">
@@ -963,7 +959,6 @@
             <span class="close-modal" onclick="closeModal()">×</span>
             <h3 id="modal-title"></h3>
             <p id="modal-description"></p>
-            <p id="modal-expiry"></p>
             <div class="modal-actions">
                 <button class="claim-btn" id="modal-claim-btn">Claim Now</button>
                 <button class="wishlist-btn" id="modal-wishlist-btn">Add to Wishlist</button>
@@ -975,7 +970,7 @@
     <script>
         // Typewriter Effect
         const typewriter = document.getElementById('typewriter');
-        const phrases = ['Discover exclusive deals.', 'Celebrate your style.', 'Clothing awaits you.'];
+        const phrases = ['Discover inclusive education.', 'Empower your future.', 'Learn with pride.'];
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -1002,122 +997,92 @@
         }
         type();
 
-        // Scroll to Offers
-        document.getElementById('scroll-to-offers').addEventListener('click', () => {
-            document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
-        });
-
         // Theme Toggle
-        document.querySelector('.theme-switcher').addEventListener('click', () => {
+        function toggleTheme() {
             document.body.classList.toggle('dark');
             const icon = document.querySelector('.theme-switcher i');
             icon.classList.toggle('mdi-white-balance-sunny');
             icon.classList.toggle('mdi-moon-waning-crescent');
             localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark');
+                const icon = document.querySelector('.theme-switcher i');
+                icon.classList.remove('mdi-white-balance-sunny');
+                icon.classList.add('mdi-moon-waning-crescent');
+            }
+            updateWishlistButtons();
+        });
+
+        document.querySelector('.theme-switcher').addEventListener('click', toggleTheme);
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            const navbar = document.querySelector('.navbar');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            backToTop.classList.toggle('visible', scrollTop > 300);
+            navbar.classList.toggle('shrink', scrollTop > 50);
+            document.getElementById('scroll-progress').style.width = scrollPercent + '%';
+        });
+
+        document.querySelector('.back-to-top').addEventListener('click', scrollToTop);
+
+        // Scroll to Offers
+        document.getElementById('scroll-to-offers').addEventListener('click', () => {
+            document.querySelector('.offers-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Wishlist Page Navigation
+        function goToWishlist() {
+            window.location.href = "../../Wishlist page/wishlist.html";
+        }
+
+        document.querySelector('.wishlist-btn-fixed').addEventListener('click', goToWishlist);
+
+        // Scroll Animation
+        const offerItems = document.querySelectorAll('.offer-item');
+        window.addEventListener('scroll', () => {
+            offerItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 150) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
         });
 
         window.addEventListener('load', () => {
-            if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-        });
-
-        // Back to Top
-        const backToTop = document.querySelector('.back-to-top');
-        window.addEventListener('scroll', () => {
-            backToTop.classList.toggle('visible', window.scrollY > 300);
-            const navbar = document.querySelector('.navbar');
-            navbar.classList.toggle('shrink', window.scrollY > 50);
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Wishlist Navigation
-        document.querySelector('.wishlist-btn-fixed').addEventListener('click', () => {
-            window.location.href = "../../Wishlist page/wishlist.html";
-        });
-
-        // Filter and Sort Functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const sortButtons = document.querySelectorAll('.sort-btn');
-        const offerItems = document.querySelectorAll('.offer-item');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filter = button.getAttribute('data-filter');
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                applyFilter(filter);
-            });
-        });
-
-        sortButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const sortType = button.getAttribute('data-sort');
-                sortButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                sortOffers(sortType);
-            });
-        });
-
-        function applyFilter(filter) {
             offerItems.forEach(item => {
-                const categories = item.getAttribute('data-category').split(' ');
-                if (filter === 'all' || categories.includes(filter)) {
-                    item.style.display = 'block';
-                    item.style.opacity = '0';
-                    setTimeout(() => {
-                        item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                        item.style.opacity = '1';
-                        item.style.transform = 'translateY(0)';
-                    }, 10);
-                } else {
-                    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(50px)';
-                    setTimeout(() => item.style.display = 'none', 500);
-                }
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(50px)';
+                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
-        }
-
-        function sortOffers(sortType) {
-            const itemsArray = Array.from(offerItems);
-            itemsArray.sort((a, b) => {
-                if (sortType === 'discount') {
-                    const discountA = parseInt(a.getAttribute('data-discount'));
-                    const discountB = parseInt(b.getAttribute('data-discount'));
-                    return discountB - discountA;
-                } else if (sortType === 'expiry') {
-                    const expiryA = new Date(a.getAttribute('data-expiry'));
-                    const expiryB = new Date(b.getAttribute('data-expiry'));
-                    return expiryA - expiryB;
-                }
-            });
-
-            const offersList = document.querySelector('.offers-list');
-            offersList.innerHTML = '';
-            itemsArray.forEach(item => offersList.appendChild(item));
-            applyFilter(document.querySelector('.filter-btn.active').getAttribute('data-filter'));
-        }
+        });
 
         // Modal Functionality
         const modal = document.getElementById('offer-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalDescription = document.getElementById('modal-description');
-        const modalExpiry = document.getElementById('modal-expiry');
         const modalClaimBtn = document.getElementById('modal-claim-btn');
         const modalWishlistBtn = document.getElementById('modal-wishlist-btn');
 
         offerItems.forEach(item => {
             item.addEventListener('click', () => {
                 const title = item.querySelector('h3').textContent;
-                const description = item.querySelector('p:not(.discount):not(.expiry):not(.countdown)').textContent;
-                const expiry = item.querySelector('.expiry').textContent;
-                const link = item.getAttribute('data-link');
+                const description = item.querySelector('p').textContent;
+                const link = item.querySelector('.claim-btn').getAttribute('data-link');
 
                 modalTitle.textContent = title;
                 modalDescription.textContent = description;
-                modalExpiry.textContent = expiry;
                 modalClaimBtn.onclick = () => window.open(link, '_blank');
 
                 const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -1127,7 +1092,7 @@
 
                 modalWishlistBtn.onclick = () => {
                     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-                    const offer = { title, description, expiry, link };
+                    const offer = { title, description, expiry: 'TBD', link };
 
                     if (isWishlisted) {
                         wishlist = wishlist.filter(w => w.title !== title);
@@ -1156,22 +1121,9 @@
         });
 
         // Claim and Wishlist Buttons
-        const claimButtons = document.querySelectorAll('.claim-btn');
-        const wishlistButtons = document.querySelectorAll('.offer-item .wishlist-btn');
-
-        claimButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const url = button.closest('.offer-item').getAttribute('data-link');
-                if (url) window.open(url, '_blank');
-                button.textContent = 'Claimed';
-                button.disabled = true;
-                button.style.background = '#38a169';
-            });
-        });
-
         function updateWishlistButtons() {
             const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const wishlistButtons = document.querySelectorAll('.offer-item .wishlist-btn');
             wishlistButtons.forEach(button => {
                 const offerItem = button.closest('.offer-item');
                 const title = offerItem.querySelector('h3').textContent;
@@ -1185,20 +1137,34 @@
             });
         }
 
+        const claimButtons = document.querySelectorAll('.claim-btn');
+
+        const wishlistButtons = document.querySelectorAll('.offer-item .wishlist-btn');
+
+        claimButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const url = button.getAttribute('data-link');
+                if (url) window.open(url, '_blank');
+                button.textContent = 'Claimed';
+                button.disabled = true;
+                button.style.background = '#38a169';
+            });
+        });
+
         wishlistButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const offerItem = button.closest('.offer-item');
                 const title = offerItem.querySelector('h3').textContent;
-                const description = offerItem.querySelector('p:not(.discount):not(.expiry):not(.countdown)').textContent;
-                const expiry = offerItem.querySelector('.expiry').textContent.replace('Expires: ', '');
-                const link = offerItem.getAttribute('data-link');
+                const description = offerItem.querySelector('p').textContent;
+                const link = offerItem.querySelector('.claim-btn').getAttribute('data-link');
 
                 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
                 const isWishlisted = wishlist.some(item => item.title === title);
 
                 if (!isWishlisted) {
-                    wishlist.push({ title, description, expiry, link });
+                    wishlist.push({ title, description, expiry: 'TBD', link });
                     button.classList.add('active');
                     button.textContent = 'Wishlisted';
                 } else {
@@ -1207,14 +1173,13 @@
                     button.textContent = 'Wishlist';
                 }
                 localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                updateWishlistButtons();
             });
         });
 
-        window.addEventListener('load', updateWishlistButtons);
-
         // Lazy Load Images
         const images = document.querySelectorAll('.offer-image');
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
@@ -1229,49 +1194,6 @@
             img.style.opacity = '0';
             img.style.transition = 'opacity 0.5s ease';
             observer.observe(img);
-        });
-
-        // Countdown Timer
-        function updateCountdown() {
-            offerItems.forEach(item => {
-                const countdownElement = item.querySelector('.countdown');
-                const endDate = new Date(countdownElement.getAttribute('data-end')).getTime();
-                const now = new Date().getTime();
-                const timeLeft = endDate - now;
-
-                if (timeLeft > 0) {
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    countdownElement.textContent = `Time Left: ${days}d ${hours}h ${minutes}m`;
-                } else {
-                    countdownElement.textContent = 'Expired';
-                    countdownElement.style.color = '#e53e3e';
-                }
-            });
-        }
-
-        setInterval(updateCountdown, 60000);
-        updateCountdown();
-
-        // Scroll Animation
-        window.addEventListener('scroll', () => {
-            offerItems.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 150) {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }
-            });
-        });
-
-        window.addEventListener('load', () => {
-            offerItems.forEach(item => {
-                item.style.opacity = '0';
-                item.style.transform = 'translateY(50px)';
-                item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            });
-            applyFilter('all');
         });
 
         // Mobile Menu Toggle

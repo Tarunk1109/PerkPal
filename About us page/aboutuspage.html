@@ -49,7 +49,7 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            padding: 1rem 2rem;
+            padding: 0.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -59,7 +59,7 @@
         }
 
         .navbar.shrink {
-            padding: 0.5rem 2rem;
+            padding: -10rem 2rem;
         }
 
         body.dark .navbar {
@@ -67,12 +67,13 @@
         }
 
         .logo img {
-            height: 40px;
+            height: 120px;
+            min-height: 60px;
             transition: height 0.3s ease;
         }
 
         .navbar.shrink .logo img {
-            height: 30px;
+            height: 78px;
         }
 
         .nav-menu ul {
@@ -98,6 +99,11 @@
             padding: 0.5rem 1.5rem;
             border-radius: 20px;
             text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #2b6cb0;
         }
 
         /* Hero Section */
@@ -195,61 +201,6 @@
         }
 
         body.dark .about-section p {
-            color: #a0aec0;
-        }
-
-        /* Team Section */
-        .team-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .team-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        body.dark .team-card {
-            background: #2d3748;
-        }
-
-        .team-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.2);
-        }
-
-        .team-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-
-        .team-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .team-info h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        body.dark .team-info h3 {
-            color: #e2e8f0;
-        }
-
-        .team-info p {
-            color: #718096;
-            font-size: 0.95rem;
-        }
-
-        body.dark .team-info p {
             color: #a0aec0;
         }
 
@@ -600,9 +551,9 @@
         </div>
         <nav class="nav-menu">
             <ul>
-                <li><a href="./port.html">Home</a></li>
-                <li><a href="./loginpage.html">Log In</a></li>
-                <li><a href="./registrationform.html">Sign Up</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../LogIn Page/loginpage.html">Log In</a></li>
+                <li><a href="../Registration Page/registrationform.html" class="btn-signup">Sign Up</a></li>
             </ul>
         </nav>
     </header>
@@ -617,7 +568,7 @@
     </section>
 
     <!-- About Content -->
-    <main class="about-content">
+    <main copy class="about-content">
         <div class="about-section">
             <h2>Who We Are</h2>
             <p>At Perkpal, we believe in the power of personalized experiences. Our mission is to connect people with exclusive discounts and offers tailored to their unique lifestyles. Whether you're a student, senior citizen, a member of the LGBTQ+ community, or belong to other specific groups, Perkpal is your go-to platform for discovering deals that matter most to you. We understand that everyone has different needs, and that’s why we’ve designed our website to cater to a variety of communities, helping you save on things you love.</p>
@@ -636,24 +587,6 @@
         <div class="about-section">
             <h2>Our Commitment</h2>
             <p>At Perkpal, we value inclusivity, accessibility, and community. Our website was built with you in mind, offering easy navigation, engaging interactive forms, and a secure platform to explore and claim discounts. Whether you're looking for savings on your daily essentials or special offers to indulge in your passions, Perkpal is here to make those connections happen. Join us today and experience a smarter, more personalized way to shop and save.</p>
-        </div>
-
-        <!-- Team Section -->
-        <div class="team-section">
-            <article class="team-card">
-                <img src="https://via.placeholder.com/250x175" alt="Jane Doe">
-                <div class="team-info">
-                    <h3>Jane Doe</h3>
-                    <p>Founder & CEO<br>Passionate about inclusivity and tech innovation.</p>
-                </div>
-            </article>
-            <article class="team-card">
-                <img src="https://via.placeholder.com/250x175" alt="John Smith">
-                <div class="team-info">
-                    <h3>John Smith</h3>
-                    <p>CTO<br>Expert in AI and user experience design.</p>
-                </div>
-            </article>
         </div>
 
         <!-- FAQ Section -->
@@ -686,17 +619,14 @@
             </div>
             <div class="testimonial-grid">
                 <div class="testimonial-card" data-category="student">
-                    
                     <p>"Perkpal has saved me so much on student essentials! The personalized deals are a game-changer."</p>
                     <h4>- Sarah, Student</h4>
                 </div>
                 <div class="testimonial-card" data-category="senior">
-                    
                     <p>"I love how easy it is to find discounts that matter to me as a senior citizen."</p>
                     <h4>- Robert, Senior</h4>
                 </div>
                 <div class="testimonial-card" data-category="lgbtq">
-                    
                     <p>"The inclusivity of Perkpal is amazing. I found great offers tailored to the LGBTQ+ community!"</p>
                     <h4>- Alex, Community Member</h4>
                 </div>
@@ -718,11 +648,11 @@
         <div class="footer-content">
             <div>
                 <h3>Quick Links</h3>
-                <p><a href="./port.html">Home</a> | <a href="#">About Us</a> | <a href="#">Services</a></p>
+                <p><a href="../index.html">Home</a> | <a href="#">About Us</a> | <a href="../Registration Page/registrationform.html">Sign Up</a></p>
             </div>
             <div>
                 <h3>Contact Us</h3>
-                <p>Email: <a href="mailto:support@perkpal.com">support@perkpal.com</a><br>Phone: +123 456 789<br>Address: 123 Street, Etobicoke, Canada</p>
+                <p>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="582b2d2828372a2c18282f2a2a35282e763b3735">[email&#160;protected]</a><br>Address: Etobicoke, Canada</p>
             </div>
         </div>
         <p>© 2025 Perkpal. All Rights Reserved.</p>
@@ -737,6 +667,7 @@
     </button>
     <button class="theme-switcher"><i class="mdi mdi-white-balance-sunny"></i></button>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         // Theme Toggle
         document.querySelector('.theme-switcher').addEventListener('click', () => {
